@@ -68,6 +68,8 @@ export const AppControler = ({ tabpage }) => {
         return <UserMaster />;
       case "Setting":
         return <SettingMaster />;
+      default:
+        return <></>;
     }
   };
 

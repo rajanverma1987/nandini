@@ -1,9 +1,6 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import styles from "./styles/fileInput.module.css";
-import Icon from "../icon/icon";
-import { BsCloudUpload, BsCloudUploadFill, BsUpload } from "react-icons/bs";
-import { IoIosCloudUpload, IoMdCloudUpload } from "react-icons/io";
-
+import { BsUpload } from "react-icons/bs";
 function FileInput({ isError, type, label, name, onChange, value = "" }, ref) {
   useEffect(() => {
     // console.log(name);

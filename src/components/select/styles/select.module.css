@@ -3,7 +3,6 @@
   margin-inline: 0.5rem;
   position: relative;
   height: 2.5rem;
-  /* width: max(15rem, 31%); */
   flex-shrink: 1;
 }
 

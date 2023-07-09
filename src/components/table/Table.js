@@ -22,59 +22,20 @@ export default function Table({
   fetch = {},
   menuVisible = true,
 }) {
-  const rawData = [
-    {
-      id: 1,
-      portfolioName: "aa",
-      portfolioOwner: null,
-      dematAccountInstitutionId: "aa",
-      dematAccountInstitution: null,
-      dematAccountNo: "aa",
-      dematAccountName: "aa",
-      inceptionDate: "2023-01-01T00:00:00.000+00:00",
-      portfolioSettlementPeriod: "2023-01-01T00:00:00.000+00:00",
-      advisorName: "aa",
-      benchmarkIndex: "aa",
-      createdBy: 0,
-      nomineeDetails: [
-        {
-          id: 1,
-          nomineeName: "aa",
-          nomineeAddress: "aa",
-          nomineeDob: "2023-01-01T00:00:00.000+00:00",
-          relationship: "aa",
-          isMinor: "aa",
-          guardianName: "aa",
-          allocationPercentage: 22.0,
-          createdBy: 0,
-          createdAt: "2023-07-04T04:13:53.463+00:00",
-        },
-      ],
-      userBankDetails: [
-        {
-          id: 1,
-          financialInstitutionName: "aa",
-          ifscCode: "aa",
-          accountType: "aa",
-          accountNo: "aa",
-          accountName: "aa",
-          isPrimary: "aa",
-        },
-      ],
-      createdAt: "2023-07-04T04:13:53.429+00:00",
-    },
-  ];
   const { updateTableData, tbldata } = useContext(Context);
   const [tableData, setTableData] = useState([]);
   const [colOrder, setColOrder] = useState([]);
   const [showMainMenu, setShowMainMenu] = useState(false);
   const [loading, setLoading] = useState(false);
+  // Pagination
+  const [toShow, setToShow] = useState(5);
+  const [currengPage, setCurrentPage] = useState(1);
+
   let dragStartCol;
   let dragEndCol;
 
   useEffect(() => {
-    console.log("Tally Name ", name);
-
+    console.log("--Rendering...");
     if (!tbldata[name]) {
       fetchTableData();
     } else {
@@ -95,16 +56,60 @@ export default function Table({
           item.join().toLowerCase().includes(val.toLowerCase()) || index == 0
         );
       });
+
       setTableData(filtered);
     } catch (e) {
       console.log(e);
     }
   }
 
+  function returnPageData() {
+    let data = tbldata[name];
+    let start = (currengPage - 1) * toShow + 1;
+    let end = currengPage * toShow + 1;
+    let pageData = data.filter((_, index) => {
+      return (index >= start && index < end) || index == 0;
+    });
+    setTableData(pageData);
+  }
+
+  function chagnePage(page) {
+    console.log(
+      "TOTAL PAGE = ",
+      tbldata[name].length / toShow,
+      "CURRENT PAGE =",
+      currengPage
+    );
+
+    if (page === "+1") {
+      console.log("CUURENT PAGE= ", currengPage);
+      if (currengPage < Math.round(tbldata[name].length / toShow)) {
+        console.log("Incrase");
+        setCurrentPage((prev) => {
+          let page = prev + 1;
+          return page;
+        });
+        currengPage = currengPage + 1;
+      }
+    }
+    if (page === "-1") {
+      if (currengPage > 1) {
+        console.log("decrease");
+        setCurrentPage((prev) => {
+          let page = prev - 1;
+          return page;
+        });
+      }
+    }
+    returnPageData(tableData);
+  }
+
   function updateTableDataState(data) {
     setTableData(data);
     updateTableData(name, data);
+    returnPageData();
   }
+
   async function fetchTableData() {
     try {
       if (fetch?.api) {
@@ -117,7 +122,6 @@ export default function Table({
         }
         if (res.status == 200) {
           let data = res.data.Data;
-          setTableData(res.data.Data);
           data = jsonToArray(res.data.Data);
           let obj = data[0].map((item, index) => index);
           setColOrder(obj);
@@ -130,7 +134,6 @@ export default function Table({
       console.log(e);
     }
   }
-
   function shuffleColumns(from, to) {
     if (from === to) return;
     let shuffled = [];
@@ -146,13 +149,10 @@ export default function Table({
 
     updateTableDataState(obj);
   }
-
   function sort(order, index) {
-    console.log(index);
     let sortedData = sortTable(tableData, order, index);
     updateTableDataState(sortedData);
   }
-
   function Column({ index }) {
     const [showMenu, setShowMenu] = useState(false);
     useEffect(() => {}, []);
@@ -183,7 +183,11 @@ export default function Table({
       >
         {tableData.map((row, rowIndex) => {
           return (
-            <span key={`${index}_${rowIndex}`} className={`${styles.cell}`}>
+            <span
+              key={`${index}_${rowIndex}`}
+              className={`${styles.cell}`}
+              style={{ "--col": tableData[0].length }}
+            >
               {row[index]}
               {rowIndex === 0 && (
                 <ContextMenu
@@ -198,7 +202,6 @@ export default function Table({
       </div>
     );
   }
-
   function ContextMenu({ showMenu, setShowMenu, index }) {
     return (
       <div
@@ -249,6 +252,7 @@ export default function Table({
           )}
         </div>
       )}
+
       {tableData && tableData.length > 0 && (
         <div className={styles.table}>
           {tableData[0] &&
@@ -258,16 +262,19 @@ export default function Table({
             })}
         </div>
       )}
+
       <div className={styles.Pagination}>
-        <span>{`Showing ${1} to ${10} of 1000`}</span>
-        <span>{`< Prev`}</span>
+        <span>{`Showing ${1} to ${
+          tbldata[name] ? tbldata[name].length - 1 : ""
+        } of ${tableData.length - 1}`}</span>
+        <span onClick={chagnePage.bind(this, "-1")}>{`< Prev`} </span>
         <span>1</span>
         <span>2</span>
         <span>3</span>
         <span>4</span>
         <span>5</span>
         <span>..</span>
-        <span>{` Next >`}</span>
+        <span onClick={chagnePage.bind(this, "+1")}>{` Next >`} </span>
       </div>
     </>
   );

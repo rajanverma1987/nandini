@@ -14,7 +14,7 @@ import "../assets/login.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 
 import { AppControler } from "../AppControler/AppControler";
-import _nav from "../_components/_nav";
+// import _nav from "../_components/_nav";
 
 class DefaultLayout extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class DefaultLayout extends Component {
       if (
         this.props.search_all_email.object &&
         this.props.search_all_email.object.length > 0 &&
-        this.props.search_all_email.type == "inbox"
+        this.props.search_all_email.type === "inbox"
       ) {
         // this.props.dispatch(emailActions.searchallinboxemails(this.props.search_all_email.object))
       } else {
@@ -180,8 +180,28 @@ class DefaultLayout extends Component {
                       </TabList>
                     </Box>
                   </ThemeProvider>
+                  {/* {
+                    this.state.renderTabs.includes(this.state.value) ? 
+                    <TabPanel value={this.state.value}>
+                    <e.component 
+                    />
+                  </TabPanel>
+                  : this.state?.renderTabs.map((e, i) => {
+                   { console.log(e.path)}
+                    <TabPanel value={e.path}>
+                      <e.component 
+                      />
+                    </TabPanel>
+                  }
+                  )
+                  } */}
+                  {console.log(
+                    "----->",
+                    this.state?.renderTabs.some(
+                      (data) => data.path === this.state.tabname
+                    )
+                  )}
 
-                  {console.log("Router Path")}
                   {this.state?.renderTabs.map((e, i) => {
                     return (
                       <TabPanel value={e.path}>

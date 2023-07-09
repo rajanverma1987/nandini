@@ -36,9 +36,9 @@ export const validateForm = async (stateUpdateFunction) => {
                   switch (validaton[0]) {
                     case "required":
                       if (validaton[1]) {
-                        if (control.type == "select") {
+                        if (control.type === "select") {
                           console.log(control.name, value);
-                          if (value == -1 || value == "") {
+                          if (value === -1 || value === "") {
                             control.isValid = false;
                             formStatus = false;
                           }
@@ -130,7 +130,7 @@ export const updateFormData = (e, stateUpdateFunction, formItemIndex) => {
       form.forEach((forItem, formIndex) => {
         forItem.rows?.forEach((row) => {
           row.controls.forEach((control) => {
-            if (control.name == name && formIndex == formItemIndex) {
+            if (control.name === name && formIndex === formItemIndex) {
               control.isValid = true;
               control.value = value;
             }
@@ -155,7 +155,7 @@ export const updateFormOnSelection = (
         forItem.rows?.forEach((row) => {
           row.controls.forEach((control) => {
             if (control.type !== "table" && control.type !== "button") {
-              if (control.name == name && formIndex == formItemIndex) {
+              if (control.name === name && formIndex === formItemIndex) {
                 control.isValid = true;
                 control.value = value;
               }
