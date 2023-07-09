@@ -37,6 +37,16 @@ const SettingMaster = React.lazy(() =>
 );
 const UserMaster = React.lazy(() => import("../../Pages/Masters/UserMaster"));
 
+const SalesDashBoard = React.lazy(() =>
+  import("./../../Pages/Dashbord/SalesDashboard")
+);
+const OSDashBoard = React.lazy(() =>
+  import("./../../Pages/Dashbord/OutstandingDashboard")
+);
+const HRDashboard = React.lazy(() =>
+  import("./../../Pages/Dashbord/HRDashboard")
+);
+
 const routes = [
   {
     path: "/postlogin/dashboard",
@@ -53,17 +63,17 @@ const routes = [
       {
         name: "Sales Dashboard",
         path: "/postlogin/sales",
-        component: null,
+        component: SalesDashBoard,
       },
       {
         name: "HR Dashboard",
         path: "/postlogin/hr",
-        component: null,
+        component: HRDashboard,
       },
       {
         name: "Outstanding Dashboard",
         path: "/postlogin/outstanding",
-        component: null,
+        component: OSDashBoard,
       },
     ],
   },
