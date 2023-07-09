@@ -8,6 +8,7 @@ export const dropDownData = (json, headers) => {
   let row = [];
 
   Object.entries(json).forEach((entry) => {
+    row = [];
     headers.forEach((header) => {
       row.push(entry[1][header]);
     });
@@ -28,7 +29,7 @@ export const validateForm = async (stateUpdateFunction) => {
           row.controls.forEach((control) => {
             control.isValid = true;
             const { value } = control;
-            if (control.type !== "button") {
+            if (control.type !== "button" && control.type !== "table") {
               if (control?.validation) {
                 let validations = Object.entries(control.validation);
                 validations.forEach((validaton) => {
@@ -85,36 +86,40 @@ export const validateForm = async (stateUpdateFunction) => {
 export const extractData = function (forms) {
   let extractedData = {};
   let parentName;
-  forms.forms.forEach((subForms) => {
-    subForms.forEach((form, formIndex) => {
-      if (form.name) {
-        if (form.type === "parent") {
-          parentName = form.name;
-          extractedData[parentName] = {};
-        } else if (form.type === "child") {
-          if (!extractedData[parentName][form.name])
-            extractedData[parentName][form.name] = [];
-          extractedData[parentName][form.name].push({});
-        }
+  try {
+    forms.forms.forEach((subForms) => {
+      subForms.forEach((form, formIndex) => {
+        if (form.name) {
+          if (form.type === "parent") {
+            parentName = form.name;
+            extractedData[parentName] = {};
+          } else if (form.type === "child") {
+            if (!extractedData[parentName][form.name])
+              extractedData[parentName][form.name] = [];
+            extractedData[parentName][form.name].push({});
+          }
 
-        form.rows.forEach((row) => {
-          row.controls.forEach((control) => {
-            const { name, value, type } = control;
-            if (type !== "button") {
-              if (form.name === parentName) {
-                extractedData[parentName][name] = value;
-              } else {
-                extractedData[parentName][form.name][
-                  extractedData[parentName][form.name].length - 1
-                ][name] = value;
+          form.rows.forEach((row) => {
+            row.controls.forEach((control) => {
+              const { name, value, type } = control;
+              if (type !== "button" && type !== "table") {
+                if (form.name === parentName) {
+                  extractedData[parentName][name] = value;
+                } else {
+                  extractedData[parentName][form.name][
+                    extractedData[parentName][form.name].length - 1
+                  ][name] = value;
+                }
               }
-            }
+            });
           });
-        });
-      }
+        }
+      });
     });
-  });
-  return extractedData;
+    return extractedData;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const updateFormData = (e, stateUpdateFunction, formItemIndex) => {
@@ -149,9 +154,11 @@ export const updateFormOnSelection = (
       form.forEach((forItem, formIndex) => {
         forItem.rows?.forEach((row) => {
           row.controls.forEach((control) => {
-            if (control.name == name && formIndex == formItemIndex) {
-              control.isValid = true;
-              control.value = value;
+            if (control.type !== "table" && control.type !== "button") {
+              if (control.name == name && formIndex == formItemIndex) {
+                control.isValid = true;
+                control.value = value;
+              }
             }
           });
         });

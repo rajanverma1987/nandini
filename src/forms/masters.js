@@ -1,5 +1,5 @@
 export const department = {
-  api: "",
+  api: "Master/Department/PostData",
   forms: [
     [
       {
@@ -12,7 +12,7 @@ export const department = {
             align: "left",
             controls: [
               {
-                name: "Code",
+                name: "DepartmentCode",
                 value: "",
                 type: "input",
                 title: "Department Code",
@@ -24,7 +24,7 @@ export const department = {
                 },
               },
               {
-                name: "name",
+                name: "DepartmentName",
                 value: "",
                 type: "input",
                 title: "Department Name",
@@ -55,7 +55,7 @@ export const department = {
       {
         title: "",
         name: "departmentTable",
-        type: "parent",
+        type: "",
         rows: [
           {
             col: 1,
@@ -84,7 +84,7 @@ export const department = {
 };
 
 export const designation = {
-  api: "",
+  api: "Master/Designation/PostData",
   forms: [
     [
       {
@@ -97,7 +97,7 @@ export const designation = {
             align: "left",
             controls: [
               {
-                name: "Code",
+                name: "DesignationCode",
                 value: "",
                 type: "input",
                 title: "Designation Code",
@@ -109,7 +109,7 @@ export const designation = {
                 },
               },
               {
-                name: "name",
+                name: "DesignationName",
                 value: "",
                 type: "input",
                 title: "Designation Name",
@@ -153,7 +153,7 @@ export const designation = {
       {
         title: "",
         name: "designationTable",
-        type: "parent",
+        type: "",
         rows: [
           {
             col: 1,
@@ -182,7 +182,7 @@ export const designation = {
 };
 
 export const employee = {
-  api: "",
+  api: "Master/Employee/PostData",
   forms: [
     [
       {
@@ -195,7 +195,7 @@ export const employee = {
             align: "left",
             controls: [
               {
-                name: "Code",
+                name: "EmployeeCode",
                 value: "",
                 type: "input",
                 title: "Employee Code",
@@ -207,7 +207,7 @@ export const employee = {
                 },
               },
               {
-                name: "name",
+                name: "EmployeeName",
                 value: "",
                 type: "input",
                 title: "Employee Name",
@@ -220,7 +220,7 @@ export const employee = {
               },
 
               {
-                name: "gender",
+                name: "Gender",
                 value: "",
                 type: "select",
                 title: "Gender",
@@ -242,7 +242,7 @@ export const employee = {
                 },
               },
               {
-                name: "department",
+                name: "DepartmentId",
                 value: "",
                 type: "select",
                 title: "Department",
@@ -261,7 +261,7 @@ export const employee = {
                 },
               },
               {
-                name: "designation",
+                name: "DesignationId",
                 value: "",
                 type: "select",
                 title: "designation",
@@ -280,7 +280,7 @@ export const employee = {
                 },
               },
               {
-                name: "address1",
+                name: "AddressLine1",
                 value: "",
                 type: "input",
                 title: "Address Line 1",
@@ -292,7 +292,7 @@ export const employee = {
                 },
               },
               {
-                name: "address2",
+                name: "AddressLine2",
                 value: "",
                 type: "input",
                 title: "Address Line 2",
@@ -300,11 +300,11 @@ export const employee = {
                 visible: true,
                 isValid: true,
                 validation: {
-                  required: true,
+                  required: false,
                 },
               },
               {
-                name: "address3",
+                name: "AddressLine3",
                 value: "",
                 type: "input",
                 title: "Address Line 3",
@@ -312,11 +312,11 @@ export const employee = {
                 visible: true,
                 isValid: true,
                 validation: {
-                  required: true,
+                  required: false,
                 },
               },
               {
-                name: "country",
+                name: "Country",
                 value: "",
                 type: "select",
                 title: "Country",
@@ -324,13 +324,13 @@ export const employee = {
                 visible: true,
                 isValid: true,
                 validation: {
-                  required: true,
+                  required: false,
                 },
                 options: [],
                 selector: "Select Country",
               },
               {
-                name: "state",
+                name: "State",
                 value: "",
                 type: "select",
                 title: "state",
@@ -338,13 +338,13 @@ export const employee = {
                 visible: true,
                 isValid: true,
                 validation: {
-                  required: true,
+                  required: false,
                 },
                 options: [],
                 selector: "Select State",
               },
               {
-                name: "city",
+                name: "City",
                 value: "",
                 type: "select",
                 title: "city",
@@ -352,14 +352,14 @@ export const employee = {
                 visible: true,
                 isValid: true,
                 validation: {
-                  required: true,
+                  required: false,
                 },
                 options: [],
                 selector: "Select City",
               },
 
               {
-                name: "pinCode",
+                name: "Pincode",
                 value: "",
                 type: "input",
                 title: "Pin Code",
@@ -372,7 +372,7 @@ export const employee = {
               },
 
               {
-                name: "mobile",
+                name: "Mobile",
                 value: "",
                 type: "input",
                 title: "Mobile",
@@ -385,7 +385,7 @@ export const employee = {
               },
 
               {
-                name: "email",
+                name: "Email",
                 value: "",
                 type: "input",
                 title: "email",
@@ -398,7 +398,7 @@ export const employee = {
               },
 
               {
-                name: "joinDate",
+                name: "JoinDate",
                 value: "",
                 type: "date",
                 title: "Join Date",
@@ -458,7 +458,7 @@ export const employee = {
 };
 
 export const role = {
-  api: "",
+  api: "Master/UserRole/PostData",
   forms: [
     [
       {
@@ -471,7 +471,7 @@ export const role = {
             align: "left",
             controls: [
               {
-                name: "role",
+                name: "RoleName",
                 value: "",
                 type: "input",
                 title: "Role",
@@ -531,12 +531,12 @@ export const role = {
 };
 
 export const user = {
-  api: "",
+  api: "Master/User/PostData",
   forms: [
     [
       {
         title: "",
-        name: "user",
+        name: "User",
         type: "parent",
         rows: [
           {
@@ -563,7 +563,7 @@ export const user = {
                 },
               },
               {
-                name: "userName",
+                name: "UserName",
                 value: "",
                 type: "input",
                 title: "User Name",
@@ -576,7 +576,7 @@ export const user = {
               },
 
               {
-                name: "employee",
+                name: "EmployeeId",
                 value: "",
                 type: "select",
                 title: "Employee",
@@ -588,10 +588,15 @@ export const user = {
                 },
                 options: [],
                 selector: "Select Employee",
+                fetch: {
+                  api: "Master/Employee/GetByIdData",
+                  data: { CompanyId: 1 },
+                  fields: ["EmployeeCode", "EmployeeName"],
+                },
               },
 
               {
-                name: "email",
+                name: "Email",
                 value: "",
                 type: "input",
                 title: "Email ID",
@@ -604,7 +609,7 @@ export const user = {
               },
 
               {
-                name: "mobile",
+                name: "Mobile",
                 value: "",
                 type: "input",
                 title: "Mobile",
@@ -625,7 +630,7 @@ export const user = {
                 visible: true,
                 isValid: true,
                 validation: {
-                  required: true,
+                  required: false,
                 },
               },
 
@@ -677,7 +682,7 @@ export const user = {
 };
 
 export const setting = {
-  api: "",
+  api: "Master/Setting/PostData",
   forms: [
     [
       {

@@ -130,9 +130,7 @@ export default function Table({
 
   function Column({ index }) {
     const [showMenu, setShowMenu] = useState(false);
-    useEffect(() => {
-      console.log("Rendered");
-    }, []);
+    useEffect(() => {}, []);
 
     function dragStart(e, index) {
       dragStartCol = index;

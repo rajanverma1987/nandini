@@ -32,6 +32,7 @@ function Select(
         const res = await axios_.post(fetch.api, fetch.data);
         if (res.status == 200) {
           let data = dropDownData(res.data.Data, fetch.fields);
+          console.log("DDN DATA =======", data, res.data.Data);
           setSelectOption(data);
         }
       } catch (e) {
