@@ -168,16 +168,18 @@ export const updateFormOnSelection = (
   });
 };
 
-export const jsonToArray = (json) => {
+export const jsonToArray = (json, fieldsMap) => {
   let result = [];
 
   Object.entries(json).forEach((row, index) => {
     if (index === 0) {
       // Get Header Row
       let headers = ["Sr. No"];
+      console.log(fieldsMap);
       Object.entries(row[1]).forEach((col) => {
         if (!(typeof col[1] === "object")) {
-          headers.push(convertCamelCaseToSpace(col[0]));
+          console.log(col[0]);
+          headers.push(fieldsMap?.[col[0]] ? fieldsMap[col[0]] : col[0]);
         }
       });
       result.push(headers);

@@ -15,6 +15,7 @@ import { AiOutlineSortDescending } from "react-icons/ai";
 import { AiOutlineSortAscending } from "react-icons/ai";
 import { useContext } from "react";
 import { Context } from "../../store/store";
+import { fieldsMap } from "../../constant/Images/fieldsMap";
 
 export default function Table({
   name = "",
@@ -122,7 +123,7 @@ export default function Table({
         }
         if (res.status == 200) {
           let data = res.data.Data;
-          data = jsonToArray(res.data.Data);
+          data = jsonToArray(res.data.Data, fieldsMap);
           let obj = data[0].map((item, index) => index);
           setColOrder(obj);
           updateTableDataState(data);

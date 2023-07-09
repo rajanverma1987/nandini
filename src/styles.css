@@ -3,7 +3,7 @@ iframe {
 }
 
 :root {
-  --primary-color: #013b6a;
+  --primary-color: #16619f;
   /* --primary-color: #f34040; */
   --primary-color2: #013b6a;
   --secondary-color: #013b6a;
@@ -13,7 +13,7 @@ iframe {
   /* --text-primary-color: #94969b; */
   --placeholder-color: #0f3757;
   --heading-color: #013b6a;
-  --button-color: #013b6a;
+  --button-color: #16619f;
 }
 * {
   box-sizing: border-box;
