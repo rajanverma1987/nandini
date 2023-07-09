@@ -1,6 +1,10 @@
 .table {
   text-align: left;
   display: inline-flex;
+  max-height: 50vh;
+  overflow: auto;
+  width: 100vw !important;
+  border: 1px solid rgba(108, 108, 108, 0.621);
 }
 .column {
   display: inline-flex;
@@ -16,7 +20,50 @@
   height: 2rem;
   border-right: 1px solid rgba(108, 108, 108, 0.621);
 }
-
+.Pagination {
+  height: 2rem;
+  /* background-color: rgb(135, 135, 135); */
+  width: 100vw !important;
+  display: flex;
+  align-items: last baseline;
+  justify-content: flex-end;
+  font-size: 0.8rem;
+}
+.Pagination > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  min-width: 20px;
+  margin-inline: 1px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: var(--forth-color);
+}
+.Pagination span:nth-child(1) {
+  background-color: transparent;
+  color: var(--primary-color);
+  width: fit-content;
+  white-space: nowrap;
+  margin-right: 1rem;
+}
+.Pagination span:nth-child(2) {
+  background-color: var(--primary-color);
+  color: aliceblue;
+  width: 5rem !important;
+  border-radius: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.Pagination span:last-child {
+  background-color: var(--primary-color);
+  color: aliceblue;
+  width: 5rem !important;
+  border-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 .mainMenu {
   height: 2rem;
   position: sticky;
@@ -30,6 +77,16 @@
   color: var(--primary-color);
   border-radius: 0px;
   /* border: 1px solid blue; */
+}
+.searchBox {
+  height: 1.3rem;
+  width: 10rem;
+  margin-right: 0.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 0.7rem;
+  padding-left: 0.5rem;
+  color: var(--primary-color);
 }
 .mainMenu > span {
   font-size: 0.7rem;
@@ -45,6 +102,16 @@
 }
 .draggging {
   border-right: 2px solid white;
+}
+.animateRefreshButton {
+  transition: all 0.5s;
+  color: green;
+  animation: animateRefresh 0.5s;
+}
+@keyframes animateRefresh {
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
 }
 .menuList {
   position: absolute;
@@ -79,7 +146,7 @@
 .column span:nth-child(1) {
   padding: 1rem;
   position: sticky;
-  top: 2rem;
+  top: 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

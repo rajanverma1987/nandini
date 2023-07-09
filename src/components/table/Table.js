@@ -68,16 +68,38 @@ export default function Table({
   const [tableData, setTableData] = useState([]);
   const [colOrder, setColOrder] = useState([]);
   const [showMainMenu, setShowMainMenu] = useState(false);
+  const [loading, setLoading] = useState(false);
   let dragStartCol;
   let dragEndCol;
 
   useEffect(() => {
+    console.log("Tally Name ", name);
+
     if (!tbldata[name]) {
       fetchTableData();
     } else {
       setTableData(tbldata[name]);
     }
   }, []);
+
+  function filterTable(e) {
+    try {
+      let val = e.target.value;
+      let filtered = tbldata[name];
+      if (!val) {
+        return setTableData(filtered);
+      }
+
+      filtered = filtered.filter((item, index) => {
+        return (
+          item.join().toLowerCase().includes(val.toLowerCase()) || index == 0
+        );
+      });
+      setTableData(filtered);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   function updateTableDataState(data) {
     setTableData(data);
@@ -88,6 +110,7 @@ export default function Table({
       if (fetch?.api) {
         let res;
         if (fetch.type === "post") {
+          setLoading(true);
           res = await axios_.post(fetch.api, fetch.data);
         } else {
           res = await axios_.get(fetch.api);
@@ -100,8 +123,10 @@ export default function Table({
           setColOrder(obj);
           updateTableDataState(data);
         }
+        setLoading(false);
       }
     } catch (e) {
+      setLoading(false);
       console.log(e);
     }
   }
@@ -204,10 +229,16 @@ export default function Table({
       {menuVisible && (
         <div className={styles.mainMenu}>
           <IoMdRefresh
-            className={styles.refreshButton}
+            className={`${styles.refreshButton} ${
+              loading ? styles.animateRefreshButton : ""
+            }`}
             onClick={fetchTableData}
           />
-
+          <input
+            className={styles.searchBox}
+            placeholder="Search"
+            onChange={filterTable}
+          />
           <IoIosMenu
             onClick={() => {
               setShowMainMenu((prev) => !prev);
@@ -227,6 +258,17 @@ export default function Table({
             })}
         </div>
       )}
+      <div className={styles.Pagination}>
+        <span>{`Showing ${1} to ${10} of 1000`}</span>
+        <span>{`< Prev`}</span>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>..</span>
+        <span>{` Next >`}</span>
+      </div>
     </>
   );
 }

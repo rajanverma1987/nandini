@@ -43,7 +43,7 @@ export const AppControler = ({ tabpage }) => {
       case "Stock Category":
         return <StockCategory />;
 
-      case " Stock Godown":
+      case "Stock Godown":
         return <StockGodown />;
       case "Stock Group":
         return <StockGroup />;

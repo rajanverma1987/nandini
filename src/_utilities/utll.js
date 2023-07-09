@@ -174,15 +174,15 @@ export const jsonToArray = (json) => {
   Object.entries(json).forEach((row, index) => {
     if (index === 0) {
       // Get Header Row
-      let headers = [];
+      let headers = ["Sr. No"];
       Object.entries(row[1]).forEach((col) => {
         if (!(typeof col[1] === "object")) {
-          headers.push(col[0]);
+          headers.push(convertCamelCaseToSpace(col[0]));
         }
       });
       result.push(headers);
     }
-    let rowData = [];
+    let rowData = [index + 1];
     // Get Data Row
     Object.entries(row[1]).forEach((col) => {
       if (!(typeof col[1] === "object")) {
@@ -194,6 +194,11 @@ export const jsonToArray = (json) => {
   });
   return result;
 };
+
+function convertCamelCaseToSpace(header) {
+  var convertedHeader = header.replace(/([a-z])([A-Z])/g, "$1 $2");
+  return convertedHeader;
+}
 
 export const shufflTableColums = (data, order) => {
   let res = [];

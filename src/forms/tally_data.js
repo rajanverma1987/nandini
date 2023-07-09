@@ -14,7 +14,7 @@ export const company = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "company",
                 type: "table",
 
                 fetch: {
@@ -46,7 +46,7 @@ export const costCategory = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "CostCategory",
                 type: "table",
 
                 fetch: {
@@ -78,7 +78,7 @@ export const costCenter = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "costCenter",
                 type: "table",
 
                 fetch: {
@@ -109,7 +109,7 @@ export const currency = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "currency",
                 type: "table",
 
                 fetch: {
@@ -140,7 +140,7 @@ export const group = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "group",
                 type: "table",
 
                 fetch: {
@@ -172,7 +172,7 @@ export const ledger = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "ledger",
                 type: "table",
 
                 fetch: {
@@ -204,7 +204,7 @@ export const stockCategory = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "stockCategory",
                 type: "table",
 
                 fetch: {
@@ -236,11 +236,11 @@ export const stockGodown = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "stockGodown",
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.STOCK_GODOWN_BY_ID,
+                  api: "StockGodown/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -268,7 +268,7 @@ export const stockGroup = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "stockGroup",
                 type: "table",
 
                 fetch: {
@@ -300,7 +300,7 @@ export const stockItem = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "stockItem",
                 type: "table",
 
                 fetch: {
@@ -332,7 +332,7 @@ export const stockUnit = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "stockUnit",
                 type: "table",
 
                 fetch: {
@@ -364,7 +364,7 @@ export const voucherType = {
             align: "left",
             controls: [
               {
-                name: "table",
+                name: "voucherType",
                 type: "table",
                 fetch: {
                   api: apiEndPoint.VOUCHER_TYPE_BY_ID,

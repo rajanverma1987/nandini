@@ -15,8 +15,6 @@ export default function UserMaster() {
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE
   }
   async function handleSubmit() {
-    const inputData = extractData(formData);
-    console.log(inputData);
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
       console.log(inputData);

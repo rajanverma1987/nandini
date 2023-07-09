@@ -1,7 +1,7 @@
-import { forwardRef, useState, useEffect, useRef } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./styles/select.module.css";
-import { axios_, dropDownData } from "./../../_utilities/utll";
+import { axios_, dropDownData } from "../../_utilities/utll";
 
 function Select(
   {
@@ -20,7 +20,6 @@ function Select(
   const [selected, setSelected] = useState(-1);
   const [selectionOption, setSelectOption] = useState([]);
   const [loading, setLoading] = useState(true);
-  const selectRef = useRef();
   useEffect(() => {
     if (fetch?.api) {
       getOptions();
@@ -33,6 +32,7 @@ function Select(
         const res = await axios_.post(fetch.api, fetch.data);
         if (res.status == 200) {
           let data = dropDownData(res.data.Data, fetch.fields);
+          // console.log("DDN DATA =======", data, res.data.Data);
           setSelectOption(data);
         }
       } catch (e) {
@@ -49,14 +49,6 @@ function Select(
     )[0];
     onChange(e, frmIndex, { name, selectedOptions });
   }
-  // function dropDownList(e) {
-  //   try {
-  //     let val = e.target.value;
-  //     console.log(selectRef);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
   return (
     <>
       <div className={styles.container} key={`select_block_${uid}${name}`}>
@@ -65,18 +57,12 @@ function Select(
             {title}
           </span>
         )}
-        {/* <input
-          type="text"
-          className={styles.searchBox}
-          placeholder={selectorText}
-          onChange={dropDownList}
-        /> */}
         <select
           value={selected}
           onChange={handleOnChange}
           key={`select_${uid}`}
           name={name}
-          ref={selectRef}
+          ref={inputRef}
           className={`${styles.select} ${isError ? styles.error : ""} ${
             selected == -1 ? styles.primaryColor : ""
           }`}
