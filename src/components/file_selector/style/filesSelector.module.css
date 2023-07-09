@@ -1,0 +1,56 @@
+.fileSelector {
+  padding: 1rem;
+  width: 22rem;
+  height: 22rem;
+  border: 3px dashed #f3a5405e;
+  color: var(--primary-color);
+  flex-direction: column;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 1;
+  margin-bottom: 0.5rem;
+}
+
+.fileSelector:hover {
+  background-color: #f3a54011;
+  border: 3px dashed var(--primary-color);
+}
+.uploaded {
+  border: 3px dashed green;
+  color: green;
+  font-weight: bold;
+}
+.error:hover {
+  background-color: #f3a54011;
+  border: 3px dashed red;
+  color: red;
+}
+.error {
+  color: red;
+  background-color: transparent;
+  border: 1px solid rgba(255, 0, 0, 0.678);
+  box-shadow: 2px 0px 16px -4px rgba(255, 0, 0, 0.62);
+  -webkit-box-shadow: 2px 0px 16px -4px rgba(255, 0, 0, 0.62);
+  -moz-box-shadow: 2px 0px 16px -4px rgba(255, 0, 0, 0.62);
+  animation: shake 0.5s both;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .fileSelector {
+    flex-grow: 1;
+  }
+}

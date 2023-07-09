@@ -1,0 +1,26 @@
+.card {
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: var(--forth-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.2rem;
+  flex: 1;
+  min-width: 12rem;
+}
+
+.card p:nth-child(1) {
+  color: white;
+  margin-bottom: 1rem;
+}
+.card p:nth-child(3) {
+  color: white;
+  font-size: 1.8rem;
+  margin: 1rem;
+}
+.seperater {
+  width: 80%;
+  height: 1px;
+  background-color: var(--primary-color);
+}

@@ -1,0 +1,26 @@
+.InputRow {
+  min-height: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+}
+.right {
+  justify-content: flex-end !important;
+}
+.center {
+  justify-content: center !important;
+}
+
+.InputRow > * {
+  width: max(12rem, calc(((100 / var(--col)) * 0.9) * 1%)) !important;
+}
+
+.InputRow span {
+  width: auto !important;
+}

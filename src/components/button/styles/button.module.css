@@ -1,0 +1,75 @@
+.btnPrimary,
+.btnSmall {
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: var(--button-color);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  min-width: 5rem;
+  max-width: 12rem;
+  /* min-width: 5rem !important; */
+  transition: all 0.2s;
+}
+.btnSmall {
+  min-width: 4rem;
+  max-width: 4rem;
+}
+
+.bigbtnPrimary {
+  margin-left: 30px;
+  margin-right: 10px;
+  padding: 10px;
+  background-color: var(--button-color2);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  flex-grow: 1;
+
+  /* max-width: 20%; */
+  transition: all 0.2s;
+}
+
+.btnPrimary:hover,
+.bigbtnPrimary:hover,
+.btnSmall:hover {
+  /* background-color: red; */
+  transform: translateY(-5px);
+}
+
+.btnPrimary:active,
+.bigbtnPrimary:active,
+.btnSmall:active {
+  /* background-color: red; */
+  transform: translateY(-3px);
+}
+
+.right {
+  position: absolute;
+  right: 0;
+  justify-self: flex-end !important;
+  align-self: center;
+}
+.top {
+  align-self: flex-start !important;
+}
+.left {
+  position: absolute;
+  left: 0;
+  justify-self: flex-end !important;
+  align-self: center;
+}
+@media only screen and (max-width: 1200px) {
+  .btnPrimary,
+  .bigbtnPrimary {
+    /* flex-grow: 1; */
+    min-width: 5rem;
+    max-width: 12rem;
+    position: relative;
+  }
+}

@@ -1,0 +1,23 @@
+.form {
+  position: relative;
+  display: flex;
+  padding: 1rem;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  flex-direction: column;
+  margin-inline: 1rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  min-width: 300px;
+  flex: 1;
+  overflow: auto;
+  /* flex-wrap: wrap; */
+  /* background-color: var(--tertiary-color); */
+  /* border: 1px solid rgb(139, 139, 139); */
+}
+
+.form::-webkit-scrollbar {
+  /* visibility: visible; */
+  /* background-color: blue; */
+}

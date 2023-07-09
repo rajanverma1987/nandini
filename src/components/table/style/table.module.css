@@ -1,0 +1,106 @@
+.table {
+  text-align: left;
+  display: inline-flex;
+}
+.column {
+  display: inline-flex;
+  flex-direction: column;
+}
+.cell {
+  display: inline-block;
+  align-items: center;
+  white-space: nowrap;
+  padding: 5px;
+  padding-left: 0.5rem;
+  font-size: 0.7rem;
+  height: 2rem;
+  border-right: 1px solid rgba(108, 108, 108, 0.621);
+}
+
+.mainMenu {
+  height: 2rem;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  /* width: 100vw; */
+  color: var(--primary-color);
+  border-radius: 0px;
+  /* border: 1px solid blue; */
+}
+.mainMenu > span {
+  font-size: 0.7rem;
+  color: var(--primary-color);
+  padding-inline: 1rem;
+}
+.mainMenu:hover,
+.mainMenu > span:hover {
+  color: var(--primary-color);
+}
+.menu {
+  position: relative;
+}
+.draggging {
+  border-right: 2px solid white;
+}
+.menuList {
+  position: absolute;
+  top: 1.7rem;
+  left: 0%;
+  padding: 0;
+  border: 1px solid white;
+  list-style-type: none;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+.menuList li {
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(182, 182, 182);
+  padding-inline: 1rem;
+  padding-block: 0.1rem;
+}
+.refreshButton {
+  margin-right: 0.5rem;
+}
+.menuList li > * {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+.menuList li:hover {
+  background-color: var(--tertiary-color);
+  color: var(--forth-color);
+}
+.column span:nth-child(1) {
+  padding: 1rem;
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: white;
+  border-top: 1px solid rgba(108, 108, 108, 0.621);
+  border-bottom: 1px solid rgba(108, 108, 108, 0.621);
+  z-index: 100;
+}
+.column span:nth-child(1) > * {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.table .column:nth-child(1) span {
+  border-left: 1px solid rgba(108, 108, 108, 0.621);
+}
+.column span:last-child {
+  border-bottom: 1px solid rgba(108, 108, 108, 0.621);
+}
+
+.column span:nth-child(2n) {
+  background-color: var(--forth-color);
+}
