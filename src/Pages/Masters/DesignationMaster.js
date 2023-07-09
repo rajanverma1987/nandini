@@ -1,14 +1,25 @@
 import { designation } from "../../forms/masters";
 import FormGenerator from "./../../components/form_generator/FormGenerator";
-import { useState } from "react";
+
 import {
   axios_,
   extractData,
   updateFormData,
   validateForm,
 } from "../../_utilities/utll";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../../store/store";
+
 export default function DesignationMaster() {
   const [formData, setFormData] = useState(designation);
+  const { companyID } = useContext(Context);
+  useEffect(() => {
+    setFormData((prev) => {
+      let obj = { ...prev };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      return obj;
+    });
+  }, [companyID]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;

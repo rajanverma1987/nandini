@@ -5,11 +5,21 @@ import {
   validateForm,
 } from "../../_utilities/utll";
 import { department } from "../../forms/masters";
+import { Context } from "../../store/store";
 import FormGenerator from "./../../components/form_generator/FormGenerator";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function DepartmentMaster() {
   const [formData, setFormData] = useState(department);
+  const { companyID } = useContext(Context);
+
+  useEffect(() => {
+    setFormData((prev) => {
+      let obj = { ...prev };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      return obj;
+    });
+  }, [companyID]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
@@ -17,8 +27,6 @@ export default function DepartmentMaster() {
   }
   async function handleSubmit() {
     let validated = await validateForm(setFormData);
-    console.log(validated);
-
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
       console.log(inputData);

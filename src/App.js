@@ -2,9 +2,10 @@ import React, { Component, Suspense } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LoginLayout, DefaultLayout } from "./Layout";
+import { LoginLayout } from "./Layout";
+// import { DefaultLayout } from "./Layout";
 import Loading from "./_components/Loading";
-
+import DefaultLayout from "./components/Layout/defaultLayout/DefaultLayout";
 class App extends Component {
   // constructor(props) {
   //   super(props);

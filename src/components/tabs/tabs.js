@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./style/tabs.module.css";
+import { Context } from "../../store/store";
+import { useEffect } from "react";
 
-export default function Tabs({ children, tabChange }) {
-  const [active, setActive] = useState(0);
+export default function Tabs({ children, tabChange, tab }) {
+  const { activeTab, activateTab } = useContext(Context);
 
   return (
     <>
@@ -14,10 +16,10 @@ export default function Tabs({ children, tabChange }) {
                 <div
                   key={`tabButton_${index}`}
                   className={`${styles.tabButton} ${
-                    active == index ? styles.active : ""
+                    activeTab.name == child.props.title ? styles.active : ""
                   }`}
                   onClick={() => {
-                    setActive(index);
+                    activateTab(child.props.tab);
                     tabChange(index);
                   }}
                 >
@@ -25,7 +27,9 @@ export default function Tabs({ children, tabChange }) {
                 </div>
                 <div
                   className={`${styles.tabBox} ${
-                    active == index ? styles.activeTab : ""
+                    activeTab.name == child.props.title
+                      ? styles.activeTab
+                      : styles.InactiveTab
                   }`}
                 >
                   {child.props.children}

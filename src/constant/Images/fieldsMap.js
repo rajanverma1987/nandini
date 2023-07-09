@@ -37,7 +37,6 @@ export const fieldsMap = {
   MasterID: "Master ID",
   IsMfgOn: "MFG On",
   Name: "Name",
-  NameMasterID: "Name Master ID",
   OpeningBalance: "Opening Balance",
   OpeningRate: "Opening Rate",
   OpeningValue: "Opening Value",

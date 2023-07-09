@@ -4,6 +4,7 @@
   position: relative;
   height: 2.5rem;
   flex-shrink: 1;
+  min-width: 15rem;
 }
 
 .label {

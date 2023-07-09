@@ -264,7 +264,7 @@ export default function Table({
         </div>
       )}
 
-      <div className={styles.Pagination}>
+      {/* <div className={styles.Pagination}>
         <span>{`Showing ${1} to ${
           tbldata[name] ? tbldata[name].length - 1 : ""
         } of ${tableData.length - 1}`}</span>
@@ -276,7 +276,7 @@ export default function Table({
         <span>5</span>
         <span>..</span>
         <span onClick={chagnePage.bind(this, "+1")}>{` Next >`} </span>
-      </div>
+      </div> */}
     </>
   );
 }

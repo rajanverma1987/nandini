@@ -64,7 +64,6 @@ export const validateForm = async (stateUpdateFunction) => {
                       break;
                     case "isNumeric":
                       if (isNaN(value) && validaton[1]) {
-                        console.log(value.length, validaton[1]);
                         control.isValid = false;
                         formStatus = false;
                       }
@@ -79,7 +78,7 @@ export const validateForm = async (stateUpdateFunction) => {
     });
     return obj;
   });
-  console.log(formStatus);
+
   return formStatus;
 };
 
@@ -170,15 +169,12 @@ export const updateFormOnSelection = (
 
 export const jsonToArray = (json, fieldsMap) => {
   let result = [];
-
   Object.entries(json).forEach((row, index) => {
     if (index === 0) {
       // Get Header Row
       let headers = ["Sr. No"];
-      console.log(fieldsMap);
       Object.entries(row[1]).forEach((col) => {
         if (!(typeof col[1] === "object")) {
-          console.log(col[0]);
           headers.push(fieldsMap?.[col[0]] ? fieldsMap[col[0]] : col[0]);
         }
       });

@@ -1,0 +1,41 @@
+.sideMenu {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  color: #ffffff;
+}
+
+.sideMenu :is(p) {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.sideMenu ul {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  line-height: 1.5rem;
+  list-style: square;
+}
+.sideMenu ul li {
+  transition: all 0.1s;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+.sideMenu ul li:hover {
+  margin-left: 1.5rem;
+}
+.active {
+  font-weight: bold;
+  color: rgb(196, 255, 47);
+}
+.companyLogo {
+  background-color: #ffffff;
+  width: 100%;
+  height: 6rem;
+}
+.companyLogo img {
+  height: inherit;
+}

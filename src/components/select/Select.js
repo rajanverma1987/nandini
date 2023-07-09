@@ -12,6 +12,7 @@ function Select(
     title = null,
     name = "",
     frmIndex = 0,
+
     onChange = () => {},
   },
   inputRef
@@ -20,7 +21,7 @@ function Select(
   const [selected, setSelected] = useState(-1);
   const [selectionOption, setSelectOption] = useState([]);
   const [loading, setLoading] = useState(true);
-  const selectRef = useRef();
+
   useEffect(() => {
     if (fetch?.api) {
       getOptions();
@@ -76,7 +77,7 @@ function Select(
           onChange={handleOnChange}
           key={`select_${uid}`}
           name={name}
-          ref={selectRef}
+          ref={inputRef}
           className={`${styles.select} ${isError ? styles.error : ""} ${
             selected == -1 ? styles.primaryColor : ""
           }`}

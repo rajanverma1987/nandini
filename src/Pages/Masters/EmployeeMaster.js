@@ -1,15 +1,25 @@
 import { employee } from "../../forms/masters";
 import FormGenerator from "./../../components/form_generator/FormGenerator";
-import { useState } from "react";
 import {
   axios_,
   extractData,
   updateFormData,
   validateForm,
 } from "../../_utilities/utll";
+
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../../store/store";
 export default function EmployeeMaster() {
   const [formData, setFormData] = useState(employee);
-
+  const { companyID } = useContext(Context);
+  useEffect(() => {
+    console.log("COMPANY ID", companyID);
+    setFormData((prev) => {
+      let obj = { ...prev };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      return obj;
+    });
+  }, [companyID]);
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE

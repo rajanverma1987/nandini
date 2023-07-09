@@ -14,6 +14,7 @@ import "../assets/login.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 
 import { AppControler } from "../AppControler/AppControler";
+
 // import _nav from "../_components/_nav";
 
 class DefaultLayout extends Component {
@@ -138,7 +139,8 @@ class DefaultLayout extends Component {
     return (
       <div className="wrapper">
         <SideMenu {...this.props} />
-        <Header {...this.props} />
+        {/* <Header {...this.props} /> */}
+        <Header />
         <Suspense>
           <div className="content-page">
             <div className="container-fluid">
