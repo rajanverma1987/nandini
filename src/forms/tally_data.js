@@ -1,5 +1,3 @@
-import { apiEndPoint } from "../_services/apiEndPoint";
-
 export const company = {
   api: "",
   forms: [
@@ -18,7 +16,7 @@ export const company = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.COMPANY_BY_ID,
+                  api: "Company/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -50,7 +48,7 @@ export const costCategory = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.COST_CATEGORY_BY_ID,
+                  api: "CostCategory/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -82,7 +80,7 @@ export const costCenter = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.COST_CENTER_BY_ID,
+                  api: "CostCenter/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -113,7 +111,7 @@ export const currency = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.CURRENCY_BY_ID,
+                  api: "Currency/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -144,7 +142,7 @@ export const group = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.GROUP_BY_ID,
+                  api: "Group/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -176,7 +174,7 @@ export const ledger = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.LEDGER_BY_ID,
+                  api: "Ledger/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -208,7 +206,7 @@ export const stockCategory = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.STOCK_CATEGORY_BY_ID,
+                  api: "StockCategory/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -272,7 +270,7 @@ export const stockGroup = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.STOCK_GROUP_BY_ID,
+                  api: "StockGroup/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -304,7 +302,7 @@ export const stockItem = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.STOCK_ITEM_BY_ID,
+                  api: "StockItem/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -336,7 +334,7 @@ export const stockUnit = {
                 type: "table",
 
                 fetch: {
-                  api: apiEndPoint.STOCK_UNIT_BY_ID,
+                  api: "StockUnit/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -367,7 +365,7 @@ export const voucherType = {
                 name: "voucherType",
                 type: "table",
                 fetch: {
-                  api: apiEndPoint.VOUCHER_TYPE_BY_ID,
+                  api: "VoucherType/GetByIdData",
                   type: "post",
                   data: {},
                 },

@@ -1,28 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@100;400;500;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,800;1,900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,100;1,200;1,300;1,400;1,500&display=swap");
+
 iframe {
   pointer-events: none;
 }
 
 :root {
   --primary-color: #16619f;
-  /* --primary-color: #f34040; */
   --primary-color2: #013b6a;
   --secondary-color: #013b6a;
   --tertiary-color: #16619f;
   --forth-color: #ebebeb;
   --text-primary-color: #00325c;
-  /* --text-primary-color: #94969b; */
   --placeholder-color: #0f3757;
   --heading-color: #013b6a;
   --button-color: #16619f;
 }
+
 * {
+  font-family: "Bitter", serif;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   box-sizing: border-box;
-  /* padding: 0;
-  margin: 0; */
-  /* font-family: "Bitter", serif;
-  font-family: "Montserrat", sans-serif; */
-  /* font-family: "Source Sans Pro", sans-serif; */
 }
+
 body::-webkit-scrollbar {
   display: none;
 }

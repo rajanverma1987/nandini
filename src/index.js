@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { store } from "./_store";
-import "./assets/scss/styles.scss";
+
 import "./styles.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -10,11 +8,9 @@ import ContextProvider from "./store/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ContextProvider>
-        <App />
-      </ContextProvider>
-    </Provider>
+    <ContextProvider>
+      <App />
+    </ContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

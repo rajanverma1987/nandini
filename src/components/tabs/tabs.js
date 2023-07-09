@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./style/tabs.module.css";
 import { Context } from "../../store/store";
-import { useEffect } from "react";
 
 export default function Tabs({ children, tabChange, tab }) {
   const { activeTab, activateTab } = useContext(Context);
@@ -16,7 +15,7 @@ export default function Tabs({ children, tabChange, tab }) {
                 <div
                   key={`tabButton_${index}`}
                   className={`${styles.tabButton} ${
-                    activeTab.name == child.props.title ? styles.active : ""
+                    activeTab.name === child.props.title ? styles.active : ""
                   }`}
                   onClick={() => {
                     activateTab(child.props.tab);
@@ -27,7 +26,7 @@ export default function Tabs({ children, tabChange, tab }) {
                 </div>
                 <div
                   className={`${styles.tabBox} ${
-                    activeTab.name == child.props.title
+                    activeTab.name === child.props.title
                       ? styles.activeTab
                       : styles.InactiveTab
                   }`}

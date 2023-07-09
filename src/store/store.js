@@ -21,7 +21,7 @@ export default function ContextProvider({ children }) {
 
   function addTab(tab) {
     setTabs((prev) => {
-      if (!prev.some((oTab) => oTab.name == tab.name)) {
+      if (!prev.some((oTab) => oTab.name === tab.name)) {
         return [...prev, tab];
       }
       return prev;
@@ -29,7 +29,7 @@ export default function ContextProvider({ children }) {
   }
   function removeTab(tab) {
     setTabs((prev) => {
-      let obj = prev.filter((opendTab) => opendTab.name != tab.name);
+      let obj = prev.filter((opendTab) => opendTab.name !== tab.name);
       return obj;
     });
   }
@@ -48,7 +48,6 @@ export default function ContextProvider({ children }) {
   const value = {
     updateTableData,
     tbldata,
-    activeTab,
     companyID,
     setCompany,
     addTab,

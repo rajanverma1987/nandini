@@ -6,11 +6,12 @@ import { Context } from "../../../store/store";
 import SideMenu from "../sidemenu/Sidemenu";
 import Tabs from "../../tabs/tabs";
 import Tab from "../../tab/tab";
+import { useEffect } from "react";
 
 export default function DefaultLayout() {
   const { setCompany } = useContext(Context);
   const { tabs, removeTab } = useContext(Context);
-
+  useEffect(() => {}, []);
   function onCompanyChange() {
     const { selectedOptions } = arguments[2];
     setCompany(selectedOptions[0]);
@@ -29,9 +30,9 @@ export default function DefaultLayout() {
           </div>
           <Select
             name="Company"
+            value={1}
             selectorText="Select Company"
             options={[{ id: 1, title: "Company 1" }]}
-            value={0}
             fetch={{
               api: "Company/GetData",
               data: {},

@@ -2,10 +2,10 @@ import React, { Component, Suspense } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LoginLayout } from "./Layout";
-// import { DefaultLayout } from "./Layout";
-import Loading from "./_components/Loading";
+
 import DefaultLayout from "./components/Layout/defaultLayout/DefaultLayout";
+import Loader from "./components/loader/Loader";
+import Login from "./Pages/Login/Login";
 class App extends Component {
   // constructor(props) {
   //   super(props);
@@ -13,15 +13,15 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Suspense fallback={Loading}>
+        <Suspense fallback={Loader}>
           <Route
             exact
             path="/"
             render={() => {
-              return <Redirect to="/prelogin/login" />;
+              return <Redirect to="/login" />;
             }}
           />
-          <Route path="/prelogin/login" component={LoginLayout} />
+          <Route path="/login" component={Login} />
           <Route path="/postlogin" component={DefaultLayout} />
 
           <ToastContainer

@@ -12,13 +12,13 @@ function Select(
     title = null,
     name = "",
     frmIndex = 0,
-
+    value = -1,
     onChange = () => {},
   },
   inputRef
 ) {
   const uid = uuidv4();
-  const [selected, setSelected] = useState(-1);
+  const [selected, setSelected] = useState(value);
   const [selectionOption, setSelectOption] = useState([]);
   const [loading, setLoading] = useState(true);
 

@@ -29,20 +29,19 @@ export default function Table({
   const [showMainMenu, setShowMainMenu] = useState(false);
   const [loading, setLoading] = useState(false);
   // Pagination
-  const [toShow, setToShow] = useState(5);
-  const [currengPage, setCurrentPage] = useState(1);
+  // const [toShow, setToShow] = useState(5);
+  // const [currengPage, setCurrentPage] = useState(1);
 
   let dragStartCol;
   let dragEndCol;
 
   useEffect(() => {
-    console.log("--Rendering...");
     if (!tbldata[name]) {
       fetchTableData();
     } else {
       setTableData(tbldata[name]);
     }
-  }, []);
+  }, [name, tbldata]);
 
   function filterTable(e) {
     try {
@@ -64,51 +63,10 @@ export default function Table({
     }
   }
 
-  function returnPageData() {
-    let data = tbldata[name];
-    let start = (currengPage - 1) * toShow + 1;
-    let end = currengPage * toShow + 1;
-    let pageData = data.filter((_, index) => {
-      return (index >= start && index < end) || index == 0;
-    });
-    setTableData(pageData);
-  }
-
-  function chagnePage(page) {
-    console.log(
-      "TOTAL PAGE = ",
-      tbldata[name].length / toShow,
-      "CURRENT PAGE =",
-      currengPage
-    );
-
-    if (page === "+1") {
-      console.log("CUURENT PAGE= ", currengPage);
-      if (currengPage < Math.round(tbldata[name].length / toShow)) {
-        console.log("Incrase");
-        setCurrentPage((prev) => {
-          let page = prev + 1;
-          return page;
-        });
-        currengPage = currengPage + 1;
-      }
-    }
-    if (page === "-1") {
-      if (currengPage > 1) {
-        console.log("decrease");
-        setCurrentPage((prev) => {
-          let page = prev - 1;
-          return page;
-        });
-      }
-    }
-    returnPageData(tableData);
-  }
-
   function updateTableDataState(data) {
     setTableData(data);
     updateTableData(name, data);
-    returnPageData();
+    // returnPageData();
   }
 
   async function fetchTableData() {
@@ -135,6 +93,7 @@ export default function Table({
       console.log(e);
     }
   }
+
   function shuffleColumns(from, to) {
     if (from === to) return;
     let shuffled = [];
