@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 export default function StockCategory() {
   const [formData, setFormData] = useState(stockGodown);
   useEffect(() => {
-    console.log("GODOWN==============");
     setFormData((prev) => {
       let obj = { ...prev };
       obj.forms[0][0].rows[0].controls[0].fetch.data = { CompanyID: 1 };

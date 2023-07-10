@@ -2,9 +2,7 @@ import { forwardRef, useEffect, useState } from "react";
 import styles from "./styles/input.module.css";
 
 function Input({ isError, type, label, name, onChange, value = "" }, ref) {
-  useEffect(() => {
-    console.log(type);
-  }, [value]);
+  useEffect(() => {}, [value]);
   return (
     <>
       <div className={styles.container}>

@@ -6,6 +6,8 @@ iframe {
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100vw;
 }
 :root {
   --primary-color: #16619f;
@@ -27,7 +29,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 .loginPage {

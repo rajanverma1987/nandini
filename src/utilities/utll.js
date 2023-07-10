@@ -37,7 +37,6 @@ export const validateForm = async (stateUpdateFunction) => {
                     case "required":
                       if (validaton[1]) {
                         if (control.type === "select") {
-                          console.log(control.name, value);
                           if (value === -1 || value === "") {
                             control.isValid = false;
                             formStatus = false;
@@ -144,8 +143,9 @@ export const updateFormData = (e, stateUpdateFunction, formItemIndex) => {
 export const updateFormOnSelection = (
   stateUpdateFunction,
   formItemIndex,
-  name,
-  value
+  controlName,
+  propertyName,
+  propertyValue
 ) => {
   stateUpdateFunction((prev) => {
     let obj = { ...prev };
@@ -154,9 +154,9 @@ export const updateFormOnSelection = (
         forItem.rows?.forEach((row) => {
           row.controls.forEach((control) => {
             if (control.type !== "table" && control.type !== "button") {
-              if (control.name === name && formIndex === formItemIndex) {
+              if (control.name === controlName && formIndex === formItemIndex) {
                 control.isValid = true;
-                control.value = value;
+                control[propertyName] = propertyValue;
               }
             }
           });
@@ -193,7 +193,7 @@ export const jsonToArray = (json, fieldsMap, name, EditButton) => {
     result.push(rowData);
     rowData = [];
   });
-  console.log("result", result);
+
   return result;
 };
 

@@ -174,4 +174,7 @@ export const fieldsMap = {
     Mobile: "Mobile",
     Email: "Email ",
   },
+  role: {
+    RoleName: "Role Name",
+  },
 };

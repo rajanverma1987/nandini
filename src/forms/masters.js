@@ -256,7 +256,7 @@ export const employee = {
                 selector: "Select Department",
                 fetch: {
                   api: "Master/Department/GetByIdData",
-                  data: { CompanyId: 1 },
+                  data: {},
                   fields: ["DepartmentId", "DepartmentName"],
                 },
               },
@@ -275,8 +275,27 @@ export const employee = {
                 selector: "Select Designation",
                 fetch: {
                   api: "Master/Designation/GetByIdData",
-                  data: { CompanyId: 1 },
+                  data: {},
                   fields: ["DesignationId", "DesignationName"],
+                },
+              },
+              {
+                name: "ReportingMgr",
+                value: "",
+                type: "select",
+                title: "Reporting Manager",
+                onChange: "handleOnChange",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+                options: [],
+                selector: "Select Reporting Manager",
+                fetch: {
+                  api: "Master/Employee/GetByIdData",
+                  data: {},
+                  fields: ["EmployeeId", "EmployeeName"],
                 },
               },
               {
@@ -367,7 +386,7 @@ export const employee = {
                 visible: true,
                 isValid: true,
                 validation: {
-                  required: true,
+                  required: false,
                 },
               },
 
@@ -458,7 +477,7 @@ export const employee = {
 };
 
 export const role = {
-  api: "Master/UserRole/PostData",
+  api: "Master/Role/PostData",
   forms: [
     [
       {
@@ -512,7 +531,7 @@ export const role = {
                 name: "role",
                 type: "table",
                 fetch: {
-                  api: "Master/UserRole/GetByIdData",
+                  api: "Master/Role/GetByIdData",
                   type: "post",
                   data: {},
                 },
@@ -554,12 +573,15 @@ export const user = {
                 validation: {
                   required: true,
                 },
-                options: [],
+                options: [
+                  { userId: 1, userName: "Employee" },
+                  { userId: 2, userName: "Company" },
+                ],
                 selector: "Select User Type",
                 fetch: {
-                  api: "Master/Role/GetByIdData",
-                  data: { CompanyId: 1 },
-                  fields: ["RoleId", "RoleName"],
+                  api: "",
+                  data: {},
+                  fields: ["userId", "userName"],
                 },
               },
               {
@@ -590,7 +612,7 @@ export const user = {
                 selector: "Select Employee",
                 fetch: {
                   api: "Master/Employee/GetByIdData",
-                  data: { CompanyId: 1 },
+                  data: {},
                   fields: ["EmployeeCode", "EmployeeName"],
                 },
               },
@@ -620,6 +642,30 @@ export const user = {
                   required: true,
                 },
               },
+              {
+                name: "Password",
+                value: "",
+                type: "password",
+                title: "Password",
+                onChange: "handleOnChange",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                name: "confirmPassword",
+                value: "",
+                type: "password",
+                title: "Confirm Password",
+                onChange: "handleOnChange",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
 
               {
                 name: "active",
@@ -634,6 +680,27 @@ export const user = {
                 },
               },
 
+              {
+                name: "Role",
+                value: "",
+                type: "multiselect",
+                title: "Role",
+                onChange: "handleOnChange",
+                multi: true,
+                rows: 5,
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+                options: [],
+                selector: "Select Employee",
+                fetch: {
+                  api: "Master/Role/GetByIdData",
+                  data: {},
+                  fields: ["RoleId", "RoleName"],
+                },
+              },
               {
                 type: "button",
                 title: "Save",

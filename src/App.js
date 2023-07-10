@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Suspense fallback={Loader}>
+        <Suspense>
           <Route
             exact
             path="/"

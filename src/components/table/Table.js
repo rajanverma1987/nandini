@@ -78,18 +78,18 @@ export default function Table({
 
   async function fetchTableData() {
     try {
-      console.log("Feching....");
       if (fetch?.api) {
         let res;
         if (fetch.type === "post") {
           setLoading(true);
           res = await axios_.post(fetch.api, fetch.data);
+          console.log(res);
         } else {
           res = await axios_.get(fetch.api);
         }
         if (res.status == 200) {
           let data = res.data.Data;
-          console.log(data);
+
           data = jsonToArray(data, fieldsMap, name, EditButton);
           let obj = data[0].map((item, index) => index);
           setColOrder(obj);

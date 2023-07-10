@@ -26,7 +26,8 @@ function Select(
     if (fetch?.api) {
       getOptions();
     } else {
-      setSelectOption(options);
+      let data = dropDownData(options, fetch.fields);
+      setSelectOption(data);
     }
     setLoading(false);
     async function getOptions() {
@@ -40,7 +41,7 @@ function Select(
         console.log(e);
       }
     }
-  }, []);
+  }, [fetch.api]);
 
   function handleOnChange(e) {
     e.preventDefault();

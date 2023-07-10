@@ -1,19 +1,70 @@
+.tabContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* border: 5px solid red; */
+  display: flex;
+  flex-direction: column;
+}
 .tabs {
   position: relative;
-  flex: 1;
-  width: 100%;
-  height: 100%;
   border-radius: 5px;
   padding: 0.5rem;
+  height: 100%;
 }
 
 .tabButtonRow {
   display: flex;
-  height: auto;
-  overflow: visible;
-  width: 85vw;
+  position: relative;
+  width: 100%;
+  overflow-x: scroll;
+}
+.tabButtonRow::-webkit-scrollbar {
+  background-color: var(--primary-color);
+  height: 1rem;
+}
+.tabButtonRow::-webkit-scrollbar-button {
+  background-color: var(--secondary-color);
+  width: 10px;
+}
+.tabButtonRow::-webkit-scrollbar-thumb {
+  background-color: rgba(117, 117, 117, 0.858);
+}
+.tabBox {
+  height: 98%;
+  width: 100%;
+  border-radius: 8px;
+  overflow-y: auto;
 }
 
+.scrollButton:first-of-type {
+  position: absolute;
+  left: 0;
+  background-color: var(--secondary-color);
+  height: 100%;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2;
+}
+.scrollButton {
+  position: absolute;
+  right: 0;
+  background-color: var(--secondary-color);
+  height: 100%;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 200;
+}
 .tabButton {
   white-space: nowrap;
   font-size: 0.8rem;
@@ -33,6 +84,7 @@
   justify-self: center;
   align-items: center;
 }
+
 .closeButton {
   border: 1px solid rgb(90, 133, 211);
   margin-left: 8px;
@@ -54,18 +106,7 @@
     transform: rotate(180deg);
   }
 }
-.tabBox {
-  position: absolute;
-  top: 50px;
-  background-color: rgb(255, 255, 255);
-  width: 99%;
-  height: 88vh;
-  z-index: -1;
-  overflow-x: visible;
-  border-radius: 8px;
-  overflow-x: scroll;
-  overflow-y: auto;
-}
+
 .tabBox::-webkit-scrollbar {
   background-color: var(--secondary-color);
   border-radius: 15px;
@@ -87,6 +128,7 @@
 }
 .InactiveTab {
   z-index: 1;
+  display: none;
 }
 .active {
   position: relative;

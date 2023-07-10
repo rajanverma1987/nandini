@@ -74,19 +74,17 @@ function DefaultLayout() {
           </div>
         </div>
         <div className={styles.appContainer}>
-          <div className={styles.tabs}>
-            {tabs && tabs.length > 0 && (
-              <Tabs>
-                {tabs.map((tab) => {
-                  return (
-                    <Tab title={tab.name} tab={tab}>
-                      <tab.component />
-                    </Tab>
-                  );
-                })}
-              </Tabs>
-            )}
-          </div>
+          {tabs && tabs.length > 0 && (
+            <Tabs>
+              {tabs.map((tab, index) => {
+                return (
+                  <Tab title={tab.name} tab={tab} key={`tabk${index}`}>
+                    <tab.component />
+                  </Tab>
+                );
+              })}
+            </Tabs>
+          )}
         </div>
       </div>
     </div>

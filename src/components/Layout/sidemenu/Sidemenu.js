@@ -18,9 +18,9 @@ export default function SideMenu() {
         </div>
         {routes &&
           routes.length > 0 &&
-          routes.map((route) => {
+          routes.map((route, routeIndex) => {
             return route?.children ? (
-              <ul>
+              <ul key={`route_${routeIndex}`}>
                 <p>{route.name}</p>
                 {route?.children.map((child, index) => {
                   return (
@@ -37,7 +37,7 @@ export default function SideMenu() {
                 })}
               </ul>
             ) : (
-              <ul>
+              <ul key={`rounte${routeIndex}`}>
                 <p>{route.name}</p>
               </ul>
             );

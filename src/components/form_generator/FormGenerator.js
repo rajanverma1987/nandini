@@ -12,6 +12,7 @@ import Loader from "../loader/Loader";
 import Search from "../search/Search";
 import CheckBox from "../checkbox/Checkbox";
 import Table from "../table/Table";
+import MultiSelect from "../multiSelect/MultiSelect";
 
 export default function FormGenerator({ formData, functions }) {
   const [loading, setLoading] = useState(true);
@@ -152,7 +153,29 @@ export default function FormGenerator({ formData, functions }) {
                                                   isError={!control.isValid}
                                                   fetch={control?.fetch}
                                                   frmIndex={formItemIndex}
+                                                  multi={control?.multi}
+                                                  rows={control?.rows}
                                                   key={`select_${controlKey}`}
+                                                  options={control.options}
+                                                  selectorText={
+                                                    control.selector
+                                                  }
+                                                  title={control.title}
+                                                  name={control.name}
+                                                  onChange={
+                                                    functions[control.onChange]
+                                                  }
+                                                />
+                                              )}
+                                              {control.type ===
+                                                "multiselect" && (
+                                                <MultiSelect
+                                                  isError={!control.isValid}
+                                                  fetch={control?.fetch}
+                                                  frmIndex={formItemIndex}
+                                                  multi={control?.multi}
+                                                  rows={control?.rows}
+                                                  key={`multiselect_${controlKey}`}
                                                   options={control.options}
                                                   selectorText={
                                                     control.selector
