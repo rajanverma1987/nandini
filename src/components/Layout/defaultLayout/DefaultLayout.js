@@ -6,7 +6,6 @@ import { Context } from "../../../store/store";
 import SideMenu from "../sidemenu/Sidemenu";
 import Tabs from "../../tabs/tabs";
 import Tab from "../../tab/tab";
-import { useEffect } from "react";
 import { AiFillDownCircle } from "react-icons/ai";
 
 function DefaultLayout() {
@@ -14,9 +13,10 @@ function DefaultLayout() {
   const { tabs, removeTab } = useContext(Context);
   const [showMenu, setShowMenu] = useState(true);
   const [showUserMenu, setShowMuserenu] = useState(false);
-  useEffect(() => {}, []);
+
   function onCompanyChange() {
     const { selectedOptions } = arguments[2];
+    console.log("selectedOptions[0]", selectedOptions[0]);
     setCompany(selectedOptions[0]);
   }
 

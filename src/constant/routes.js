@@ -1,4 +1,6 @@
 import React from "react";
+import { AiFillDashboard, AiOutlineUser } from "react-icons/ai";
+import { BsChatRightDots, BsTabletFill } from "react-icons/bs";
 
 const Dashbord = React.lazy(() => import("../Pages/Dashbord"));
 const Company = React.lazy(() => import("../Pages/TallyData/Company"));
@@ -45,7 +47,7 @@ const HRDashboard = React.lazy(() => import("../Pages/Dashbord/HRDashboard"));
 const routes = [
   {
     path: "/postlogin/dashboard",
-    //icon: <HiChartBar />,
+    icon: AiFillDashboard,
     name: "Dashbord",
     component: Dashbord,
     type: "parent",
@@ -54,6 +56,7 @@ const routes = [
   {
     name: "BI Dashbord",
     type: "parent",
+    icon: AiFillDashboard,
     children: [
       {
         name: "Sales Dashboard",
@@ -75,11 +78,12 @@ const routes = [
   {
     name: "Masters",
     type: "parent",
+    icon: AiFillDashboard,
     children: [
       {
         path: "/postlogin/designation_master",
         name: "Designation",
-        //icon: <HiUser />,
+
         component: DesignationMaster,
       },
       {
@@ -117,6 +121,7 @@ const routes = [
   {
     name: "Tally Data",
     type: "parent",
+    icon: AiFillDashboard,
     children: [
       {
         path: "/postlogin/company",

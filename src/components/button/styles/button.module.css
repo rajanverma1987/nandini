@@ -1,6 +1,6 @@
 .btnPrimary,
 .btnSmall {
-  padding: 10px;
+  padding: 5px;
   margin-left: 10px;
   margin-right: 10px;
   background-color: var(--button-color);

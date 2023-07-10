@@ -5,7 +5,7 @@ export const Context = createContext({
   updateTableData: () => {},
   tbldata: {},
   setCompany: () => {},
-  companyID: undefined,
+  CompanyID: undefined,
   addTab: () => {},
   removeTab: () => {},
   activateTab: () => {},
@@ -17,7 +17,7 @@ export const Context = createContext({
 
 export default function ContextProvider({ children }) {
   const [tbldata, setData] = useState({});
-  const [companyID, setCompany] = useState({});
+  const [CompanyID, setCompany] = useState({});
   const [tabs, setTabs] = useState([]);
   const [activeTab, setActiveTab] = useState([]);
   const [user, setUser] = useState({});
@@ -56,7 +56,7 @@ export default function ContextProvider({ children }) {
   }
   const value = {
     tbldata,
-    companyID,
+    CompanyID,
     activeTab,
     tabs,
     user,

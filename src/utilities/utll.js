@@ -167,7 +167,7 @@ export const updateFormOnSelection = (
   });
 };
 
-export const jsonToArray = (json, fieldsMap, name, EditButton) => {
+export const jsonToArray = (json, fieldsMap, name, EditButton, showEdit) => {
   if (!json) return;
 
   let fieldsToShow = fieldsMap[name];
@@ -175,7 +175,12 @@ export const jsonToArray = (json, fieldsMap, name, EditButton) => {
   Object.entries(json).forEach((row, index) => {
     if (index === 0) {
       // Get Header Row
-      let headers = ["Edit", "SNo"];
+      let headers;
+      if (showEdit) {
+        headers = ["Edit", "SNo"];
+      } else {
+        headers = ["SNo"];
+      }
       Object.entries(fieldsToShow).forEach((col) => {
         if (!(typeof json[col[0]] === "object")) {
           headers.push(col[1]);
@@ -183,7 +188,13 @@ export const jsonToArray = (json, fieldsMap, name, EditButton) => {
       });
       result.push(headers);
     }
-    let rowData = [<EditButton record={row} />, index + 1];
+    let rowData;
+    if (showEdit) {
+      rowData = [<EditButton record={row} />, index + 1];
+    } else {
+      rowData = [index + 1];
+    }
+
     // Get Data Row
     Object.entries(fieldsToShow).forEach((col) => {
       if (!(typeof row[col[0]] === "object")) {

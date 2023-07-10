@@ -64,6 +64,8 @@ export const department = {
               {
                 name: "departmentTable",
                 type: "table",
+                showEdit: true,
+                onEdit: "handleEdit",
                 fetch: {
                   api: "Master/Department/GetByIdData",
                   type: "post",
@@ -162,6 +164,8 @@ export const designation = {
               {
                 name: "designation",
                 type: "table",
+                showEdit: true,
+                onEdit: "handleEdit",
                 fetch: {
                   api: "Master/Designation/GetByIdData",
                   type: "post",
@@ -236,9 +240,12 @@ export const employee = {
                 ],
                 selector: "Select Gender",
                 fetch: {
-                  api: "",
-                  data: {},
-                  fields: ["it", "title"],
+                  api: "Master/Value/GetByIdData/",
+                  data: {
+                    ValueId: "0",
+                    KeyId: "3",
+                  },
+                  fields: ["ValueId", "ValueName"],
                 },
               },
               {
@@ -347,6 +354,11 @@ export const employee = {
                 },
                 options: [],
                 selector: "Select Country",
+                fetch: {
+                  api: "Master/Country/GetByIdData",
+                  data: {},
+                  fields: ["CountryId", "CountryName"],
+                },
               },
               {
                 name: "State",
@@ -361,6 +373,11 @@ export const employee = {
                 },
                 options: [],
                 selector: "Select State",
+                fetch: {
+                  api: "Master/State/GetByIdData",
+                  data: {},
+                  fields: ["StateId", "StateName"],
+                },
               },
               {
                 name: "City",
@@ -375,6 +392,11 @@ export const employee = {
                 },
                 options: [],
                 selector: "Select City",
+                fetch: {
+                  api: "Master/City/GetByIdData",
+                  data: {},
+                  fields: ["CityId", "CityName"],
+                },
               },
 
               {
@@ -420,7 +442,7 @@ export const employee = {
                 name: "JoinDate",
                 value: "",
                 type: "date",
-                title: "Join Date",
+                title: "Joining Date",
                 onChange: "handleOnChange",
                 visible: true,
                 isValid: true,
@@ -433,6 +455,16 @@ export const employee = {
                 type: "button",
                 title: "Save",
                 onClick: "handleSubmit",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                type: "button",
+                title: "Reset",
+                onClick: "handleReset",
                 visible: true,
                 isValid: true,
                 validation: {
@@ -457,6 +489,8 @@ export const employee = {
               {
                 name: "employeeTable",
                 type: "table",
+                showEdit: true,
+                onEdit: "handleEdit",
                 fetch: {
                   api: "Master/Employee/GetByIdData",
                   type: "post",
@@ -530,6 +564,8 @@ export const role = {
               {
                 name: "role",
                 type: "table",
+                showEdit: true,
+                onEdit: "handleEdit",
                 fetch: {
                   api: "Master/Role/GetByIdData",
                   type: "post",
@@ -729,6 +765,8 @@ export const user = {
               {
                 name: "user",
                 type: "table",
+                showEdit: true,
+                onEdit: "handleEdit",
                 fetch: {
                   api: "Master/User/GetByIdData",
                   type: "post",
@@ -837,6 +875,8 @@ export const setting = {
             controls: [
               {
                 name: "settingMaster",
+                showEdit: true,
+                onEdit: "handleEdit",
                 type: "table",
                 fetch: {
                   api: "Master/Setting/GetByIdData",

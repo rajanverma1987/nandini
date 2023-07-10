@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useRef } from "react";
 import styles from "./style/tabs.module.css";
 import { Context } from "../../store/store";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoMdCloseCircleOutline } from "react-icons/io";
+import { AiFillCloseSquare } from "react-icons/ai";
 
 export default function Tabs({ children, tabChange = () => {}, tab }) {
   const buttonRowRef = useRef();
@@ -29,7 +30,9 @@ export default function Tabs({ children, tabChange = () => {}, tab }) {
                   <div
                     key={`tabButton_${index}`}
                     className={`${styles.tabButton} ${
-                      activeTab.name === child.props.title ? styles.active : ""
+                      activeTab.name === child.props.title
+                        ? styles.active
+                        : styles.inactive
                     }`}
                     onClick={(e) => {
                       e.preventDefault();
@@ -46,7 +49,7 @@ export default function Tabs({ children, tabChange = () => {}, tab }) {
                         removeTab(child.props.tab);
                       }}
                     >
-                      <IoMdClose />
+                      <AiFillCloseSquare />
                     </span>
                   </div>
                 </React.Fragment>

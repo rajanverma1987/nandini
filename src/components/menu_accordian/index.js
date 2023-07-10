@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import Link from "next/link";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function MenuAccordian({ route, r_index, styles }) {
   const [active, setActive] = useState(null);

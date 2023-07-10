@@ -21,7 +21,9 @@ export default function SideMenu() {
           routes.map((route, routeIndex) => {
             return route?.children ? (
               <ul key={`route_${routeIndex}`}>
-                <p>{route.name}</p>
+                <p>
+                  <route.icon /> {route.name}
+                </p>
                 {route?.children.map((child, index) => {
                   return (
                     <li
@@ -38,7 +40,12 @@ export default function SideMenu() {
               </ul>
             ) : (
               <ul key={`rounte${routeIndex}`}>
-                <p>{route.name}</p>
+                <p
+                  className={activeTab.name === route.name ? styles.active : ""}
+                  onClick={route?.component ? changeTab.bind(this, route) : ""}
+                >
+                  <route.icon /> {route.name}
+                </p>
               </ul>
             );
           })}

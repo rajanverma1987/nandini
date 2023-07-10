@@ -211,6 +211,10 @@ export default function FormGenerator({ formData, functions }) {
                                               )}
                                               {control.type === "table" && (
                                                 <Table
+                                                  onEdit={
+                                                    functions[control.onEdit]
+                                                  }
+                                                  showEdit={control?.showEdit}
                                                   name={control.name}
                                                   key={controlKey}
                                                   fetch={control.fetch}

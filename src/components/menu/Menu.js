@@ -1,6 +1,6 @@
-import { routes } from "@/forms/routes";
+import routes from "../../constant/routes";
 import styles from "./styles/menu.module.css";
-import MenuAccordian from "../menu_accordian";
+import MenuAccordian from "./../menu_accordian";
 
 export default function Menu({ isCollapsed }) {
   return (

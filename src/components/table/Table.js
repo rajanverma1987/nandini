@@ -22,12 +22,15 @@ export default function Table({
   visibleFieldList = [],
   fetch = {},
   menuVisible = true,
+  showEdit = false,
+  onEdit = () => {},
 }) {
   const { updateTableData, tbldata } = useContext(Context);
   const [tableData, setTableData] = useState([]);
   const [colOrder, setColOrder] = useState([]);
   const [showMainMenu, setShowMainMenu] = useState(false);
   const [loading, setLoading] = useState(false);
+
   // Pagination
   // const [toShow, setToShow] = useState(5);
   // const [currengPage, setCurrentPage] = useState(1);
@@ -66,7 +69,11 @@ export default function Table({
   function EditButton({ record }) {
     return (
       <div className={styles.editButton}>
-        <AiFillEdit />
+        <AiFillEdit
+          onClick={() => {
+            onEdit.bind(this, record);
+          }}
+        />
       </div>
     );
   }
@@ -83,14 +90,13 @@ export default function Table({
         if (fetch.type === "post") {
           setLoading(true);
           res = await axios_.post(fetch.api, fetch.data);
-          console.log(res);
         } else {
           res = await axios_.get(fetch.api);
         }
         if (res.status == 200) {
           let data = res.data.Data;
 
-          data = jsonToArray(data, fieldsMap, name, EditButton);
+          data = jsonToArray(data, fieldsMap, name, EditButton, showEdit);
           let obj = data[0].map((item, index) => index);
           setColOrder(obj);
           updateTableDataState(data);
