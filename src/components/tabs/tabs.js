@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./style/tabs.module.css";
 import { Context } from "../../store/store";
+import { IoMdClose } from "react-icons/io";
 
 export default function Tabs({ children, tabChange, tab }) {
-  const { activeTab, activateTab } = useContext(Context);
-
+  const { activeTab, activateTab, removeTab } = useContext(Context);
+  useEffect(() => {
+    console.log("rendering", activeTab.name);
+  }, [activeTab]);
   return (
     <>
       <div className={styles.tabs}>
@@ -17,12 +20,23 @@ export default function Tabs({ children, tabChange, tab }) {
                   className={`${styles.tabButton} ${
                     activeTab.name === child.props.title ? styles.active : ""
                   }`}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     activateTab(child.props.tab);
                     tabChange(index);
                   }}
                 >
                   <span>{child.props.title}</span>
+                  <span
+                    className={styles.closeButton}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      removeTab(child.props.tab);
+                    }}
+                  >
+                    <IoMdClose />
+                  </span>
                 </div>
                 <div
                   className={`${styles.tabBox} ${

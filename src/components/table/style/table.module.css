@@ -10,6 +10,22 @@
   display: inline-flex;
   flex-direction: column;
 }
+
+.editButton {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+.editButton:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
 .cell {
   display: inline-block;
   align-items: center;
@@ -20,6 +36,7 @@
   height: 2rem;
   border-right: 1px solid rgba(108, 108, 108, 0.621);
   min-width: calc(100% / var(--col));
+  min-height: 1rem;
 }
 .Pagination {
   height: 2rem;

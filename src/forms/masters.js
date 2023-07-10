@@ -769,7 +769,7 @@ export const setting = {
             align: "left",
             controls: [
               {
-                name: "setting",
+                name: "settingMaster",
                 type: "table",
                 fetch: {
                   api: "Master/Setting/GetByIdData",

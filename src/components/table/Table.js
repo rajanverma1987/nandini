@@ -7,15 +7,15 @@ import {
   jsonToArray,
   shufflTableColums,
   sortTable,
-} from "./../../_utilities/utll";
+} from "../../utilities/utll";
 
 import { IoIosMenu, IoMdRefresh } from "react-icons/io";
 
-import { AiOutlineSortDescending } from "react-icons/ai";
+import { AiFillEdit, AiOutlineSortDescending } from "react-icons/ai";
 import { AiOutlineSortAscending } from "react-icons/ai";
 import { useContext } from "react";
 import { Context } from "../../store/store";
-import { fieldsMap } from "../../constant/Images/fieldsMap";
+import { fieldsMap } from "../../constant/fieldsMap";
 
 export default function Table({
   name = "",
@@ -63,6 +63,13 @@ export default function Table({
     }
   }
 
+  function EditButton() {
+    return (
+      <div className={styles.editButton}>
+        <AiFillEdit />
+      </div>
+    );
+  }
   function updateTableDataState(data) {
     setTableData(data);
     updateTableData(name, data);
@@ -71,6 +78,7 @@ export default function Table({
 
   async function fetchTableData() {
     try {
+      console.log("Feching....");
       if (fetch?.api) {
         let res;
         if (fetch.type === "post") {
@@ -81,7 +89,8 @@ export default function Table({
         }
         if (res.status == 200) {
           let data = res.data.Data;
-          data = jsonToArray(res.data.Data, fieldsMap);
+          console.log(data);
+          data = jsonToArray(data, fieldsMap, name, EditButton);
           let obj = data[0].map((item, index) => index);
           setColOrder(obj);
           updateTableDataState(data);

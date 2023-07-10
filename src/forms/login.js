@@ -1,5 +1,5 @@
 export const loginForm = {
-  api: "Master/Employee/PostData",
+  api: "",
   forms: [
     [
       {

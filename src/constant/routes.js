@@ -1,51 +1,45 @@
 import React from "react";
-const Dashbord = React.lazy(() => import("../../Pages/Dashbord"));
-const Company = React.lazy(() => import("../../Pages/TallyData/Company"));
+const Dashbord = React.lazy(() => import("../Pages/Dashbord"));
+const Company = React.lazy(() => import("../Pages/TallyData/Company"));
 const CostCategory = React.lazy(() =>
-  import("../../Pages/TallyData/CostCategory")
+  import("../Pages/TallyData/CostCategory")
 );
-const CostCenter = React.lazy(() => import("../../Pages/TallyData/CostCenter"));
-const Currency = React.lazy(() => import("../../Pages/TallyData/Currency"));
-const Group = React.lazy(() => import("../../Pages/TallyData/Group"));
-const Ledger = React.lazy(() => import("../../Pages/TallyData/Ledger"));
+const CostCenter = React.lazy(() => import("../Pages/TallyData/CostCenter"));
+const Currency = React.lazy(() => import("../Pages/TallyData/Currency"));
+const Group = React.lazy(() => import("../Pages/TallyData/Group"));
+const Ledger = React.lazy(() => import("../Pages/TallyData/Ledger"));
 const StockCategory = React.lazy(() =>
-  import("../../Pages/TallyData/StockCategory")
+  import("../Pages/TallyData/StockCategory")
 );
-const StockGodown = React.lazy(() =>
-  import("../../Pages/TallyData/StockGodown")
-);
-const StockGroup = React.lazy(() => import("../../Pages/TallyData/StockGroup"));
-const StockItem = React.lazy(() => import("../../Pages/TallyData/StockItem"));
-const StockUnit = React.lazy(() => import("../../Pages/TallyData/StockUnit"));
-const VoucherType = React.lazy(() =>
-  import("../../Pages/TallyData/VoucherType")
-);
+const StockGodown = React.lazy(() => import("../Pages/TallyData/StockGodown"));
+const StockGroup = React.lazy(() => import("../Pages/TallyData/StockGroup"));
+const StockItem = React.lazy(() => import("../Pages/TallyData/StockItem"));
+const StockUnit = React.lazy(() => import("../Pages/TallyData/StockUnit"));
+const VoucherType = React.lazy(() => import("../Pages/TallyData/VoucherType"));
 
 // MASTERS
 const DepartmentMaster = React.lazy(() =>
-  import("../../Pages/Masters/DepartmentMaster")
+  import("../Pages/Masters/DepartmentMaster")
 );
 const DesignationMaster = React.lazy(() =>
-  import("../../Pages/Masters/DesignationMaster")
+  import("../Pages/Masters/DesignationMaster")
 );
 const EmployeeMaster = React.lazy(() =>
-  import("../../Pages/Masters/EmployeeMaster")
+  import("../Pages/Masters/EmployeeMaster")
 );
-const RoleMaster = React.lazy(() => import("../../Pages/Masters/RoleMaster"));
+const RoleMaster = React.lazy(() => import("../Pages/Masters/RoleMaster"));
 const SettingMaster = React.lazy(() =>
-  import("../../Pages/Masters/SettingMaster")
+  import("../Pages/Masters/SettingMaster")
 );
-const UserMaster = React.lazy(() => import("../../Pages/Masters/UserMaster"));
+const UserMaster = React.lazy(() => import("../Pages/Masters/UserMaster"));
 
 const SalesDashBoard = React.lazy(() =>
-  import("./../../Pages/Dashbord/SalesDashboard")
+  import("../Pages/Dashbord/SalesDashboard")
 );
 const OSDashBoard = React.lazy(() =>
-  import("./../../Pages/Dashbord/OutstandingDashboard")
+  import("../Pages/Dashbord/OutstandingDashboard")
 );
-const HRDashboard = React.lazy(() =>
-  import("./../../Pages/Dashbord/HRDashboard")
-);
+const HRDashboard = React.lazy(() => import("../Pages/Dashbord/HRDashboard"));
 
 const routes = [
   {

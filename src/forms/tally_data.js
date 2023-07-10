@@ -29,7 +29,6 @@ export const company = {
     ],
   ],
 };
-
 export const costCategory = {
   api: "",
   forms: [
@@ -44,7 +43,7 @@ export const costCategory = {
             align: "left",
             controls: [
               {
-                name: "CostCategory",
+                name: "costCategory",
                 type: "table",
 
                 fetch: {
@@ -61,7 +60,6 @@ export const costCategory = {
     ],
   ],
 };
-
 export const costCenter = {
   api: "",
   forms: [
@@ -155,7 +153,6 @@ export const group = {
     ],
   ],
 };
-
 export const ledger = {
   api: "",
   forms: [
@@ -187,7 +184,6 @@ export const ledger = {
     ],
   ],
 };
-
 export const stockCategory = {
   api: "",
   forms: [
@@ -219,7 +215,6 @@ export const stockCategory = {
     ],
   ],
 };
-
 export const stockGodown = {
   api: "",
   forms: [
@@ -251,7 +246,6 @@ export const stockGodown = {
     ],
   ],
 };
-
 export const stockGroup = {
   api: "",
   forms: [
@@ -283,7 +277,6 @@ export const stockGroup = {
     ],
   ],
 };
-
 export const stockItem = {
   api: "",
   forms: [
@@ -315,7 +308,6 @@ export const stockItem = {
     ],
   ],
 };
-
 export const stockUnit = {
   api: "",
   forms: [
@@ -347,7 +339,6 @@ export const stockUnit = {
     ],
   ],
 };
-
 export const voucherType = {
   api: "",
   forms: [

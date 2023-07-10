@@ -1,11 +1,10 @@
 import { useState } from "react";
-import routes from "../../../Layout/routes/routes";
+import routes from "../../../constant/routes";
 import styles from "./styles/sidemenue.module.css";
 import { useContext } from "react";
 import { Context } from "../../../store/store";
 
 export default function SideMenu() {
-  const [active, setActive] = useState();
   const { activeTab, activateTab } = useContext(Context);
 
   function changeTab(child) {

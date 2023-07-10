@@ -167,29 +167,34 @@ export const updateFormOnSelection = (
   });
 };
 
-export const jsonToArray = (json, fieldsMap) => {
+export const jsonToArray = (json, fieldsMap, name, EditButton) => {
+  if (!json) return;
+
+  let fieldsToShow = fieldsMap[name];
+  // console.log("fieldsToShow", fieldsToShow, "name", name);
   let result = [];
   Object.entries(json).forEach((row, index) => {
     if (index === 0) {
       // Get Header Row
-      let headers = ["Sr. No"];
-      Object.entries(row[1]).forEach((col) => {
-        if (!(typeof col[1] === "object")) {
-          headers.push(fieldsMap?.[col[0]] ? fieldsMap[col[0]] : col[0]);
+      let headers = ["Edit", "SNo"];
+      Object.entries(fieldsToShow).forEach((col) => {
+        if (!(typeof json[col[0]] === "object")) {
+          headers.push(col[1]);
         }
       });
       result.push(headers);
     }
-    let rowData = [index + 1];
+    let rowData = [<EditButton />, index + 1];
     // Get Data Row
-    Object.entries(row[1]).forEach((col) => {
-      if (!(typeof col[1] === "object")) {
-        rowData.push(col[1]);
+    Object.entries(fieldsToShow).forEach((col) => {
+      if (!(typeof row[col[0]] === "object")) {
+        rowData.push(row[1][col[0]]);
       }
     });
     result.push(rowData);
     rowData = [];
   });
+  console.log("result", result);
   return result;
 };
 

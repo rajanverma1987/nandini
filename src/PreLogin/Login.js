@@ -12,7 +12,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import "../assets/login.css";
 // import { authActions } from "../_actions";
-import { alert } from "../_utilities";
+import { alert } from "../utilities";
 
 import { WHITE_COPY_RIGHT } from "../constant/Images";
 

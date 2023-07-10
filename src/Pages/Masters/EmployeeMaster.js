@@ -5,7 +5,7 @@ import {
   extractData,
   updateFormData,
   validateForm,
-} from "../../_utilities/utll";
+} from "../../utilities/utll";
 
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";

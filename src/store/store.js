@@ -11,6 +11,8 @@ export const Context = createContext({
   activateTab: () => {},
   activeTab: {},
   tabs: [],
+  user: {},
+  logOut: () => {},
 });
 
 export default function ContextProvider({ children }) {
@@ -18,6 +20,10 @@ export default function ContextProvider({ children }) {
   const [companyID, setCompany] = useState({});
   const [tabs, setTabs] = useState([]);
   const [activeTab, setActiveTab] = useState([]);
+  const [user, setUser] = useState({});
+  function logOut() {
+    setUser({});
+  }
 
   function addTab(tab) {
     setTabs((prev) => {
@@ -30,6 +36,9 @@ export default function ContextProvider({ children }) {
   function removeTab(tab) {
     setTabs((prev) => {
       let obj = prev.filter((opendTab) => opendTab.name !== tab.name);
+      if (obj.length > 0) {
+        activateTab(obj[obj.length - 1]);
+      }
       return obj;
     });
   }
@@ -46,15 +55,17 @@ export default function ContextProvider({ children }) {
     });
   }
   const value = {
-    updateTableData,
     tbldata,
     companyID,
+    activeTab,
+    tabs,
+    user,
+    updateTableData,
     setCompany,
     addTab,
     removeTab,
     activateTab,
-    activeTab,
-    tabs,
+    logOut,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
