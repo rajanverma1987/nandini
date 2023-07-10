@@ -65,7 +65,10 @@ export default function FormGenerator({ formData, functions }) {
                                             <React.Fragment
                                               key={`row_${controlKey}`}
                                             >
-                                              {control.type === "input" && (
+                                              {(control.type === "input" ||
+                                                control.type === "email" ||
+                                                control.type ===
+                                                  "password") && (
                                                 <Input
                                                   isError={!control.isValid}
                                                   key={`input_${controlKey}`}

@@ -1,7 +1,5 @@
 import React, { Component, Suspense } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import DefaultLayout from "./components/Layout/defaultLayout/DefaultLayout";
 import Loader from "./components/loader/Loader";
@@ -23,12 +21,6 @@ class App extends Component {
           />
           <Route path="/login" component={Login} />
           <Route path="/postlogin" component={DefaultLayout} />
-
-          <ToastContainer
-            enableMultiContainer
-            containerId={"TOP_RIGHT"}
-            position={toast.POSITION.TOP_RIGHT}
-          />
         </Suspense>
       </BrowserRouter>
     );

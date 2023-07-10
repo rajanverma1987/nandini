@@ -3,7 +3,7 @@ import styles from "./styles/input.module.css";
 
 function Input({ isError, type, label, name, onChange, value = "" }, ref) {
   useEffect(() => {
-    // console.log(name);
+    console.log(type);
   }, [value]);
   return (
     <>

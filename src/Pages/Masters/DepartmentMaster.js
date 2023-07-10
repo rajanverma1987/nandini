@@ -21,6 +21,8 @@ export default function DepartmentMaster() {
     });
   }, [companyID]);
 
+  const [showModal, setShowModal] = useState(false);
+
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE

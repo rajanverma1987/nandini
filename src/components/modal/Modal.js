@@ -4,7 +4,7 @@ import Icon from "../icon/icon";
 
 export default function Modal({
   children,
-  title = "Add Transaction",
+  title = "Done",
   onClose = (e) => {
     e.preventDefault();
     e.stopPropagation();

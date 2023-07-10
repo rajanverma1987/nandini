@@ -1,7 +1,7 @@
 import { IoIosMenu } from "react-icons/io";
 import styles from "./styles/defaultlayout.module.css";
 import Select from "../../select/Select";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../../../store/store";
 import SideMenu from "../sidemenu/Sidemenu";
 import Tabs from "../../tabs/tabs";
@@ -11,6 +11,7 @@ import { useEffect } from "react";
 export default function DefaultLayout() {
   const { setCompany } = useContext(Context);
   const { tabs, removeTab } = useContext(Context);
+  const [showMenu, setShowMenu] = useState(true);
   useEffect(() => {}, []);
   function onCompanyChange() {
     const { selectedOptions } = arguments[2];
@@ -19,13 +20,20 @@ export default function DefaultLayout() {
 
   return (
     <div className={styles.main}>
-      <div className={styles.sidebar}>
-        <SideMenu />
-      </div>
+      {showMenu && (
+        <div className={styles.sidebar}>
+          <SideMenu />
+        </div>
+      )}
       <div className={styles.container}>
         <div className={styles.header}>
           <div className="left">
-            <IoIosMenu className={styles.menuIcon} />
+            <IoIosMenu
+              className={styles.menuIcon}
+              onClick={() => {
+                setShowMenu((prev) => !prev);
+              }}
+            />
             <span className={styles.headerHeading}>TALLY DATA WAREHOUSE</span>
           </div>
           <Select
