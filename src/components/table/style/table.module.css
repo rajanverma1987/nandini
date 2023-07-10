@@ -22,10 +22,7 @@
   cursor: pointer;
   border: none;
 }
-.editButton:hover {
-  background-color: var(--primary-color);
-  color: white;
-}
+
 .cell {
   display: inline-block;
   align-items: center;

@@ -171,7 +171,6 @@ export const jsonToArray = (json, fieldsMap, name, EditButton) => {
   if (!json) return;
 
   let fieldsToShow = fieldsMap[name];
-  // console.log("fieldsToShow", fieldsToShow, "name", name);
   let result = [];
   Object.entries(json).forEach((row, index) => {
     if (index === 0) {
@@ -184,7 +183,7 @@ export const jsonToArray = (json, fieldsMap, name, EditButton) => {
       });
       result.push(headers);
     }
-    let rowData = [<EditButton />, index + 1];
+    let rowData = [<EditButton record={row} />, index + 1];
     // Get Data Row
     Object.entries(fieldsToShow).forEach((col) => {
       if (!(typeof row[col[0]] === "object")) {

@@ -63,7 +63,7 @@ export default function Table({
     }
   }
 
-  function EditButton() {
+  function EditButton({ record }) {
     return (
       <div className={styles.editButton}>
         <AiFillEdit />
