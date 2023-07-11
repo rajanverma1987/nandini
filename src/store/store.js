@@ -16,6 +16,9 @@ export const Context = createContext({
   ip: undefined,
   setIp: () => {},
   setUser: () => {},
+  displayModal: () => {},
+  modal: false,
+  showModal: () => {},
 });
 
 export default function ContextProvider({ children }) {
@@ -25,7 +28,14 @@ export default function ContextProvider({ children }) {
   const [activeTab, setActiveTab] = useState([]);
   const [user, setUser] = useState({});
   const [ip, setIp] = useState({});
+  const [modal, showModal] = useState(false);
 
+  function displayModal(message) {
+    showModal(message);
+    setTimeout(() => {
+      showModal(false);
+    }, 3000);
+  }
   function addTab(tab) {
     setTabs((prev) => {
       if (!prev.some((oTab) => oTab.name === tab.name)) {
@@ -69,6 +79,9 @@ export default function ContextProvider({ children }) {
     addTab,
     removeTab,
     activateTab,
+    displayModal,
+    showModal,
+    modal,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

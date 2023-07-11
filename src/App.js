@@ -11,6 +11,7 @@ export default function App() {
   const { setCompany, setIp } = useContext(Context);
 
   useEffect(() => {
+    console.log("App Rendering....");
     try {
       fetchCompany();
     } catch (e) {

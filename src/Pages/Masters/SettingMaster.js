@@ -13,7 +13,7 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 export default function Settings() {
   const [formData, setFormData] = useState(setting);
-  const { CompanyID } = useContext(Context);
+  const { CompanyID, displayModal } = useContext(Context);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
@@ -30,9 +30,11 @@ export default function Settings() {
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
       console.log(inputData);
-      const res = await axios_.post(formData.api, inputData);
-      if (res.status == 200) {
-        alert("Success");
+      try {
+        const res = await axios_.post(formData.api, inputData);
+        displayModal(res.data.Message);
+      } catch (e) {
+        displayModal(e.message);
       }
     }
   }

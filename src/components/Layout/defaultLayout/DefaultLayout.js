@@ -8,11 +8,12 @@ import Tabs from "../../tabs/tabs";
 import Tab from "../../tab/tab";
 import { AiFillDownCircle } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
+import Modal from "../../modal/Modal";
 
 function DefaultLayout() {
   const history = useHistory();
 
-  const { setCompany, user } = useContext(Context);
+  const { setCompany, user, modal, showModal, CompanyID } = useContext(Context);
   const { tabs } = useContext(Context);
   const [showMenu, setShowMenu] = useState(true);
   const [showUserMenu, setShowMuserenu] = useState(false);
@@ -34,6 +35,7 @@ function DefaultLayout() {
       history.push("/");
     }
   }, []);
+
   function onCompanyChange() {
     const { selectedOptions } = arguments[2];
     console.log("selectedOptions[0]", selectedOptions[0]);
@@ -64,6 +66,7 @@ function DefaultLayout() {
           </div>
           <div>
             <Select
+              value={CompanyID}
               name="Company"
               value={1}
               selectorText="Select Company"
@@ -98,6 +101,12 @@ function DefaultLayout() {
           </div>
         </div>
         <div className={styles.appContainer}>
+          {modal && (
+            <Modal onClose={() => showModal(false)}>
+              <p className={styles.modalMessage}>{modal}</p>
+            </Modal>
+          )}
+
           {tabs && tabs.length > 0 && (
             <Tabs>
               {tabs.map((tab, index) => {

@@ -23,7 +23,8 @@ function Select(
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (value != selected) setSelected(value); //For Resetting
+    if (value !== selected && name !== "Company") setSelected(value); //For Resetting
+
     if (fetch?.api) {
       getOptions();
     } else {

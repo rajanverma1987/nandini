@@ -12,7 +12,7 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 export default function EmployeeMaster() {
   const [formData, setFormData] = useState(employee);
-  const { CompanyID } = useContext(Context);
+  const { CompanyID, displayModal } = useContext(Context);
   const [reset, setReset] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
@@ -26,7 +26,7 @@ export default function EmployeeMaster() {
     const [e, formItemIndex, ...dropdown] = arguments;
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE
 
-    if (dropdown[0].name === "Country" && dropdown[0]?.selectedOptions) {
+    if (dropdown[0]?.name === "Country" && dropdown[0]?.selectedOptions) {
       setFormData((prev) => {
         let obj = { ...prev };
         obj.forms[0][0].rows[0].controls[10].fetch.api =
@@ -36,7 +36,7 @@ export default function EmployeeMaster() {
         };
         return obj;
       });
-    } else if (dropdown[0].name === "State" && dropdown[0]?.selectedOptions) {
+    } else if (dropdown[0]?.name === "State" && dropdown[0]?.selectedOptions) {
       setFormData((prev) => {
         let obj = { ...prev };
         obj.forms[0][0].rows[0].controls[11].fetch.api =
@@ -54,9 +54,11 @@ export default function EmployeeMaster() {
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
 
-      const res = await axios_.post(formData.api, inputData);
-      if (res.status == 200) {
-        alert("Success");
+      try {
+        const res = await axios_.post(formData.api, inputData);
+        displayModal(res.data.Message);
+      } catch (e) {
+        displayModal(e.message);
       }
     }
   }

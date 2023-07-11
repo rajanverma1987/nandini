@@ -13,7 +13,7 @@ import { Context } from "../../store/store";
 
 export default function DesignationMaster() {
   const [formData, setFormData] = useState(designation);
-  const { CompanyID } = useContext(Context);
+  const { CompanyID, displayModal } = useContext(Context);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
@@ -31,10 +31,11 @@ export default function DesignationMaster() {
     console.log(inputData);
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
-      console.log(inputData);
-      const res = await axios_.post(formData.api, inputData);
-      if (res.status == 200) {
-        alert("Success");
+      try {
+        const res = await axios_.post(formData.api, inputData);
+        displayModal(res.data.Message);
+      } catch (e) {
+        displayModal(e.message);
       }
     }
   }

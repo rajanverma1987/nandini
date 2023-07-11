@@ -165,10 +165,9 @@ export default function Table({
           return (
             <span
               key={`${index}_${rowIndex}`}
-              className={`${styles.cell}`}
+              className={`${rowIndex !== 0 ? styles.cell : ""}`}
               style={{ "--col": tableData[0].length }}
             >
-              {row[index]}
               {rowIndex === 0 && (
                 <ContextMenu
                   showMenu={showMenu}
@@ -176,6 +175,7 @@ export default function Table({
                   index={index}
                 />
               )}
+              {row[index]}
             </span>
           );
         })}

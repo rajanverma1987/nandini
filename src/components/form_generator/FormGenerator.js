@@ -8,7 +8,7 @@ import Button from "./../../components/button/Button";
 import Select from "./../../components/select/Select";
 import styles from "./styles/formGenerator.module.css";
 import FileInput from "./../../components/fileInput/FileInput";
-import Loader from "../loader/Loader";
+
 import Search from "../search/Search";
 import CheckBox from "../checkbox/Checkbox";
 import Table from "../table/Table";
@@ -22,11 +22,7 @@ export default function FormGenerator({ formData, functions }) {
     setLoading(false);
   }, []);
   if (loading) {
-    return (
-      <React.Fragment>
-        <Loader />
-      </React.Fragment>
-    );
+    return <React.Fragment>Loading...</React.Fragment>;
   }
   return (
     <>

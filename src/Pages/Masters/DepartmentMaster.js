@@ -12,7 +12,7 @@ import { useContext, useEffect, useState } from "react";
 
 export default function DepartmentMaster() {
   const [formData, setFormData] = useState(department);
-  const { CompanyID } = useContext(Context);
+  const { CompanyID, displayModal } = useContext(Context);
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
@@ -30,10 +30,11 @@ export default function DepartmentMaster() {
     let validated = await validateForm(setFormData);
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
-      console.log(inputData);
-      const res = await axios_.post(formData.api, inputData);
-      if (res.status == 200) {
-        alert("Success");
+      try {
+        const res = await axios_.post(formData.api, inputData);
+        displayModal(res.data.Message);
+      } catch (e) {
+        displayModal(e.message);
       }
     }
   }
