@@ -6,21 +6,24 @@ import {
   extractData,
   updateFormData,
   validateForm,
+  ResetFormData,
+  updateFormOnSelection,
 } from "../../utilities/utll";
 
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 
-export default function DepartmentMaster() {
-  const { companyID } = useContext(Context);
+export default function RoleMaster() {
+  const { CompanyID, displayModal } = useContext(Context);
   const [formData, setFormData] = useState(role);
+  const [edit, setEdit] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
-      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { CompanyID };
       return obj;
     });
-  }, [companyID]);
+  }, [CompanyID]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
@@ -30,13 +33,35 @@ export default function DepartmentMaster() {
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
       console.log(inputData);
-      const res = await axios_.post(formData.api, inputData);
-      if (res.status == 200) {
-        alert("Success");
+      try {
+        const res = await axios_.post(formData.api, inputData);
+        displayModal(res.data.Message);
+      } catch (e) {
+        displayModal(e.message);
       }
     }
   }
-  let functions = { handleOnChange, handleSubmit };
+  function handleReset() {
+    ResetFormData(setFormData);
+  }
+  function handleEdit(record) {
+    if (!record) return;
+    let data = extractData(formData);
+    // console.log("data", data.role, "record", record);
+    // Fill Form with selected record
+    Object.entries(data.role).forEach((entry) => {
+      updateFormOnSelection(
+        setFormData,
+        0,
+        entry[0],
+        "value",
+        record[1][entry[0]] ? record[1][entry[0]] : ""
+      );
+      console.log(entry);
+    });
+    setEdit(true);
+  }
+  let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };
   return (
     <>
       <FormGenerator formData={formData} functions={functions} />

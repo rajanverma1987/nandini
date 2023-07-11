@@ -7,20 +7,22 @@ import {
   updateFormData,
   updateFormOnSelection,
   validateForm,
+  ResetFormData,
 } from "../../utilities/utll";
 
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 export default function UserMaster() {
   const [formData, setFormData] = useState(user);
-  const { companyID } = useContext(Context);
+  const { CompanyID, displayModal } = useContext(Context);
+  const [edit, setEdit] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
-      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { CompanyID };
       return obj;
     });
-  }, [companyID]);
+  }, [CompanyID]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
@@ -36,7 +38,7 @@ export default function UserMaster() {
           obj.forms[0][0].rows[0].controls[2].selector = "Select Employee";
           obj.forms[0][0].rows[0].controls[2].fetch.api =
             "Master/Employee/GetByIdData";
-          obj.forms[0][0].rows[0].controls[2].fetch.data = { companyID };
+          obj.forms[0][0].rows[0].controls[2].fetch.data = { CompanyID };
           obj.forms[0][0].rows[0].controls[2].fetch.fields = [
             "EmployeeCode",
             "EmployeeName",
@@ -50,7 +52,7 @@ export default function UserMaster() {
           obj.forms[0][0].rows[0].controls[2].title = "Company";
           obj.forms[0][0].rows[0].controls[2].selector = "Select Company";
           obj.forms[0][0].rows[0].controls[2].fetch.api = "Company/GetData";
-          obj.forms[0][0].rows[0].controls[2].fetch.data = { companyID };
+          obj.forms[0][0].rows[0].controls[2].fetch.data = { CompanyID };
           obj.forms[0][0].rows[0].controls[2].fetch.fields = [
             "ID",
             "RemoteCmpName",
@@ -77,14 +79,37 @@ export default function UserMaster() {
         );
         return;
       }
-
-      const res = await axios_.post(formData.api, inputData);
-      if (res.status == 200) {
-        alert("Success");
+      try {
+        const res = await axios_.post(formData.api, inputData);
+        displayModal(res.data.Message);
+      } catch (e) {
+        displayModal(e.message);
       }
     }
   }
-  let functions = { handleOnChange, handleSubmit };
+
+  function handleEdit(record) {
+    if (!record) return;
+    let data = extractData(formData);
+    // console.log("data", data.department, "record", record);
+    // Fill Form with selected record
+    Object.entries(data.user).forEach((entry) => {
+      updateFormOnSelection(
+        setFormData,
+        0,
+        entry[0],
+        "value",
+        record[1][entry[0]] ? record[1][entry[0]] : ""
+      );
+      console.log(entry);
+    });
+    setEdit(true);
+  }
+
+  function handleReset() {
+    ResetFormData(setFormData);
+  }
+  let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };
   return (
     <>
       <FormGenerator formData={formData} functions={functions} />

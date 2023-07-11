@@ -1,55 +1,40 @@
 import React from "react";
-import { AiFillDashboard, AiOutlineUser } from "react-icons/ai";
-import { BsChatRightDots, BsTabletFill } from "react-icons/bs";
+import { AiFillDashboard } from "react-icons/ai";
 
-const Dashbord = React.lazy(() => import("../Pages/Dashbord"));
-const Company = React.lazy(() => import("../Pages/TallyData/Company"));
-const CostCategory = React.lazy(() =>
-  import("../Pages/TallyData/CostCategory")
-);
-const CostCenter = React.lazy(() => import("../Pages/TallyData/CostCenter"));
-const Currency = React.lazy(() => import("../Pages/TallyData/Currency"));
-const Group = React.lazy(() => import("../Pages/TallyData/Group"));
-const Ledger = React.lazy(() => import("../Pages/TallyData/Ledger"));
-const StockCategory = React.lazy(() =>
-  import("../Pages/TallyData/StockCategory")
-);
-const StockGodown = React.lazy(() => import("../Pages/TallyData/StockGodown"));
-const StockGroup = React.lazy(() => import("../Pages/TallyData/StockGroup"));
-const StockItem = React.lazy(() => import("../Pages/TallyData/StockItem"));
-const StockUnit = React.lazy(() => import("../Pages/TallyData/StockUnit"));
-const VoucherType = React.lazy(() => import("../Pages/TallyData/VoucherType"));
+// Dashboards
+import Dashboard from "../Pages/Dashbord";
+import SalesDashBoard from "../Pages/Dashbord/SalesDashboard";
+import HRDashboard from "../Pages/Dashbord/HRDashboard";
+import OSDashbord from "../Pages/Dashbord/OutstandingDashboard";
+
+// Tally
+import CostCenter from "../Pages/TallyData/CostCenter";
+import CostCategory from "../Pages/TallyData/CostCategory";
+import Company from "../Pages/TallyData/Company";
+import Currency from "../Pages/TallyData/Currency";
+import Group from "../Pages/TallyData/Group";
+import Ledger from "../Pages/TallyData/Ledger";
+import StockCategory from "../Pages/TallyData/StockCategory";
+import StockGodown from "../Pages/TallyData/StockGodown";
+import StockGroup from "../Pages/TallyData/StockGroup";
+import StockItem from "../Pages/TallyData/StockItem";
+import StockUnit from "../Pages/TallyData/StockUnit";
+import VoucherType from "../Pages/TallyData/VoucherType";
 
 // MASTERS
-const DepartmentMaster = React.lazy(() =>
-  import("../Pages/Masters/DepartmentMaster")
-);
-const DesignationMaster = React.lazy(() =>
-  import("../Pages/Masters/DesignationMaster")
-);
-const EmployeeMaster = React.lazy(() =>
-  import("../Pages/Masters/EmployeeMaster")
-);
-const RoleMaster = React.lazy(() => import("../Pages/Masters/RoleMaster"));
-const SettingMaster = React.lazy(() =>
-  import("../Pages/Masters/SettingMaster")
-);
-const UserMaster = React.lazy(() => import("../Pages/Masters/UserMaster"));
-
-const SalesDashBoard = React.lazy(() =>
-  import("../Pages/Dashbord/SalesDashboard")
-);
-const OSDashBoard = React.lazy(() =>
-  import("../Pages/Dashbord/OutstandingDashboard")
-);
-const HRDashboard = React.lazy(() => import("../Pages/Dashbord/HRDashboard"));
+import DepartmentMaster from "../Pages/Masters/DepartmentMaster";
+import DesignationMaster from "../Pages/Masters/DesignationMaster";
+import EmployeeMaster from "../Pages/Masters/EmployeeMaster";
+import RoleMaster from "../Pages/Masters/RoleMaster";
+import UserMaster from "../Pages/Masters/UserMaster";
+import Settings from "../Pages/Masters/SettingMaster";
 
 const routes = [
   {
     path: "/postlogin/dashboard",
     icon: AiFillDashboard,
     name: "Dashbord",
-    component: Dashbord,
+    component: Dashboard,
     type: "parent",
   },
 
@@ -71,7 +56,7 @@ const routes = [
       {
         name: "Outstanding Dashboard",
         path: "/postlogin/outstanding",
-        component: OSDashBoard,
+        component: OSDashbord,
       },
     ],
   },
@@ -114,7 +99,7 @@ const routes = [
         path: "/postlogin/setting_master",
         name: "Setting",
         //icon: <IoMdSettings />,
-        component: SettingMaster,
+        component: Settings,
       },
     ],
   },

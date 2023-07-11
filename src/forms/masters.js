@@ -46,6 +46,16 @@ export const department = {
                   required: true,
                 },
               },
+              {
+                type: "button",
+                title: "Reset",
+                onClick: "handleReset",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
             ],
           },
         ],
@@ -127,6 +137,16 @@ export const designation = {
                 type: "button",
                 title: "Save",
                 onClick: "handleSubmit",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                type: "button",
+                title: "Reset",
+                onClick: "handleReset",
                 visible: true,
                 isValid: true,
                 validation: {
@@ -374,7 +394,7 @@ export const employee = {
                 options: [],
                 selector: "Select State",
                 fetch: {
-                  api: "Master/State/GetByIdData",
+                  api: "",
                   data: {},
                   fields: ["StateId", "StateName"],
                 },
@@ -393,7 +413,7 @@ export const employee = {
                 options: [],
                 selector: "Select City",
                 fetch: {
-                  api: "Master/City/GetByIdData",
+                  api: "",
                   data: {},
                   fields: ["CityId", "CityName"],
                 },
@@ -540,6 +560,16 @@ export const role = {
                 type: "button",
                 title: "Save",
                 onClick: "handleSubmit",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                type: "button",
+                title: "Reset",
+                onClick: "handleReset",
                 visible: true,
                 isValid: true,
                 validation: {
@@ -718,7 +748,7 @@ export const user = {
 
               {
                 name: "Role",
-                value: "",
+                value: [],
                 type: "multiselect",
                 title: "Role",
                 onChange: "handleOnChange",
@@ -741,6 +771,16 @@ export const user = {
                 type: "button",
                 title: "Save",
                 onClick: "handleSubmit",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                type: "button",
+                title: "Reset",
+                onClick: "handleReset",
                 visible: true,
                 isValid: true,
                 validation: {
@@ -852,6 +892,16 @@ export const setting = {
                 type: "button",
                 title: "Save",
                 onClick: "handleSubmit",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                type: "button",
+                title: "Reset",
+                onClick: "handleReset",
                 visible: true,
                 isValid: true,
                 validation: {

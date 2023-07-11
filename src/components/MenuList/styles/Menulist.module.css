@@ -1,0 +1,9 @@
+.ulHeader {
+  display: flex !important;
+  justify-content: space-between !important;
+  cursor: pointer;
+}
+.active {
+  font-weight: bold;
+  color: rgb(196, 255, 47);
+}

@@ -140,6 +140,32 @@ export const updateFormData = (e, stateUpdateFunction, formItemIndex) => {
   });
 };
 
+export const ResetFormData = (stateUpdateFunction) => {
+  stateUpdateFunction((prev) => {
+    let obj = { ...prev };
+    obj.forms.forEach((form) => {
+      form.forEach((forItem, formIndex) => {
+        forItem.rows?.forEach((row) => {
+          row.controls.forEach((control) => {
+            if (control.type !== "button" || control.type !== "table") {
+              control.isValid = true;
+              if (control.type == "select") {
+                control.value = "-1";
+              } else {
+                control.value = "";
+              }
+            } else if (control.type == "multiselect") {
+              control.isValid = true;
+              control.value = [];
+            }
+          });
+        });
+      });
+    });
+    return obj;
+  });
+};
+
 export const updateFormOnSelection = (
   stateUpdateFunction,
   formItemIndex,

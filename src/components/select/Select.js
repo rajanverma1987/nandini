@@ -1,8 +1,8 @@
-import { forwardRef, useState, useEffect } from "react";
+import { forwardRef, useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./styles/select.module.css";
 import { axios_, dropDownData } from "../../utilities/utll";
-
+import { Context } from "./../../store/store";
 function Select(
   {
     fetch = {},
@@ -17,12 +17,14 @@ function Select(
   },
   inputRef
 ) {
-  const uid = uuidv4();
+  const { tbldata } = useContext(Context);
   const [selected, setSelected] = useState(value);
   const [selectionOption, setSelectOption] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (value !== selected && name !== "Company") setSelected(value); //For Resetting
+
     if (fetch?.api) {
       getOptions();
     } else {
@@ -35,13 +37,14 @@ function Select(
         const res = await axios_.post(fetch.api, fetch.data);
         if (res.status == 200) {
           let data = dropDownData(res.data.Data, fetch.fields);
+          if (!tbldata[fetch.api]) tbldata[fetch.api] = data;
           setSelectOption(data);
         }
       } catch (e) {
         console.log(e);
       }
     }
-  }, [fetch.api]);
+  }, [value, fetch.api, fetch.data]);
 
   function handleOnChange(e) {
     e.preventDefault();
@@ -51,19 +54,12 @@ function Select(
     )[0];
     onChange(e, frmIndex, { name, selectedOptions });
   }
-  // function dropDownList(e) {
-  //   try {
-  //     let val = e.target.value;
-  //     console.log(selectRef);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
+
   return (
     <>
-      <div className={styles.container} key={`select_block_${uid}${name}`}>
+      <div className={styles.container} key={`select_block_${name}`}>
         {title && (
-          <span className={styles.label} key={`span_${uid}`}>
+          <span className={styles.label} key={`span_${name}`}>
             {title}
           </span>
         )}
@@ -76,15 +72,13 @@ function Select(
         <select
           value={selected}
           onChange={handleOnChange}
-          key={`select_${uid}`}
+          key={`select_${name}`}
           name={name}
           ref={inputRef}
-          className={`${styles.select} ${isError ? styles.error : ""} ${
-            selected == -1 ? styles.primaryColor : ""
-          }`}
+          className={`${styles.select} ${isError ? styles.error : ""}`}
         >
           <option
-            key={`default_${uid}`}
+            key={`default_${name}`}
             value={-1}
             styles={{ "text-align": "center" }}
           >
@@ -97,7 +91,7 @@ function Select(
             selectionOption?.length > 0 &&
             selectionOption.map((option, index) => (
               <option
-                key={`${index}_${uid}${name}`}
+                key={`${index}_${name}`}
                 value={option[0]}
                 disabled={option?.enabled ? option?.enabled : false}
               >

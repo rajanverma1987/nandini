@@ -71,7 +71,7 @@ export const fieldsMap = {
     NameMasterID: "Master ID",
     GUID: "GUID",
     AlterID: "Alter ID",
-    ParentGUID: "Paraent GUID",
+    ParentGUID: "Parent GUID",
     IsActive: "Status",
   },
   stockGodown: {
@@ -103,7 +103,7 @@ export const fieldsMap = {
     OrignalName: "Original Name",
     IsActive: "Status",
   },
-  SockItem: {
+  StockItem: {
     CompanyName: "Company Name",
     Name: "Name",
     MasterID: "Master ID",

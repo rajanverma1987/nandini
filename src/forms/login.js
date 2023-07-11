@@ -1,10 +1,10 @@
 export const loginForm = {
-  api: "",
+  api: "Login/PostData",
   forms: [
     [
       {
         title: "",
-        name: "login",
+        name: "USERMASTER",
         type: "parent",
         rows: [
           {
@@ -12,10 +12,10 @@ export const loginForm = {
             align: "left",
             controls: [
               {
-                name: "Email",
+                name: "UserName",
                 value: "",
-                type: "email",
-                title: "Email",
+                type: "input",
+                title: "User Name",
                 onChange: "handleOnChange",
                 visible: true,
                 isValid: true,
@@ -39,7 +39,7 @@ export const loginForm = {
 
               {
                 type: "button",
-                title: "Login",
+                title: "Sign In",
                 onClick: "handleSubmit",
                 visible: true,
                 isValid: true,

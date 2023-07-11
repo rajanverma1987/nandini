@@ -4,7 +4,7 @@ import Icon from "../icon/icon";
 
 export default function Modal({
   children,
-  title = "Done",
+  title = "",
   onClose = (e) => {
     e.preventDefault();
     e.stopPropagation();

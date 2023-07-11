@@ -1,0 +1,51 @@
+.toastContainer {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  background: rgb(236, 236, 236);
+  /* border: 1px solid grey; */
+  min-width: 15rem;
+  height: 3rem;
+  padding: 5px;
+  animation: animate 1s ease-in-out;
+}
+@keyframes animate {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0%;
+  }
+}
+.title {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.message {
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 5px;
+  width: 0%;
+  animation: animateProgress 2s ease-in 1s both;
+}
+@keyframes animateProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.success {
+  background-color: var(--primary-color);
+}
+.danger {
+  background-color: red;
+}

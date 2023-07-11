@@ -7,7 +7,7 @@ import Button from "./../../components/button/Button";
 import Select from "./../../components/select/Select";
 import styles from "./styles/formGenerator.module.css";
 import FileInput from "./../../components/fileInput/FileInput";
-import Loader from "../loader/Loader";
+
 import Search from "../search/Search";
 import CheckBox from "../checkbox/Checkbox";
 import Table from "../table/Table";
@@ -19,14 +19,11 @@ export default function FormGenerator({ formData, functions }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const uid = useId();
   useEffect(() => {
+    console.log("FORM RENDERING....");
     setLoading(false);
   }, []);
   if (loading) {
-    return (
-      <React.Fragment>
-        <Loader />
-      </React.Fragment>
-    );
+    return <React.Fragment>Loading...</React.Fragment>;
   }
 
   const togglePasswordVisibility = () => {
@@ -156,7 +153,7 @@ export default function FormGenerator({ formData, functions }) {
                                               {control.type === "file" && (
                                                 <FileInput
                                                   isError={!control.isValid}
-                                                  key={`input_${controlKey}`}
+                                                  key={`fileinput_${controlKey}`}
                                                   type={control.type}
                                                   label={control.title}
                                                   name={control.name}
@@ -192,6 +189,7 @@ export default function FormGenerator({ formData, functions }) {
                                               )}
                                               {control.type === "select" && (
                                                 <Select
+                                                  value={control.value}
                                                   isError={!control.isValid}
                                                   fetch={control?.fetch}
                                                   frmIndex={formItemIndex}
@@ -212,6 +210,7 @@ export default function FormGenerator({ formData, functions }) {
                                               {control.type ===
                                                 "multiselect" && (
                                                 <MultiSelect
+                                                  value={control.value}
                                                   isError={!control.isValid}
                                                   fetch={control?.fetch}
                                                   frmIndex={formItemIndex}

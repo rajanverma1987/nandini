@@ -71,7 +71,7 @@ export default function Table({
       <div className={styles.editButton}>
         <AiFillEdit
           onClick={() => {
-            onEdit.bind(this, record);
+            onEdit(record);
           }}
         />
       </div>
@@ -89,17 +89,22 @@ export default function Table({
         let res;
         if (fetch.type === "post") {
           setLoading(true);
+          // console.log("fetch.api, fetch.data", fetch.api, fetch.data);
           res = await axios_.post(fetch.api, fetch.data);
         } else {
           res = await axios_.get(fetch.api);
         }
         if (res.status == 200) {
           let data = res.data.Data;
-
-          data = jsonToArray(data, fieldsMap, name, EditButton, showEdit);
-          let obj = data[0].map((item, index) => index);
-          setColOrder(obj);
-          updateTableDataState(data);
+          // console.log("name", name, "DATA", data, "fieldsMap", fieldsMap[name]);
+          if (data && data?.length > 0) {
+            data = jsonToArray(data, fieldsMap, name, EditButton, showEdit);
+            let obj = data[0].map((item, index) => index);
+            setColOrder(obj);
+            updateTableDataState(data);
+          } else {
+            updateTableDataState([]);
+          }
         }
         setLoading(false);
       }
@@ -160,10 +165,9 @@ export default function Table({
           return (
             <span
               key={`${index}_${rowIndex}`}
-              className={`${styles.cell}`}
+              className={`${rowIndex !== 0 ? styles.cell : ""}`}
               style={{ "--col": tableData[0].length }}
             >
-              {row[index]}
               {rowIndex === 0 && (
                 <ContextMenu
                   showMenu={showMenu}
@@ -171,6 +175,7 @@ export default function Table({
                   index={index}
                 />
               )}
+              {row[index]}
             </span>
           );
         })}
@@ -228,7 +233,7 @@ export default function Table({
         </div>
       )}
 
-      {tableData && tableData.length > 0 && (
+      {tableData && tableData.length > 0 ? (
         <div className={styles.table}>
           {tableData[0] &&
             tableData[0].length > 0 &&
@@ -236,6 +241,8 @@ export default function Table({
               return <Column key={`col${index}`} index={index} />;
             })}
         </div>
+      ) : (
+        !loading && <div className={styles.noData}>No data available</div>
       )}
 
       {/* <div className={styles.Pagination}>

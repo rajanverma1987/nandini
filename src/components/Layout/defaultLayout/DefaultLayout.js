@@ -1,20 +1,45 @@
-import { useContext, useState } from "react";
-import { AiFillDownCircle } from "react-icons/ai";
 import { IoIosMenu } from "react-icons/io";
-import { useHistory } from "react-router-dom";
-import { Context } from "../../../store/store";
-import Select from "../../select/Select";
-import Tab from "../../tab/tab";
-import Tabs from "../../tabs/tabs";
-import SideMenu from "../sidemenu/Sidemenu";
 import styles from "./styles/defaultlayout.module.css";
+import Select from "../../select/Select";
+import { useContext, useEffect, useState } from "react";
+import {
+  Context,
+  LayoutContext,
+  LayoutContextProvider,
+} from "../../../store/store";
+import SideMenu from "../sidemenu/Sidemenu";
+import Tabs from "../../tabs/tabs";
+import Tab from "../../tab/tab";
+import { AiFillDownCircle } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
+import Modal from "../../modal/Modal";
+import MenuList from "../../MenuList/MenuList";
 
-function DefaultLayout() {
-  const { setCompany, logOut } = useContext(Context);
+function MainLayout() {
   const history = useHistory();
-  const { tabs, removeTab } = useContext(Context);
+
+  const { setCompany, user, modal, showModal, CompanyID } = useContext(Context);
+  const { tabs } = useContext(LayoutContext);
   const [showMenu, setShowMenu] = useState(true);
   const [showUserMenu, setShowMuserenu] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    console.log("Layout  Rendering....");
+    try {
+      let user = JSON.parse(localStorage.getItem("user"));
+      if (user[0].UserName) {
+        setUserName(user[0].UserName);
+        setLoading(false);
+      } else {
+        history.push("/login");
+        setLoading(false);
+      }
+    } catch (e) {
+      history.push("/");
+    }
+  }, []);
 
   function onCompanyChange() {
     const { selectedOptions } = arguments[2];
@@ -22,6 +47,10 @@ function DefaultLayout() {
     setCompany(selectedOptions[0]);
   }
 
+  function logOut() {
+    localStorage.removeItem("user");
+    history.push("/");
+  }
   return (
     <div className={styles.main}>
       {showMenu && (
@@ -42,6 +71,7 @@ function DefaultLayout() {
           </div>
           <div>
             <Select
+              value={CompanyID}
               name="Company"
               value={1}
               selectorText="Select Company"
@@ -57,7 +87,7 @@ function DefaultLayout() {
               <span>
                 <img src="/images/user-img.png" />
               </span>
-              <span>User Name</span>
+              <span>{userName}</span>
               <span
                 onClick={() => {
                   setShowMuserenu((prev) => !prev);
@@ -76,12 +106,18 @@ function DefaultLayout() {
           </div>
         </div>
         <div className={styles.appContainer}>
+          {modal && (
+            <Modal onClose={() => showModal(false)}>
+              <p className={styles.modalMessage}>{modal}</p>
+            </Modal>
+          )}
+
           {tabs && tabs.length > 0 && (
-            <Tabs>
+            <Tabs key={"tab"}>
               {tabs.map((tab, index) => {
                 return (
                   <Tab title={tab.name} tab={tab} key={`tabk${index}`}>
-                    <tab.component />
+                    <tab.component key={`tab_${index}`} />
                   </Tab>
                 );
               })}
@@ -93,8 +129,14 @@ function DefaultLayout() {
   );
 }
 
-function CheckUser(Component) {
-  const { user } = useContext(Context);
-  return Component;
+function DefaultLayout() {
+  useEffect(() => {
+    console.log("Re-Rending....");
+  }, []);
+  return (
+    <LayoutContextProvider>
+      <MainLayout />
+    </LayoutContextProvider>
+  );
 }
 export default DefaultLayout;
