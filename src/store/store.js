@@ -12,7 +12,10 @@ export const Context = createContext({
   activeTab: {},
   tabs: [],
   user: {},
-  logOut: () => {},
+
+  ip: undefined,
+  setIp: () => {},
+  setUser: () => {},
 });
 
 export default function ContextProvider({ children }) {
@@ -21,9 +24,7 @@ export default function ContextProvider({ children }) {
   const [tabs, setTabs] = useState([]);
   const [activeTab, setActiveTab] = useState([]);
   const [user, setUser] = useState({});
-  function logOut() {
-    setUser({});
-  }
+  const [ip, setIp] = useState({});
 
   function addTab(tab) {
     setTabs((prev) => {
@@ -60,12 +61,14 @@ export default function ContextProvider({ children }) {
     activeTab,
     tabs,
     user,
+    ip,
+    setIp,
+    setUser,
     updateTableData,
     setCompany,
     addTab,
     removeTab,
     activateTab,
-    logOut,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

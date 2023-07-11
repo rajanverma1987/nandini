@@ -100,6 +100,9 @@ export default function Table({
           let obj = data[0].map((item, index) => index);
           setColOrder(obj);
           updateTableDataState(data);
+        } else {
+          console.log("NO DATA");
+          updateTableDataState([]);
         }
         setLoading(false);
       }

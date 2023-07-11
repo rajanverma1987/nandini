@@ -75,7 +75,7 @@ export default function FormGenerator({ formData, functions }) {
                                                   key={`input_${controlKey}`}
                                                   type={control.type}
                                                   value={control.value}
-                                                  label={`${control.title} ${
+                                                  label={`${control.title}${
                                                     control.validation.required
                                                       ? "*"
                                                       : ""

@@ -1,25 +1,50 @@
 import { IoIosMenu } from "react-icons/io";
 import styles from "./styles/defaultlayout.module.css";
 import Select from "../../select/Select";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../../../store/store";
 import SideMenu from "../sidemenu/Sidemenu";
 import Tabs from "../../tabs/tabs";
 import Tab from "../../tab/tab";
 import { AiFillDownCircle } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
 
 function DefaultLayout() {
-  const { setCompany, logOut } = useContext(Context);
-  const { tabs, removeTab } = useContext(Context);
+  const history = useHistory();
+
+  const { setCompany, user } = useContext(Context);
+  const { tabs } = useContext(Context);
   const [showMenu, setShowMenu] = useState(true);
   const [showUserMenu, setShowMuserenu] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [userName, setUserName] = useState("");
 
+  useEffect(() => {
+    try {
+      let user = JSON.parse(localStorage.getItem("user"));
+      console.log(user);
+      if (user[0].UserName) {
+        setUserName(user[0].UserName);
+        setLoading(false);
+      } else {
+        history.push("/login");
+        setLoading(false);
+      }
+    } catch (e) {
+      // console.log(e);
+      history.push("/");
+    }
+  }, []);
   function onCompanyChange() {
     const { selectedOptions } = arguments[2];
     console.log("selectedOptions[0]", selectedOptions[0]);
     setCompany(selectedOptions[0]);
   }
 
+  function logOut() {
+    localStorage.removeItem("user");
+    history.push("/");
+  }
   return (
     <div className={styles.main}>
       {showMenu && (
@@ -55,7 +80,7 @@ function DefaultLayout() {
               <span>
                 <img src="/images/user-img.png" />
               </span>
-              <span>User Name</span>
+              <span>{userName}</span>
               <span
                 onClick={() => {
                   setShowMuserenu((prev) => !prev);
