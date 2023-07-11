@@ -14,8 +14,12 @@
 
 .sideMenu :is(p) {
   margin: 0;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 1rem;
+}
+
+.sideMenu :is(p) span:nth-child(2) {
+  padding-right: 5px;
 }
 .sideMenu ul {
   width: 96%;
@@ -30,10 +34,18 @@
   margin-left: 0.4rem;
   cursor: pointer;
   font-size: 0.7rem;
+  line-height: 1.5rem;
 }
 .sideMenu ul li:hover {
   margin-left: 0.6rem;
 }
+
+.ulHeader {
+  display: flex !important;
+  justify-content: space-between !important;
+  cursor: pointer;
+}
+
 .active {
   font-weight: bold;
   color: rgb(196, 255, 47);
