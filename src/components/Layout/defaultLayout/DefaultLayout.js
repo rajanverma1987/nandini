@@ -1,15 +1,17 @@
-import { IoIosMenu } from "react-icons/io";
-import styles from "./styles/defaultlayout.module.css";
-import Select from "../../select/Select";
 import { useContext, useState } from "react";
-import { Context } from "../../../store/store";
-import SideMenu from "../sidemenu/Sidemenu";
-import Tabs from "../../tabs/tabs";
-import Tab from "../../tab/tab";
 import { AiFillDownCircle } from "react-icons/ai";
+import { IoIosMenu } from "react-icons/io";
+import { useHistory } from "react-router-dom";
+import { Context } from "../../../store/store";
+import Select from "../../select/Select";
+import Tab from "../../tab/tab";
+import Tabs from "../../tabs/tabs";
+import SideMenu from "../sidemenu/Sidemenu";
+import styles from "./styles/defaultlayout.module.css";
 
 function DefaultLayout() {
   const { setCompany, logOut } = useContext(Context);
+  const history = useHistory();
   const { tabs, removeTab } = useContext(Context);
   const [showMenu, setShowMenu] = useState(true);
   const [showUserMenu, setShowMuserenu] = useState(false);
@@ -66,7 +68,7 @@ function DefaultLayout() {
               {showUserMenu && (
                 <div className={styles.userMenu}>
                   <ul>
-                    <li onClick={logOut}>Logout</li>
+                    <li onClick={() => history.push("/login")}>Logout</li>
                   </ul>
                 </div>
               )}
