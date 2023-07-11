@@ -15,7 +15,8 @@ export default function EmployeeMaster() {
   const [formData, setFormData] = useState(employee);
   const { CompanyID, displayModal } = useContext(Context);
   const [reset, setReset] = useState(false);
-  const [edit, setEdit] = useState(false);
+  const [editId, setEdit] = useState(false);
+
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
@@ -50,40 +51,73 @@ export default function EmployeeMaster() {
       });
     }
   }
+
   async function handleSubmit() {
     const inputData = extractData(formData);
-    console.log("inputData", inputData);
+
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
-
+      console.log("editId", editId);
+      if (editId) {
+        inputData.employee.EmployeeId = editId;
+      }
+      console.log("inputData", inputData);
       try {
         const res = await axios_.post(formData.api, inputData);
         displayModal(res.data.Message);
       } catch (e) {
         displayModal(e.message);
       }
+      handleReset();
     }
   }
+
   function handleReset() {
     setReset((prev) => !prev);
     ResetFormData(setFormData);
   }
+
   function handleEdit(record) {
     if (!record) return;
-    let data = extractData(formData);
-    console.log("data", data.employee, "record", record);
-    // Fill Form with selected record
-    Object.entries(data.employee).forEach((entry) => {
-      updateFormOnSelection(
-        setFormData,
-        0,
-        entry[0],
-        "value",
-        record[1][entry[0]] ? record[1][entry[0]] : ""
-      );
+
+    // Load State and City Dropdown
+    setFormData((prev) => {
+      let obj = { ...prev };
+      obj.forms[0][0].rows[0].controls[10].fetch.api =
+        "Master/State/GetByIdData";
+      obj.forms[0][0].rows[0].controls[10].fetch.data = {
+        CountryId: 0,
+      };
+      return obj;
     });
-    setEdit(true);
+    setFormData((prev) => {
+      let obj = { ...prev };
+      obj.forms[0][0].rows[0].controls[11].fetch.api =
+        "Master/City/GetByIdData";
+      obj.forms[0][0].rows[0].controls[11].fetch.data = {
+        StateId: 0,
+      };
+      return obj;
+    });
+
+    // Update Forms for Editing
+    setTimeout(() => {
+      let data = extractData(formData);
+      console.log("data", data.employee, "record", record);
+      // Fill Form with selected record
+      Object.entries(data.employee).forEach((entry) => {
+        updateFormOnSelection(
+          setFormData,
+          0,
+          entry[0],
+          "value",
+          record[1][entry[0]] ? record[1][entry[0]] : ""
+        );
+      });
+      setEdit(record[1].EmployeeId);
+    }, 1000);
   }
+
   let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };
   return (
     <>
