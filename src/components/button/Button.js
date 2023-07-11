@@ -4,6 +4,7 @@ export default function Button({
   btnType = "btnPrimary",
   btnText,
   marginTop = 0,
+  margin = "auto",
   align,
   onClick = (e) => {
     e.preventDefault();
@@ -11,7 +12,16 @@ export default function Button({
 }) {
   return (
     <button
-      style={{ marginTop: `${marginTop}px` }}
+      // style={{ marginTop: `${marginTop}px`, margin: `${margin}` }}
+      style={{
+        width: "100%",
+        padding: "10px",
+        color: "#fff",
+        maxWidth: "100%",
+        marginTop: "20px",
+        marginLeft: "0",
+        height: "40px",
+      }}
       onClick={onClick}
       className={`${styles[btnType]} ${align ? styles[align] : ""}`}
     >

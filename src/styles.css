@@ -47,6 +47,10 @@ body {
   position: relative;
   padding: 1rem;
   flex-direction: column;
+    border-radius: 5px;
+    -webkit-box-shadow: 3px 3px 32px -1px #bac7fd;
+    -moz-box-shadow: 3px 3px 32px -1px #bac7fd;
+    box-shadow: 3px 3px 32px -1px #bac7fd;
 }
 .logo {
   top: 2px;
@@ -57,5 +61,7 @@ body {
   /* background-color: white; */
 }
 .logo img {
-  width: 80%;
+  width: 45%;
+margin: auto;
+display: block;
 }

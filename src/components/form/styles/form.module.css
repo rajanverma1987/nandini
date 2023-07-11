@@ -5,13 +5,7 @@
   padding-inline: 1rem;
   padding-block: 1rem;
   flex-direction: column;
-  margin-inline: 1rem;
-  margin-top: 0.5rem;
-  border-radius: 5px;
-  -webkit-box-shadow: 3px 3px 32px -1px #bac7fd;
-  -moz-box-shadow: 3px 3px 32px -1px #bac7fd;
-  box-shadow: 3px 3px 32px -1px #bac7fd;
-  min-width: 300px;
+  min-width: 306px;
   flex: 1;
   overflow: auto;
   /* flex-wrap: wrap; */
