@@ -394,7 +394,7 @@ export const employee = {
                 options: [],
                 selector: "Select State",
                 fetch: {
-                  api: "Master/State/GetByIdData",
+                  api: "",
                   data: {},
                   fields: ["StateId", "StateName"],
                 },
@@ -413,7 +413,7 @@ export const employee = {
                 options: [],
                 selector: "Select City",
                 fetch: {
-                  api: "Master/City/GetByIdData",
+                  api: "",
                   data: {},
                   fields: ["CityId", "CityName"],
                 },

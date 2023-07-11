@@ -25,11 +25,7 @@ function Select(
   useEffect(() => {
     if (value != selected) setSelected(value); //For Resetting
     if (fetch?.api) {
-      if (tbldata[fetch.api]) {
-        setSelectOption(tbldata[fetch.api]);
-      } else {
-        getOptions();
-      }
+      getOptions();
     } else {
       let data = dropDownData(options, fetch.fields);
       setSelectOption(data);
@@ -47,7 +43,7 @@ function Select(
         console.log(e);
       }
     }
-  }, [value, fetch.api]);
+  }, [value, fetch.api, fetch.data]);
 
   function handleOnChange(e) {
     e.preventDefault();

@@ -12,19 +12,41 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 export default function EmployeeMaster() {
   const [formData, setFormData] = useState(employee);
-  const { companyID } = useContext(Context);
+  const { CompanyID } = useContext(Context);
   const [reset, setReset] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
-      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { CompanyID };
       return obj;
     });
-  }, [companyID, reset]);
+  }, [CompanyID, reset]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE
+
+    if (dropdown[0].name === "Country" && dropdown[0]?.selectedOptions) {
+      setFormData((prev) => {
+        let obj = { ...prev };
+        obj.forms[0][0].rows[0].controls[10].fetch.api =
+          "Master/State/GetByIdData";
+        obj.forms[0][0].rows[0].controls[10].fetch.data = {
+          CountryId: dropdown[0].selectedOptions[0],
+        };
+        return obj;
+      });
+    } else if (dropdown[0].name === "State" && dropdown[0]?.selectedOptions) {
+      setFormData((prev) => {
+        let obj = { ...prev };
+        obj.forms[0][0].rows[0].controls[11].fetch.api =
+          "Master/City/GetByIdData";
+        obj.forms[0][0].rows[0].controls[11].fetch.data = {
+          StateId: dropdown[0].selectedOptions[0],
+        };
+        return obj;
+      });
+    }
   }
   async function handleSubmit() {
     const inputData = extractData(formData);

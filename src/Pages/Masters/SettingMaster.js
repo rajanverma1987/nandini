@@ -13,14 +13,14 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 export default function Settings() {
   const [formData, setFormData] = useState(setting);
-  const { companyID } = useContext(Context);
+  const { CompanyID } = useContext(Context);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
-      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { CompanyID };
       return obj;
     });
-  }, [companyID]);
+  }, [CompanyID]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;

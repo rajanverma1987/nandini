@@ -13,15 +13,15 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 
 export default function DepartmentMaster() {
-  const { companyID } = useContext(Context);
+  const { CompanyID } = useContext(Context);
   const [formData, setFormData] = useState(role);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
-      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { CompanyID };
       return obj;
     });
-  }, [companyID]);
+  }, [CompanyID]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
