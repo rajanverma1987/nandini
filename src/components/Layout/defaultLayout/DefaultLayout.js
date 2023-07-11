@@ -22,7 +22,6 @@ function DefaultLayout() {
   useEffect(() => {
     try {
       let user = JSON.parse(localStorage.getItem("user"));
-      console.log(user);
       if (user[0].UserName) {
         setUserName(user[0].UserName);
         setLoading(false);
@@ -116,8 +115,4 @@ function DefaultLayout() {
   );
 }
 
-function CheckUser(Component) {
-  const { user } = useContext(Context);
-  return Component;
-}
 export default DefaultLayout;

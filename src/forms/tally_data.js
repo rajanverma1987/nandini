@@ -283,7 +283,7 @@ export const stockItem = {
     [
       {
         title: "",
-        name: "stockItem",
+        name: "StockItem",
         type: "parent",
         rows: [
           {
@@ -291,7 +291,7 @@ export const stockItem = {
             align: "left",
             controls: [
               {
-                name: "stockItem",
+                name: "StockItem",
                 type: "table",
 
                 fetch: {

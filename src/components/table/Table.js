@@ -95,14 +95,15 @@ export default function Table({
         }
         if (res.status == 200) {
           let data = res.data.Data;
-
-          data = jsonToArray(data, fieldsMap, name, EditButton, showEdit);
-          let obj = data[0].map((item, index) => index);
-          setColOrder(obj);
-          updateTableDataState(data);
-        } else {
-          console.log("NO DATA");
-          updateTableDataState([]);
+          console.log("name", name, "DATA", data, "fieldsMap", fieldsMap[name]);
+          if (data && data?.length > 0) {
+            data = jsonToArray(data, fieldsMap, name, EditButton, showEdit);
+            let obj = data[0].map((item, index) => index);
+            setColOrder(obj);
+            updateTableDataState(data);
+          } else {
+            updateTableDataState([]);
+          }
         }
         setLoading(false);
       }
@@ -231,7 +232,7 @@ export default function Table({
         </div>
       )}
 
-      {tableData && tableData.length > 0 && (
+      {tableData && tableData.length > 0 ? (
         <div className={styles.table}>
           {tableData[0] &&
             tableData[0].length > 0 &&
@@ -239,6 +240,8 @@ export default function Table({
               return <Column key={`col${index}`} index={index} />;
             })}
         </div>
+      ) : (
+        !loading && <div className={styles.noData}>No data available</div>
       )}
 
       {/* <div className={styles.Pagination}>

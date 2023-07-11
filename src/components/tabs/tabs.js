@@ -11,7 +11,7 @@ export default function Tabs({ children, tabChange = () => {}, tab }) {
   useEffect(() => {
     setTimeout(() => {
       let scrollRow = document.getElementById("scrollRow");
-      scrollRow.scrollTo(scrollRow.scrollWidth, 0);
+      scrollRow && scrollRow.scrollTo(scrollRow.scrollWidth, 0);
     }, 100);
   }, [activeTab]);
 

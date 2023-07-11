@@ -103,7 +103,7 @@ export const fieldsMap = {
     OrignalName: "Original Name",
     IsActive: "Status",
   },
-  SockItem: {
+  StockItem: {
     CompanyName: "Company Name",
     Name: "Name",
     MasterID: "Master ID",
