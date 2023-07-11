@@ -6,6 +6,7 @@ import {
   updateFormData,
   validateForm,
   ResetFormData,
+  updateFormOnSelection,
 } from "../../utilities/utll";
 
 import { useContext, useEffect, useState } from "react";
@@ -14,6 +15,7 @@ export default function EmployeeMaster() {
   const [formData, setFormData] = useState(employee);
   const { CompanyID, displayModal } = useContext(Context);
   const [reset, setReset] = useState(false);
+  const [edit, setEdit] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
@@ -66,7 +68,23 @@ export default function EmployeeMaster() {
     setReset((prev) => !prev);
     ResetFormData(setFormData);
   }
-  let functions = { handleOnChange, handleSubmit, handleReset };
+  function handleEdit(record) {
+    if (!record) return;
+    let data = extractData(formData);
+    console.log("data", data.employee, "record", record);
+    // Fill Form with selected record
+    Object.entries(data.employee).forEach((entry) => {
+      updateFormOnSelection(
+        setFormData,
+        0,
+        entry[0],
+        "value",
+        record[1][entry[0]] ? record[1][entry[0]] : ""
+      );
+    });
+    setEdit(true);
+  }
+  let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };
   return (
     <>
       <FormGenerator formData={formData} functions={functions} />

@@ -7,6 +7,7 @@ import {
   updateFormData,
   validateForm,
   ResetFormData,
+  updateFormOnSelection,
 } from "../../utilities/utll";
 
 import { useContext, useEffect, useState } from "react";
@@ -14,6 +15,7 @@ import { Context } from "../../store/store";
 export default function Settings() {
   const [formData, setFormData] = useState(setting);
   const { CompanyID, displayModal } = useContext(Context);
+  const [edit, setEdit] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
@@ -41,7 +43,26 @@ export default function Settings() {
   function handleReset() {
     ResetFormData(setFormData);
   }
-  let functions = { handleOnChange, handleSubmit, handleReset };
+
+  function handleEdit(record) {
+    if (!record) return;
+    let data = extractData(formData);
+    // console.log("data", data.setting, "record", record);
+    // Fill Form with selected record
+    Object.entries(data.setting).forEach((entry) => {
+      updateFormOnSelection(
+        setFormData,
+        0,
+        entry[0],
+        "value",
+        record[1][entry[0]] ? record[1][entry[0]] : ""
+      );
+      console.log(entry);
+    });
+    setEdit(true);
+  }
+
+  let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };
   return (
     <>
       <FormGenerator formData={formData} functions={functions} />

@@ -71,7 +71,7 @@ export default function Table({
       <div className={styles.editButton}>
         <AiFillEdit
           onClick={() => {
-            onEdit.bind(this, record);
+            onEdit(record);
           }}
         />
       </div>
