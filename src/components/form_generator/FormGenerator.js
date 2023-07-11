@@ -18,6 +18,7 @@ export default function FormGenerator({ formData, functions }) {
   const [loading, setLoading] = useState(true);
   const uid = useId();
   useEffect(() => {
+    console.log("FORM RENDERING....");
     setLoading(false);
   }, []);
   if (loading) {
@@ -113,7 +114,7 @@ export default function FormGenerator({ formData, functions }) {
                                               {control.type === "file" && (
                                                 <FileInput
                                                   isError={!control.isValid}
-                                                  key={`input_${controlKey}`}
+                                                  key={`fileinput_${controlKey}`}
                                                   type={control.type}
                                                   label={control.title}
                                                   name={control.name}
@@ -150,6 +151,7 @@ export default function FormGenerator({ formData, functions }) {
                                               )}
                                               {control.type === "select" && (
                                                 <Select
+                                                  value={control.value}
                                                   isError={!control.isValid}
                                                   fetch={control?.fetch}
                                                   frmIndex={formItemIndex}
@@ -170,6 +172,7 @@ export default function FormGenerator({ formData, functions }) {
                                               {control.type ===
                                                 "multiselect" && (
                                                 <MultiSelect
+                                                  value={control.value}
                                                   isError={!control.isValid}
                                                   fetch={control?.fetch}
                                                   frmIndex={formItemIndex}

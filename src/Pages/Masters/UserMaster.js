@@ -7,20 +7,21 @@ import {
   updateFormData,
   updateFormOnSelection,
   validateForm,
+  ResetFormData,
 } from "../../utilities/utll";
 
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 export default function UserMaster() {
   const [formData, setFormData] = useState(user);
-  const { companyID } = useContext(Context);
+  const { CompanyID } = useContext(Context);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
-      obj.forms[1][0].rows[0].controls[0].fetch.data = { companyID };
+      obj.forms[1][0].rows[0].controls[0].fetch.data = { CompanyID };
       return obj;
     });
-  }, [companyID]);
+  }, [CompanyID]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
@@ -36,7 +37,7 @@ export default function UserMaster() {
           obj.forms[0][0].rows[0].controls[2].selector = "Select Employee";
           obj.forms[0][0].rows[0].controls[2].fetch.api =
             "Master/Employee/GetByIdData";
-          obj.forms[0][0].rows[0].controls[2].fetch.data = { companyID };
+          obj.forms[0][0].rows[0].controls[2].fetch.data = { CompanyID };
           obj.forms[0][0].rows[0].controls[2].fetch.fields = [
             "EmployeeCode",
             "EmployeeName",
@@ -50,7 +51,7 @@ export default function UserMaster() {
           obj.forms[0][0].rows[0].controls[2].title = "Company";
           obj.forms[0][0].rows[0].controls[2].selector = "Select Company";
           obj.forms[0][0].rows[0].controls[2].fetch.api = "Company/GetData";
-          obj.forms[0][0].rows[0].controls[2].fetch.data = { companyID };
+          obj.forms[0][0].rows[0].controls[2].fetch.data = { CompanyID };
           obj.forms[0][0].rows[0].controls[2].fetch.fields = [
             "ID",
             "RemoteCmpName",
@@ -84,7 +85,10 @@ export default function UserMaster() {
       }
     }
   }
-  let functions = { handleOnChange, handleSubmit };
+  function handleReset() {
+    ResetFormData(setFormData);
+  }
+  let functions = { handleOnChange, handleSubmit, handleReset };
   return (
     <>
       <FormGenerator formData={formData} functions={functions} />

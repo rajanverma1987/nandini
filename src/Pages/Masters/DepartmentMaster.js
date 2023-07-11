@@ -1,4 +1,5 @@
 import {
+  ResetFormData,
   axios_,
   extractData,
   updateFormData,
@@ -12,7 +13,7 @@ import { useContext, useEffect, useState } from "react";
 export default function DepartmentMaster() {
   const [formData, setFormData] = useState(department);
   const { companyID } = useContext(Context);
-
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
@@ -20,8 +21,6 @@ export default function DepartmentMaster() {
       return obj;
     });
   }, [companyID]);
-
-  const [showModal, setShowModal] = useState(false);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
@@ -38,7 +37,10 @@ export default function DepartmentMaster() {
       }
     }
   }
-  let functions = { handleOnChange, handleSubmit };
+  function handleReset() {
+    ResetFormData(setFormData);
+  }
+  let functions = { handleOnChange, handleSubmit, handleReset };
   return (
     <>
       <FormGenerator formData={formData} functions={functions} />

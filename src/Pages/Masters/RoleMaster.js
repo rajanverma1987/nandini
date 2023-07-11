@@ -6,6 +6,7 @@ import {
   extractData,
   updateFormData,
   validateForm,
+  ResetFormData,
 } from "../../utilities/utll";
 
 import { useContext, useEffect, useState } from "react";
@@ -36,7 +37,10 @@ export default function DepartmentMaster() {
       }
     }
   }
-  let functions = { handleOnChange, handleSubmit };
+  function handleReset() {
+    ResetFormData(setFormData);
+  }
+  let functions = { handleOnChange, handleSubmit, handleReset };
   return (
     <>
       <FormGenerator formData={formData} functions={functions} />
