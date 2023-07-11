@@ -1,19 +1,20 @@
 import React, { useContext, useEffect, useRef } from "react";
 import styles from "./style/tabs.module.css";
-import { Context } from "../../store/store";
+import { Context, LayoutContext } from "../../store/store";
 import { IoMdClose, IoMdCloseCircleOutline } from "react-icons/io";
 import { AiFillCloseSquare } from "react-icons/ai";
 
 export default function Tabs({ children, tabChange = () => {}, tab }) {
   const buttonRowRef = useRef();
-  const { activeTab, activateTab, removeTab } = useContext(Context);
+  const { activeTab, activateTab, removeTab } = useContext(LayoutContext);
 
   useEffect(() => {
+    console.log("Tabs rendering...");
     setTimeout(() => {
       let scrollRow = document.getElementById("scrollRow");
       scrollRow && scrollRow.scrollTo(scrollRow.scrollWidth, 0);
     }, 100);
-  }, [activeTab]);
+  }, []);
 
   return (
     <>

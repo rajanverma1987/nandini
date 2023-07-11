@@ -45,7 +45,7 @@ export default function Login() {
       setLogginSuccess(true);
       body.USERMASTER.ip = ip.data.ip;
       const res = await axios_.post(formData.api, body);
-      console.log(res.data);
+
       if (res.data.EmployeeData) {
         localStorage.setItem("user", JSON.stringify(res.data?.UserData));
         setUser(res.data?.UserData);

@@ -2,25 +2,31 @@ import { IoIosMenu } from "react-icons/io";
 import styles from "./styles/defaultlayout.module.css";
 import Select from "../../select/Select";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../../store/store";
+import {
+  Context,
+  LayoutContext,
+  LayoutContextProvider,
+} from "../../../store/store";
 import SideMenu from "../sidemenu/Sidemenu";
 import Tabs from "../../tabs/tabs";
 import Tab from "../../tab/tab";
 import { AiFillDownCircle } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import Modal from "../../modal/Modal";
+import MenuList from "../../MenuList/MenuList";
 
-function DefaultLayout() {
+function MainLayout() {
   const history = useHistory();
 
   const { setCompany, user, modal, showModal, CompanyID } = useContext(Context);
-  const { tabs } = useContext(Context);
+  const { tabs } = useContext(LayoutContext);
   const [showMenu, setShowMenu] = useState(true);
   const [showUserMenu, setShowMuserenu] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
+    console.log("Layout  Rendering....");
     try {
       let user = JSON.parse(localStorage.getItem("user"));
       if (user[0].UserName) {
@@ -31,7 +37,6 @@ function DefaultLayout() {
         setLoading(false);
       }
     } catch (e) {
-      // console.log(e);
       history.push("/");
     }
   }, []);
@@ -108,11 +113,11 @@ function DefaultLayout() {
           )}
 
           {tabs && tabs.length > 0 && (
-            <Tabs>
+            <Tabs key={"tab"}>
               {tabs.map((tab, index) => {
                 return (
                   <Tab title={tab.name} tab={tab} key={`tabk${index}`}>
-                    <tab.component />
+                    <tab.component key={`tab_${index}`} />
                   </Tab>
                 );
               })}
@@ -124,4 +129,14 @@ function DefaultLayout() {
   );
 }
 
+function DefaultLayout() {
+  useEffect(() => {
+    console.log("Re-Rending....");
+  }, []);
+  return (
+    <LayoutContextProvider>
+      <MainLayout />
+    </LayoutContextProvider>
+  );
+}
 export default DefaultLayout;

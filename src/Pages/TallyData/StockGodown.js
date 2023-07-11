@@ -2,7 +2,7 @@ import { stockGodown } from "../../forms/tally_data";
 import FormGenerator from "./../../components/form_generator/FormGenerator";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
-export default function StockCategory() {
+export default function StockGodown() {
   const [formData, setFormData] = useState(stockGodown);
   const { CompanyID } = useContext(Context);
   useEffect(() => {

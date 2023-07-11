@@ -6,13 +6,7 @@ export const Context = createContext({
   tbldata: {},
   setCompany: () => {},
   CompanyID: undefined,
-  addTab: () => {},
-  removeTab: () => {},
-  activateTab: () => {},
-  activeTab: {},
-  tabs: [],
   user: {},
-
   ip: undefined,
   setIp: () => {},
   setUser: () => {},
@@ -24,8 +18,6 @@ export const Context = createContext({
 export default function ContextProvider({ children }) {
   const [tbldata, setData] = useState({});
   const [CompanyID, setCompany] = useState({});
-  const [tabs, setTabs] = useState([]);
-  const [activeTab, setActiveTab] = useState([]);
   const [user, setUser] = useState({});
   const [ip, setIp] = useState({});
   const [modal, showModal] = useState(false);
@@ -36,6 +28,42 @@ export default function ContextProvider({ children }) {
       showModal(false);
     }, 3000);
   }
+
+  function updateTableData(name, data) {
+    setData((prev) => {
+      let obj = { ...prev };
+      obj[name] = data;
+      return obj;
+    });
+  }
+  const value = {
+    tbldata,
+    CompanyID,
+    user,
+    ip,
+    setIp,
+    setUser,
+    updateTableData,
+    setCompany,
+
+    displayModal,
+    showModal,
+    modal,
+  };
+  return <Context.Provider value={value}>{children}</Context.Provider>;
+}
+
+export const LayoutContext = createContext({
+  activeTab: [],
+  tabs: [],
+  addTab: () => {},
+  removeTab: () => {},
+  activateTab: () => {},
+});
+export function LayoutContextProvider({ children }) {
+  const [tabs, setTabs] = useState([]);
+  const [activeTab, setActiveTab] = useState([]);
+
   function addTab(tab) {
     setTabs((prev) => {
       if (!prev.some((oTab) => oTab.name === tab.name)) {
@@ -58,30 +86,15 @@ export default function ContextProvider({ children }) {
     setActiveTab(tab);
     if (add) addTab(tab);
   }
-  function updateTableData(name, data) {
-    setData((prev) => {
-      let obj = { ...prev };
-      obj[name] = data;
-      return obj;
-    });
-  }
+
   const value = {
-    tbldata,
-    CompanyID,
     activeTab,
     tabs,
-    user,
-    ip,
-    setIp,
-    setUser,
-    updateTableData,
-    setCompany,
     addTab,
     removeTab,
     activateTab,
-    displayModal,
-    showModal,
-    modal,
   };
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  return (
+    <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
+  );
 }

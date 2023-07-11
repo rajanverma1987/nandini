@@ -89,14 +89,14 @@ export default function Table({
         let res;
         if (fetch.type === "post") {
           setLoading(true);
-          console.log("fetch.api, fetch.data", fetch.api, fetch.data);
+          // console.log("fetch.api, fetch.data", fetch.api, fetch.data);
           res = await axios_.post(fetch.api, fetch.data);
         } else {
           res = await axios_.get(fetch.api);
         }
         if (res.status == 200) {
           let data = res.data.Data;
-          console.log("name", name, "DATA", data, "fieldsMap", fieldsMap[name]);
+          // console.log("name", name, "DATA", data, "fieldsMap", fieldsMap[name]);
           if (data && data?.length > 0) {
             data = jsonToArray(data, fieldsMap, name, EditButton, showEdit);
             let obj = data[0].map((item, index) => index);

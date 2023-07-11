@@ -12,7 +12,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/store";
 
-export default function DepartmentMaster() {
+export default function RoleMaster() {
   const { CompanyID, displayModal } = useContext(Context);
   const [formData, setFormData] = useState(role);
   useEffect(() => {

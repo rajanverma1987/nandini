@@ -71,7 +71,7 @@ export const fieldsMap = {
     NameMasterID: "Master ID",
     GUID: "GUID",
     AlterID: "Alter ID",
-    ParentGUID: "Paraent GUID",
+    ParentGUID: "Parent GUID",
     IsActive: "Status",
   },
   stockGodown: {
