@@ -13,7 +13,6 @@ export default function CreateFolderPopup({ styles, cancelPopup, userEmail }) {
 
     try {
       if (!yearRef.current.value) {
-        console.log(fileList);
         yearRef.current.focus();
         return;
       }
@@ -24,7 +23,7 @@ export default function CreateFolderPopup({ styles, cancelPopup, userEmail }) {
           reader.readAsDataURL(file);
           reader.onload = async () => {
             const base64 = reader.result.split("base64,")[1];
-            console.log(base64);
+
             body = {
               name: file.name,
               file: base64,
@@ -33,15 +32,15 @@ export default function CreateFolderPopup({ styles, cancelPopup, userEmail }) {
                 "en-Us"
               ),
             };
-            console.log(body);
+
             const response = await axios.post("/api/uploadFile", body);
             if (response.status == 200) {
               setCounter((prev) => {
-                const newCounter =prev+1;
+                const newCounter = prev + 1;
                 return newCounter;
               });
             } else {
-              setFailed(file.name);    
+              setFailed(file.name);
             }
           };
           reader.onerror = (error) => {
@@ -112,13 +111,11 @@ export default function CreateFolderPopup({ styles, cancelPopup, userEmail }) {
           </button>
         </div>
         <h2>
-          
           {`${counter}/${fileList.length} file(s) uploaded`}
           <br></br>
           {failed && `Failed to Upload - ${failed}`}
         </h2>
       </div>
-      
     </div>
   );
 }

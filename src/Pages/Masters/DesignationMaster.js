@@ -30,7 +30,7 @@ export default function DesignationMaster() {
   }
   async function handleSubmit() {
     const inputData = extractData(formData);
-    console.log(inputData);
+
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
       try {
@@ -49,7 +49,7 @@ export default function DesignationMaster() {
   function handleEdit(record) {
     if (!record) return;
     let data = extractData(formData);
-    // console.log("data", data.designation, "record", record);
+
     // Fill Form with selected record
     Object.entries(data.Designation).forEach((entry) => {
       updateFormOnSelection(
@@ -59,7 +59,6 @@ export default function DesignationMaster() {
         "value",
         record[1][entry[0]] ? record[1][entry[0]] : ""
       );
-      console.log(entry);
     });
     setEdit(record[1].DesignationId);
   }

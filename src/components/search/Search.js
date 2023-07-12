@@ -3,9 +3,7 @@ import styles from "./styles/search.module.css";
 import { BsSearch } from "react-icons/bs";
 
 function Input({ isError, type, label, name, onChange }, ref) {
-  useEffect(() => {
-    // console.log(name);
-  }, []);
+  useEffect(() => {}, []);
   return (
     <>
       <div className={styles.container}>

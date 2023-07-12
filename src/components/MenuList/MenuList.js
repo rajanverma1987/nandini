@@ -6,9 +6,7 @@ import { LayoutContext } from "../../store/store";
 
 export default function MenuList({ route, routeIndex }) {
   const { activateTab, activeTab } = useContext(LayoutContext);
-  useEffect(() => {
-    console.log("activeTab", activeTab.name, route.name);
-  }, [activeTab]);
+  useEffect(() => {}, [activeTab]);
   const [expand, setExpand] = useState(false);
 
   function changeTab(child) {

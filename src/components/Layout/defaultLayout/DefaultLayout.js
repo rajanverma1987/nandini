@@ -129,9 +129,6 @@ function MainLayout() {
 }
 
 function DefaultLayout() {
-  useEffect(() => {
-    console.log("Re-Rending....");
-  }, []);
   return (
     <LayoutContextProvider>
       <MainLayout />

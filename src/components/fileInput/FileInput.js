@@ -2,9 +2,7 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 import styles from "./styles/fileInput.module.css";
 import { BsUpload } from "react-icons/bs";
 function FileInput({ isError, type, label, name, onChange, value = "" }, ref) {
-  useEffect(() => {
-    // console.log(name);
-  }, []);
+  useEffect(() => {}, []);
   const [fileName, setFileName] = useState("--Click to select file--");
   const inputRef = useRef();
 

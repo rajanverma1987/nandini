@@ -33,7 +33,7 @@ export default function DepartmentMaster() {
     let validated = await validateForm(setFormData);
     if (validated) {
       const inputData = extractData(formData);
-      console.log(inputData);
+
       if (editId) inputData.Department.DepartmentId = editId;
       try {
         const res = await axios_.post(formData.api, inputData);
@@ -52,7 +52,7 @@ export default function DepartmentMaster() {
   function handleEdit(record) {
     if (!record) return;
     let data = extractData(formData);
-    // console.log("data", data.department, "record", record);
+
     // Fill Form with selected record
     Object.entries(data.Department).forEach((entry) => {
       updateFormOnSelection(

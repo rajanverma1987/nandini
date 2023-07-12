@@ -51,7 +51,7 @@ export default function RoleMaster() {
   function handleEdit(record) {
     if (!record) return;
     let data = extractData(formData);
-    // console.log("data", data.role, "record", record);
+
     // Fill Form with selected record
     Object.entries(data.Role).forEach((entry) => {
       updateFormOnSelection(
@@ -61,7 +61,6 @@ export default function RoleMaster() {
         "value",
         record[1][entry[0]] ? record[1][entry[0]] : ""
       );
-      console.log(entry);
     });
     setEdit(record[1].RoleId);
   }

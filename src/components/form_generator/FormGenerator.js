@@ -19,7 +19,6 @@ export default function FormGenerator({ formData, functions }) {
 
   const uid = useId();
   useEffect(() => {
-    console.log("FORM RENDERING....");
     setLoading(false);
   }, []);
   if (loading) {

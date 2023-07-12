@@ -56,11 +56,11 @@ export default function EmployeeMaster() {
 
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
-      console.log("editId", editId);
+
       if (editId) {
         inputData.Employee.EmployeeId = editId;
       }
-      console.log("inputData", inputData);
+
       try {
         const res = await axios_.post(formData.api, inputData);
         displayModal(res);
@@ -102,7 +102,7 @@ export default function EmployeeMaster() {
     // Update Forms for Editing
     setTimeout(() => {
       let data = extractData(formData);
-      console.log("data", data.employee, "record", record);
+
       // Fill Form with selected record
       Object.entries(data.Employee).forEach((entry) => {
         updateFormOnSelection(

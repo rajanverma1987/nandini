@@ -31,7 +31,7 @@ export default function Settings() {
   async function handleSubmit() {
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
-      console.log(inputData);
+
       if (editId) {
         inputData.Setting.SettingId = editId;
       }
@@ -52,7 +52,7 @@ export default function Settings() {
   function handleEdit(record) {
     if (!record) return;
     let data = extractData(formData);
-    // console.log("data", data.setting, "record", record);
+
     // Fill Form with selected record
     Object.entries(data.Setting).forEach((entry) => {
       updateFormOnSelection(
@@ -62,7 +62,6 @@ export default function Settings() {
         "value",
         record[1][entry[0]] ? record[1][entry[0]] : ""
       );
-      console.log(entry);
     });
     setEdit(record[1].SettingId);
   }

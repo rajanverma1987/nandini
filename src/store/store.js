@@ -23,7 +23,6 @@ export default function ContextProvider({ children }) {
   const [modal, showModal] = useState(false);
 
   function displayModal(res, messageText) {
-    console.log("res.data.Data", res.data.Data);
     let message = messageText
       ? messageText
       : res.data?.Data.length > 0

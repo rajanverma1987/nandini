@@ -8,9 +8,7 @@ import MenuList from "../../MenuList/MenuList";
 
 export default function SideMenu() {
   const { activeTab, activateTab } = useContext(LayoutContext);
-  useEffect(() => {
-    console.log("SIDE MENU RENDERING...");
-  }, []);
+  useEffect(() => {}, []);
   function changeTab(child) {
     activateTab(child, true);
   }

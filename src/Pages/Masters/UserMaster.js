@@ -92,7 +92,7 @@ export default function UserMaster() {
   function handleEdit(record) {
     if (!record) return;
     let data = extractData(formData);
-    // console.log("data", data.department, "record", record);
+
     // Fill Form with selected record
     Object.entries(data.User).forEach((entry) => {
       updateFormOnSelection(
@@ -102,7 +102,6 @@ export default function UserMaster() {
         "value",
         record[1][entry[0]] ? record[1][entry[0]] : ""
       );
-      console.log(entry);
     });
     setEdit(true);
   }

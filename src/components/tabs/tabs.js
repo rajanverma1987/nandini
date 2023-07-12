@@ -9,7 +9,6 @@ export default function Tabs({ children, tabChange = () => {}, tab }) {
   const { activeTab, activateTab, removeTab } = useContext(LayoutContext);
 
   useEffect(() => {
-    console.log("Tabs rendering...");
     setTimeout(() => {
       let scrollRow = document.getElementById("scrollRow");
       scrollRow && scrollRow.scrollTo(scrollRow.scrollWidth, 0);
