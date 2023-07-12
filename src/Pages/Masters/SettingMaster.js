@@ -15,7 +15,7 @@ import { Context } from "../../store/store";
 export default function Settings() {
   const [formData, setFormData] = useState(setting);
   const { CompanyID, displayModal } = useContext(Context);
-  const [edit, setEdit] = useState(false);
+  const [editId, setEdit] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
@@ -32,13 +32,18 @@ export default function Settings() {
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
       console.log(inputData);
+      if (editId) {
+        inputData.Setting.SettingId = editId;
+      }
       try {
         const res = await axios_.post(formData.api, inputData);
-        displayModal(res.data.Message);
+        displayModal(res);
       } catch (e) {
-        displayModal(e.message);
+        console.log(e);
+        displayModal(null, e.message);
       }
     }
+    setEdit(false);
   }
   function handleReset() {
     ResetFormData(setFormData);
@@ -49,7 +54,7 @@ export default function Settings() {
     let data = extractData(formData);
     // console.log("data", data.setting, "record", record);
     // Fill Form with selected record
-    Object.entries(data.setting).forEach((entry) => {
+    Object.entries(data.Setting).forEach((entry) => {
       updateFormOnSelection(
         setFormData,
         0,
@@ -59,7 +64,7 @@ export default function Settings() {
       );
       console.log(entry);
     });
-    setEdit(true);
+    setEdit(record[1].SettingId);
   }
 
   let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };

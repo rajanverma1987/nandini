@@ -1,9 +1,11 @@
 .container {
   margin-block: 1.1rem;
- 
+  margin-inline: 0.5rem;
   position: relative;
   height: 2rem;
   flex-shrink: 1;
+  min-width: 15rem;
+  /* border: 1px solid red; */
 }
 
 .label {
@@ -31,15 +33,6 @@
   transition: all 0.2s;
   border-bottom: 1px solid transparent;
 }
-@keyframes mount {
-  0% {
-    width: 0%;
-  }
-
-  100% {
-    width: 100%;
-  }
-}
 
 .input:active,
 .input:focus {
@@ -53,7 +46,7 @@
   border-bottom: 1px solid var(--primary-color);
 }
 .input::placeholder {
-  color: #c3c3c3;
+  color: var(--placeholder-color);
 }
 .input[type="date"] {
   padding-right: 0.8rem;
@@ -88,4 +81,16 @@
   .container {
     flex-grow: 1;
   }
+}
+.passwordButton {
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }

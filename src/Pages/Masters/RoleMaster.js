@@ -16,7 +16,7 @@ import { Context } from "../../store/store";
 export default function RoleMaster() {
   const { CompanyID, displayModal } = useContext(Context);
   const [formData, setFormData] = useState(role);
-  const [edit, setEdit] = useState(false);
+  const [editId, setEdit] = useState(false);
   useEffect(() => {
     setFormData((prev) => {
       let obj = { ...prev };
@@ -32,14 +32,18 @@ export default function RoleMaster() {
   async function handleSubmit() {
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
-      console.log(inputData);
+      if (editId) {
+        inputData.Role.RoleId = editId;
+      }
       try {
         const res = await axios_.post(formData.api, inputData);
-        displayModal(res.data.Message);
+        displayModal(res);
       } catch (e) {
-        displayModal(e.message);
+        console.log(e);
+        displayModal(null, e.message);
       }
     }
+    setEdit(false);
   }
   function handleReset() {
     ResetFormData(setFormData);
@@ -49,7 +53,7 @@ export default function RoleMaster() {
     let data = extractData(formData);
     // console.log("data", data.role, "record", record);
     // Fill Form with selected record
-    Object.entries(data.role).forEach((entry) => {
+    Object.entries(data.Role).forEach((entry) => {
       updateFormOnSelection(
         setFormData,
         0,
@@ -59,7 +63,7 @@ export default function RoleMaster() {
       );
       console.log(entry);
     });
-    setEdit(true);
+    setEdit(record[1].RoleId);
   }
   let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };
   return (

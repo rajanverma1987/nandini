@@ -22,7 +22,13 @@ export default function ContextProvider({ children }) {
   const [ip, setIp] = useState({});
   const [modal, showModal] = useState(false);
 
-  function displayModal(message) {
+  function displayModal(res, messageText) {
+    console.log("res.data.Data", res.data.Data);
+    let message = messageText
+      ? messageText
+      : res.data?.Data.length > 0
+      ? res.data?.Data[0].Message
+      : res.data.Message;
     showModal(message);
     setTimeout(() => {
       showModal(false);
@@ -45,7 +51,6 @@ export default function ContextProvider({ children }) {
     setUser,
     updateTableData,
     setCompany,
-
     displayModal,
     showModal,
     modal,

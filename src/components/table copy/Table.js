@@ -133,9 +133,56 @@ export default function Table({
     let sortedData = sortTable(tableData, order, index);
     updateTableDataState(sortedData);
   }
-
-  function ContextMenu({ index }) {
+  function Column({ index }) {
     const [showMenu, setShowMenu] = useState(false);
+    useEffect(() => {}, []);
+
+    function dragStart(e, index) {
+      dragStartCol = index;
+    }
+
+    function dragEnd(e, index) {
+      e.preventDefault();
+      shuffleColumns(dragStartCol, dragEndCol);
+    }
+
+    return (
+      <div
+        key={index}
+        className={styles.column}
+        draggable={true}
+        onDragStart={(e) => dragStart.bind(this, e, index)()}
+        onDragOver={(e) => {
+          dragEndCol = index;
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        onDragEnd={(e) => {
+          dragEnd.bind(this, e, index)();
+        }}
+      >
+        {tableData.map((row, rowIndex) => {
+          return (
+            <span
+              key={`${index}_${rowIndex}`}
+              className={`${rowIndex !== 0 ? styles.cell : ""}`}
+              style={{ "--col": tableData[0].length }}
+            >
+              {rowIndex === 0 && (
+                <ContextMenu
+                  showMenu={showMenu}
+                  setShowMenu={setShowMenu}
+                  index={index}
+                />
+              )}
+              {row[index]}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+  function ContextMenu({ showMenu, setShowMenu, index }) {
     return (
       <div
         className={styles.menu}
@@ -160,17 +207,8 @@ export default function Table({
     );
   }
 
-  function dragStart(e, index) {
-    dragStartCol = index;
-  }
-
-  function dragEnd(e, index) {
-    e.preventDefault();
-    shuffleColumns(dragStartCol, dragEndCol);
-  }
-
   return (
-    <div className={styles.gridContainer}>
+    <>
       {menuVisible && (
         <div className={styles.mainMenu}>
           <IoMdRefresh
@@ -194,51 +232,32 @@ export default function Table({
           )}
         </div>
       )}
-      <div className={styles.tableContainer}>
-        {tableData && tableData.length > 0 ? (
-          <table className={styles.table}>
-            {tableData[0] &&
-              tableData[0].length > 0 &&
-              tableData.map((_, index) => {
-                return (
-                  <tr>
-                    {tableData[index].map((cell, colIndex) => {
-                      if (index === 0) {
-                        return (
-                          <th
-                            draggable={true}
-                            onDragStart={(e) =>
-                              dragStart.bind(this, e, colIndex)()
-                            }
-                            onDragOver={(e) => {
-                              dragEndCol = colIndex;
-                              e.preventDefault();
-                              e.stopPropagation();
-                            }}
-                            onDragEnd={(e) => {
-                              dragEnd.bind(this, e, colIndex)();
-                            }}
-                          >
-                            <span>
-                              <span className={styles.menu}>
-                                <ContextMenu index={colIndex} />
-                              </span>{" "}
-                              {cell}
-                            </span>
-                          </th>
-                        );
-                      } else {
-                        return <td>{cell}</td>;
-                      }
-                    })}
-                  </tr>
-                );
-              })}
-          </table>
-        ) : (
-          !loading && <div className={styles.noData}>No data available</div>
-        )}
-      </div>
-    </div>
+
+      {tableData && tableData.length > 0 ? (
+        <div className={styles.table}>
+          {tableData[0] &&
+            tableData[0].length > 0 &&
+            tableData[0].map((_, index) => {
+              return <Column key={`col${index}`} index={index} />;
+            })}
+        </div>
+      ) : (
+        !loading && <div className={styles.noData}>No data available</div>
+      )}
+
+      {/* <div className={styles.Pagination}>
+        <span>{`Showing ${1} to ${
+          tbldata[name] ? tbldata[name].length - 1 : ""
+        } of ${tableData.length - 1}`}</span>
+        <span onClick={chagnePage.bind(this, "-1")}>{`< Prev`} </span>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>..</span>
+        <span onClick={chagnePage.bind(this, "+1")}>{` Next >`} </span>
+      </div> */}
+    </>
   );
 }

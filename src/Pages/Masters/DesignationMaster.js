@@ -35,11 +35,13 @@ export default function DesignationMaster() {
       const inputData = extractData(formData);
       try {
         const res = await axios_.post(formData.api, inputData);
-        displayModal(res.data.Message);
+        displayModal(res);
       } catch (e) {
-        displayModal(e.message);
+        console.log(e);
+        displayModal(null, e.message);
       }
     }
+    setEdit(false);
   }
   function handleReset() {
     ResetFormData(setFormData);
@@ -49,7 +51,7 @@ export default function DesignationMaster() {
     let data = extractData(formData);
     // console.log("data", data.designation, "record", record);
     // Fill Form with selected record
-    Object.entries(data.designation).forEach((entry) => {
+    Object.entries(data.Designation).forEach((entry) => {
       updateFormOnSelection(
         setFormData,
         0,
@@ -59,7 +61,7 @@ export default function DesignationMaster() {
       );
       console.log(entry);
     });
-    setEdit(true);
+    setEdit(record[1].DesignationId);
   }
   let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };
   return (

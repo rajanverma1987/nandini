@@ -4,7 +4,7 @@ export const department = {
     [
       {
         title: "",
-        name: "department",
+        name: "Department",
         type: "parent",
         rows: [
           {
@@ -101,11 +101,11 @@ export const designation = {
     [
       {
         title: "",
-        name: "designation",
+        name: "Designation",
         type: "parent",
         rows: [
           {
-            col: 4,
+            col: 5,
             align: "left",
             controls: [
               {
@@ -211,7 +211,7 @@ export const employee = {
     [
       {
         title: "",
-        name: "employee",
+        name: "Employee",
         type: "parent",
         rows: [
           {
@@ -536,7 +536,7 @@ export const role = {
     [
       {
         title: "",
-        name: "role",
+        name: "Role",
         type: "parent",
         rows: [
           {
@@ -832,7 +832,7 @@ export const setting = {
     [
       {
         title: "",
-        name: "setting",
+        name: "Setting",
         type: "parent",
         rows: [
           {

@@ -1,4 +1,5 @@
 import React, { useEffect, useId, useState } from "react";
+
 import Heading from "./../../components/heading/Heading";
 import Input from "./../../components/input/Input";
 import InputRow from "./../../components/input_row/InputRow";
@@ -12,11 +13,10 @@ import Search from "../search/Search";
 import CheckBox from "../checkbox/Checkbox";
 import Table from "../table/Table";
 import MultiSelect from "../multiSelect/MultiSelect";
-import { BiHide, BiShow } from "react-icons/bi";
 
 export default function FormGenerator({ formData, functions }) {
   const [loading, setLoading] = useState(true);
-  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const uid = useId();
   useEffect(() => {
     console.log("FORM RENDERING....");
@@ -25,10 +25,6 @@ export default function FormGenerator({ formData, functions }) {
   if (loading) {
     return <React.Fragment>Loading...</React.Fragment>;
   }
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
 
   return (
     <>
@@ -53,11 +49,12 @@ export default function FormGenerator({ formData, functions }) {
                             formItem.rows.length > 0 &&
                             formItem.rows.map((row, rowIndex) => {
                               const rowKey = `row_${rowIndex}_${uid}`; // Generate a unique key for each row
+
                               return (
                                 <InputRow
                                   key={rowKey}
                                   align={row.align}
-                                  col={0}
+                                  col={row.col}
                                 >
                                   {row.controls &&
                                     row.controls.map(
@@ -72,65 +69,27 @@ export default function FormGenerator({ formData, functions }) {
                                                 control.type === "email" ||
                                                 control.type ===
                                                   "password") && (
-                                                <div
-                                                  style={{
-                                                    position: "relative",
+                                                <Input
+                                                  isError={!control.isValid}
+                                                  key={`input_${controlKey}`}
+                                                  type={control.type}
+                                                  value={control.value}
+                                                  label={`${control.title}${
+                                                    control.validation.required
+                                                      ? "*"
+                                                      : ""
+                                                  }`}
+                                                  name={control.name}
+                                                  onChange={(e) => {
+                                                    functions[
+                                                      control.onChange
+                                                    ].call(
+                                                      this,
+                                                      e,
+                                                      formItemIndex
+                                                    );
                                                   }}
-                                                >
-                                                  <Input
-                                                    isError={!control.isValid}
-                                                    key={`input_${controlKey}`}
-                                                    type={
-                                                      control.type ===
-                                                        "password" &&
-                                                      !passwordVisible
-                                                        ? "password"
-                                                        : "text"
-                                                    }
-                                                    value={control.value}
-                                                    label={`${control.title} ${
-                                                      control.validation
-                                                        .required
-                                                        ? "*"
-                                                        : ""
-                                                    }`}
-                                                    name={control.name}
-                                                    onChange={(e) => {
-                                                      functions[
-                                                        control.onChange
-                                                      ].call(
-                                                        this,
-                                                        e,
-                                                        formItemIndex
-                                                      );
-                                                    }}
-                                                  />
-                                                  {control.type ===
-                                                    "password" && (
-                                                    <button
-                                                      type="button"
-                                                      onClick={() =>
-                                                        togglePasswordVisibility()
-                                                      }
-                                                      style={{
-                                                        position: "absolute",
-                                                        top: "25px",
-                                                        border: "0",
-                                                        fontSize: "20px",
-                                                        color: "#c3c3c3",
-                                                        backgroundColor:
-                                                          "transparent",
-                                                        right: "10px",
-                                                      }}
-                                                    >
-                                                      {!passwordVisible ? (
-                                                        <BiHide />
-                                                      ) : (
-                                                        <BiShow />
-                                                      )}
-                                                    </button>
-                                                  )}
-                                                </div>
+                                                />
                                               )}
                                               {control.type === "checkbox" && (
                                                 <CheckBox
@@ -168,6 +127,7 @@ export default function FormGenerator({ formData, functions }) {
                                                   }}
                                                 />
                                               )}
+
                                               {control.type === "date" && (
                                                 <Input
                                                   isError={!control.isValid}

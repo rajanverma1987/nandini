@@ -26,7 +26,6 @@ function MainLayout() {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    console.log("Layout  Rendering....");
     try {
       let user = JSON.parse(localStorage.getItem("user"));
       if (user[0].UserName) {

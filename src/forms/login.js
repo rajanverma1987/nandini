@@ -8,8 +8,8 @@ export const loginForm = {
         type: "parent",
         rows: [
           {
-            col: 1,
-            align: "left",
+            cols: 1,
+            align: "center",
             controls: [
               {
                 name: "UserName",
@@ -39,6 +39,7 @@ export const loginForm = {
 
               {
                 type: "button",
+                btnType: "btnfull",
                 title: "Sign In",
                 onClick: "handleSubmit",
                 visible: true,

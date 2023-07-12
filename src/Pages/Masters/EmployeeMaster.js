@@ -14,7 +14,6 @@ import { Context } from "../../store/store";
 export default function EmployeeMaster() {
   const [formData, setFormData] = useState(employee);
   const { CompanyID, displayModal } = useContext(Context);
-  const [reset, setReset] = useState(false);
   const [editId, setEdit] = useState(false);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export default function EmployeeMaster() {
       obj.forms[1][0].rows[0].controls[0].fetch.data = { CompanyID };
       return obj;
     });
-  }, [CompanyID, reset]);
+  }, [CompanyID]);
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
@@ -59,21 +58,21 @@ export default function EmployeeMaster() {
       const inputData = extractData(formData);
       console.log("editId", editId);
       if (editId) {
-        inputData.employee.EmployeeId = editId;
+        inputData.Employee.EmployeeId = editId;
       }
       console.log("inputData", inputData);
       try {
         const res = await axios_.post(formData.api, inputData);
-        displayModal(res.data.Message);
+        displayModal(res);
       } catch (e) {
-        displayModal(e.message);
+        console.log(e);
+        displayModal(null, e.message);
       }
-      handleReset();
     }
+    setEdit(false);
   }
 
   function handleReset() {
-    setReset((prev) => !prev);
     ResetFormData(setFormData);
   }
 
@@ -105,7 +104,7 @@ export default function EmployeeMaster() {
       let data = extractData(formData);
       console.log("data", data.employee, "record", record);
       // Fill Form with selected record
-      Object.entries(data.employee).forEach((entry) => {
+      Object.entries(data.Employee).forEach((entry) => {
         updateFormOnSelection(
           setFormData,
           0,

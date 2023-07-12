@@ -15,7 +15,7 @@ export default function DepartmentMaster() {
   const [formData, setFormData] = useState(department);
   const { CompanyID, displayModal } = useContext(Context);
   const [showModal, setShowModal] = useState(false);
-  const [edit, setEdit] = useState(false);
+  const [editId, setEdit] = useState(false);
 
   useEffect(() => {
     setFormData((prev) => {
@@ -33,11 +33,14 @@ export default function DepartmentMaster() {
     let validated = await validateForm(setFormData);
     if (validated) {
       const inputData = extractData(formData);
+      console.log(inputData);
+      if (editId) inputData.Department.DepartmentId = editId;
       try {
         const res = await axios_.post(formData.api, inputData);
-        displayModal(res.data.Message);
+        displayModal(res);
       } catch (e) {
-        displayModal(e.message);
+        console.log(e);
+        displayModal(null, e.message);
       }
     }
     setEdit(false);
@@ -51,7 +54,7 @@ export default function DepartmentMaster() {
     let data = extractData(formData);
     // console.log("data", data.department, "record", record);
     // Fill Form with selected record
-    Object.entries(data.department).forEach((entry) => {
+    Object.entries(data.Department).forEach((entry) => {
       updateFormOnSelection(
         setFormData,
         0,
@@ -61,7 +64,7 @@ export default function DepartmentMaster() {
       );
       console.log(entry);
     });
-    setEdit(true);
+    setEdit(record[1].DepartmentId);
   }
 
   let functions = { handleOnChange, handleSubmit, handleReset, handleEdit };
