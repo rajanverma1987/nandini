@@ -98,7 +98,7 @@ function MainLayout() {
               {showUserMenu && (
                 <div className={styles.userMenu}>
                   <ul>
-                    <li onClick={() => history.push("/login")}>Logout</li>
+                    <li onClick={logOut}>Logout</li>
                   </ul>
                 </div>
               )}
