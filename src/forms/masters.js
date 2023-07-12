@@ -803,7 +803,7 @@ export const user = {
             align: "left",
             controls: [
               {
-                name: "user",
+                name: "User",
                 type: "table",
                 showEdit: true,
                 onEdit: "handleEdit",

@@ -89,8 +89,16 @@ export default function Table({
         let res;
         if (fetch.type === "post") {
           setLoading(true);
-
           res = await axios_.post(fetch.api, fetch.data);
+          console.log(
+            "name",
+            name,
+            "fetch.api, fetch.data",
+            fetch.api,
+            fetch.data,
+            "res",
+            res
+          );
         } else {
           res = await axios_.get(fetch.api);
         }

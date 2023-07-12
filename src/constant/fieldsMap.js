@@ -177,4 +177,13 @@ export const fieldsMap = {
   role: {
     RoleName: "Role Name",
   },
+  User: {
+    EmployeeId: "Employee Id",
+    UserName: "User Name",
+    UserType: "User Type",
+    Description: "Description",
+    Mobile: "Mobile",
+    Email: "Email",
+    Status: "Status",
+  },
 };
