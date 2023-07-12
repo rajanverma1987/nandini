@@ -13,7 +13,6 @@ import Tab from "../../tab/tab";
 import { AiFillDownCircle } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import Modal from "../../modal/Modal";
-import MenuList from "../../MenuList/MenuList";
 
 function MainLayout() {
   const history = useHistory();
