@@ -110,7 +110,6 @@ export default function Table({
       }
     } catch (e) {
       setLoading(false);
-      console.log(e);
     }
   }
 

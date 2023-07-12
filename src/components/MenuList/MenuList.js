@@ -7,8 +7,8 @@ import { LayoutContext } from "../../store/store";
 export default function MenuList({ route, routeIndex }) {
   const { activateTab, activeTab } = useContext(LayoutContext);
   useEffect(() => {
-    console.log("MENU LIST RENDERING");
-  }, []);
+    console.log("activeTab", activeTab.name, route.name);
+  }, [activeTab]);
   const [expand, setExpand] = useState(false);
 
   function changeTab(child) {
@@ -30,13 +30,17 @@ export default function MenuList({ route, routeIndex }) {
         <span>
           {expand ? (
             <BsFillCaretUpFill
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setExpand((prev) => !prev);
               }}
             />
           ) : (
             <BsFillCaretDownFill
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setExpand((prev) => !prev);
               }}
             />

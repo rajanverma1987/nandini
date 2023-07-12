@@ -31,9 +31,11 @@ export default function SideMenu() {
                 key={`menu_accordial${routeIndex}`}
               />
             ) : (
-              <ul key={`rounte${routeIndex}`}>
+              <ul className={`${styles.ulHeader}`} key={`rounte${routeIndex}`}>
                 <p
-                  className={activeTab.name === route.name ? styles.active : ""}
+                  className={`${
+                    activeTab.name === route.name ? styles.active : ""
+                  }`}
                   onClick={route?.component ? changeTab.bind(this, route) : ""}
                 >
                   <route.icon /> {route.name}
