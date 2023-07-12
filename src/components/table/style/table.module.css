@@ -11,7 +11,9 @@
 
   margin-bottom: 3rem;
 }
-
+.table tr:nth-child(2n + 1) {
+  background-color: rgba(211, 228, 255, 0.668);
+}
 .tableContainer::-webkit-scrollbar {
   background-color: rgb(153, 153, 153);
 }
@@ -48,7 +50,9 @@
   margin-right: 0.5rem;
   cursor: pointer;
 }
-
+.editButton:hover {
+  color: rgb(47, 116, 255);
+}
 .editButton {
   height: 100%;
   width: 100%;
@@ -58,7 +62,7 @@
   margin: 0;
   outline: none;
   cursor: pointer;
-  border: none;
+  font-size: 1rem;
 }
 
 .Pagination {
