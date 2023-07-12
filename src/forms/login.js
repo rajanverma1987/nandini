@@ -6,9 +6,10 @@ export const loginForm = {
         title: "",
         name: "USERMASTER",
         type: "parent",
+
         rows: [
           {
-            cols: 1,
+            col: 1,
             align: "center",
             controls: [
               {
