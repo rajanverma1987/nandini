@@ -16,7 +16,10 @@ export default function Toast({
     };
   }, []);
   return (
-    <div className={styles.toastContainer}>
+    <div
+      className={success ? styles.toastContainer : styles.toastContainerdanger}
+      // className={styles.toastContainerdanger}
+    >
       {title && <div className={styles.title}>{title}</div>}
       {message && <div className={styles.message}>{message}</div>}
       <div

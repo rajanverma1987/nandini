@@ -1,14 +1,28 @@
+.toastContainerdanger {
+  position: absolute;
+  right: 0px;
+  top: 0;
+    color: #721c24;
+    background-color: #f8d7da;
+  /* border: 1px solid grey; */
+  min-width: 15rem;
+  padding: 15px;
+  animation: animate 1s ease-in-out;
+  border-radius: 5px;
+}
 .toastContainer {
   position: absolute;
   right: 0px;
   top: 0;
-  background: rgb(236, 236, 236);
+      color: #155724;
+      background-color: #d4edda;
   /* border: 1px solid grey; */
   min-width: 15rem;
-  height: 3rem;
-  padding: 5px;
+  padding: 15px;
   animation: animate 1s ease-in-out;
+    border-radius: 5px;
 }
+
 @keyframes animate {
   0% {
     right: -100%;

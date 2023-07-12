@@ -11,6 +11,8 @@ export const loginForm = {
           {
             col: 1,
             align: "center",
+            width: "260px",
+            margin: "auto",
             controls: [
               {
                 name: "UserName",

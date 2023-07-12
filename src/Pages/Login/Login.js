@@ -73,7 +73,11 @@ export default function Login() {
         <div className="logo">
           <img src="/images/logo.png" />
         </div>
-        <FormGenerator formData={formData} functions={functions} />
+        <FormGenerator
+          formData={formData}
+          functions={functions}
+          componentType={"login"}
+        />
       </div>
       <div className="footer">
         <div className="contact">
