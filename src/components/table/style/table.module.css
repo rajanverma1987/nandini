@@ -1,13 +1,14 @@
 .gridContainer {
-  width: 100%;
+  width: 100% !important;
 }
 .tableContainer {
   max-height: 50vh;
   overflow-x: auto;
+
+  border-radius: 5px;
 }
 .table {
   border-collapse: collapse;
-  border: 1px solid grey;
 
   margin-bottom: 3rem;
 }
