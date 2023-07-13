@@ -134,6 +134,7 @@ export default function FormGenerator({ formData, functions }) {
                                                   type={control.type}
                                                   label={control.title}
                                                   name={control.name}
+                                                  enabled={control.enabled}
                                                   value={control.value}
                                                   onChange={(e) => {
                                                     functions[

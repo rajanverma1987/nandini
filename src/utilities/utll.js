@@ -100,6 +100,7 @@ export const extractData = function (forms) {
           form.rows.forEach((row) => {
             row.controls.forEach((control) => {
               const { name, value, type } = control;
+
               if (type !== "button" && type !== "table") {
                 if (form.name === parentName) {
                   extractedData[parentName][name] = value;
@@ -270,7 +271,7 @@ export const sortTable = (data, order, colIndex) => {
   return res;
 };
 
-export const convertToCSV = function (array) {
+export const convertToCSV = (array) => {
   let csvContent = "data:text/csv;charset=utf-8,";
   array.forEach(function (rowArray) {
     let row = rowArray.map((value) => String(value));
@@ -284,4 +285,15 @@ export const convertToCSV = function (array) {
 
   document.body.appendChild(link);
   link.click();
+};
+
+export const dateFormat = (dateVal) => {
+  const date = new Date(dateVal); // Assuming you have a date object
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+  const day = String(date.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
 };

@@ -1,7 +1,10 @@
 import { forwardRef, useEffect, useState } from "react";
 import styles from "./styles/input.module.css";
 import { BiHide, BiShow } from "react-icons/bi";
-function Input({ isError, type, label, name, onChange, value = "" }, ref) {
+function Input(
+  { isError, type, label, name, onChange, value = "", enabled = true },
+  ref
+) {
   useEffect(() => {}, [value]);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -16,6 +19,7 @@ function Input({ isError, type, label, name, onChange, value = "" }, ref) {
         <input
           type={type === "password" && !passwordVisible ? "text" : type}
           ref={ref}
+          disabled={!enabled}
           value={value}
           onChange={onChange}
           placeholder={label}

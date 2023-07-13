@@ -20,6 +20,7 @@ import StockGroup from "../Pages/TallyData/StockGroup";
 import StockItem from "../Pages/TallyData/StockItem";
 import StockUnit from "../Pages/TallyData/StockUnit";
 import VoucherType from "../Pages/TallyData/VoucherType";
+import Transaction from "../Pages/TallyData/Transactions";
 
 // MASTERS
 import DepartmentMaster from "../Pages/Masters/DepartmentMaster";
@@ -66,39 +67,27 @@ const routes = [
     icon: AiFillDashboard,
     children: [
       {
-        path: "/postlogin/designation_master",
         name: "Designation",
-
         component: DesignationMaster,
       },
       {
-        path: "/postlogin/department_master",
         name: "Department",
-        //icon: <HiOutlineStar />,
         component: DepartmentMaster,
       },
       {
-        path: "/postlogin/employee_master",
         name: "Employee",
-        //icon: <IoMdRibbon />,
         component: EmployeeMaster,
       },
       {
-        path: "/postlogin/role_master",
         name: "Role",
-        //icon: <IoMdWalk />,
         component: RoleMaster,
       },
       {
-        path: "/postlogin/user_master",
         name: "User",
-        //icon: <HiUserCircle />,
         component: UserMaster,
       },
       {
-        path: "/postlogin/setting_master",
         name: "Setting",
-        //icon: <IoMdSettings />,
         component: Settings,
       },
     ],
@@ -109,76 +98,56 @@ const routes = [
     icon: AiFillDashboard,
     children: [
       {
-        path: "/postlogin/company",
         name: "Company",
-        //icon: <IoMdPaperPlane />,
         component: Company,
       },
       {
-        path: "/postlogin/cost_category",
         name: "Cost Category",
-        //icon: <IoFlagOutline />,
         component: CostCategory,
       },
       {
-        path: "/postlogin/cost_center",
         name: "Cost Center",
-        //icon: <HiMiniCurrencyDollar />,
         component: CostCenter,
       },
       {
-        path: "/postlogin/currency",
         name: "Currency",
-        //icon: <HiMiniEye />,
         component: Currency,
       },
       {
-        path: "/postlogin/group",
         name: "Group",
-        //icon: <HiMiniUserGroup />,
         component: Group,
       },
       {
-        path: "/postlogin/ledger",
         name: "Ledger",
-        //icon: <HiBookOpen />,
         component: Ledger,
       },
       {
-        path: "/postlogin/stock_category",
         name: "Stock Category",
-        //icon: <HiSquares2X2 />,
         component: StockCategory,
       },
       {
-        path: "/postlogin/stock_godown",
         name: "Stock Godown",
-        //icon: <HiSquares2X2 />,
         component: StockGodown,
       },
       {
-        path: "/postlogin/stock_group",
         name: "Stock Group",
-        //icon: <HiSquares2X2 />,
         component: StockGroup,
       },
       {
-        path: "/postlogin/stock_item",
         name: "Stock Item",
-        //icon: <HiSquares2X2 />,
         component: StockItem,
       },
       {
-        path: "/postlogin/stock_unit",
         name: "Stock Unit",
-        //icon: <HiSquares2X2 />,
         component: StockUnit,
       },
       {
-        path: "/postlogin/voucher_type",
         name: "Voucher Type",
-        //icon: <HiSquares2X2 />,
         component: VoucherType,
+      },
+      {
+        name: "Transactions",
+        component: Transaction,
       },
     ],
   },

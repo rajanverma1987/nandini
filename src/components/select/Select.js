@@ -32,8 +32,10 @@ function Select(
       setSelectOption(data);
     }
     setLoading(false);
+
     async function getOptions() {
       try {
+        console.log("fetch.api, fetch.data", fetch.api, fetch.data);
         const res = await axios_.post(fetch.api, fetch.data);
         if (res.status == 200) {
           let data = dropDownData(res.data.Data, fetch.fields);

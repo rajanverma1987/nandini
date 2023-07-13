@@ -369,3 +369,103 @@ export const voucherType = {
     ],
   ],
 };
+
+export const Transactions = {
+  api: "",
+  forms: [
+    [
+      {
+        title: "",
+        name: "transactions",
+        type: "parent",
+        rows: [
+          {
+            col: 4,
+            align: "left",
+            controls: [
+              {
+                name: "Period",
+                value: "",
+                type: "select",
+                title: "Period",
+                onChange: "handleOnChange",
+                visible: true,
+                isValid: true,
+                enabled: false,
+                validation: {
+                  required: true,
+                },
+                options: [],
+                selector: "Select Period",
+                fetch: {
+                  api: "Master/GetPeriod",
+                  data: {
+                    periodname: "periodname",
+                  },
+                  fields: ["periodid", "periodname", "fromdate", "todate"],
+                },
+              },
+              {
+                name: "FromDate",
+                value: "",
+                type: "date",
+                title: "From Date",
+                onChange: "handleOnChange",
+                visible: true,
+                isValid: true,
+                enabled: false,
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                name: "ToDate",
+                value: "",
+                type: "date",
+                title: "Date To",
+                onChange: "handleOnChange",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                type: "button",
+                title: "Refresh",
+                onClick: "handleSubmit",
+                visible: true,
+                isValid: true,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    [
+      {
+        title: "",
+        name: "transactionsTable",
+        type: "parent",
+        rows: [
+          {
+            col: 1,
+            align: "left",
+            controls: [
+              {
+                name: "Transaction",
+                type: "table",
+                fetch: {
+                  api: "Transaction/GetByIdData",
+                  type: "post",
+                  data: {},
+                },
+                visible: true,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  ],
+};

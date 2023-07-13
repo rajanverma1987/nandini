@@ -90,15 +90,15 @@ export default function Table({
         if (fetch.type === "post") {
           setLoading(true);
           res = await axios_.post(fetch.api, fetch.data);
-          console.log(
-            "name",
-            name,
-            "fetch.api, fetch.data",
-            fetch.api,
-            fetch.data,
-            "res",
-            res
-          );
+          // console.log(
+          //   "name",
+          //   name,
+          //   "fetch.api, fetch.data",
+          //   fetch.api,
+          //   fetch.data,
+          //   "res",
+          //   res.data
+          // );
         } else {
           res = await axios_.get(fetch.api);
         }
@@ -204,43 +204,46 @@ export default function Table({
       <div className={styles.tableContainer}>
         {tableData && tableData.length > 0 ? (
           <table className={styles.table}>
-            {tableData[0] &&
-              tableData[0].length > 0 &&
-              tableData.map((_, index) => {
-                return (
-                  <tr>
-                    {tableData[index].map((cell, colIndex) => {
-                      if (index === 0) {
-                        return (
-                          <th
-                            draggable={true}
-                            onDragStart={(e) =>
-                              dragStart.bind(this, e, colIndex)()
-                            }
-                            onDragOver={(e) => {
-                              dragEndCol = colIndex;
-                              e.preventDefault();
-                              e.stopPropagation();
-                            }}
-                            onDragEnd={(e) => {
-                              dragEnd.bind(this, e, colIndex)();
-                            }}
-                          >
-                            <span>
-                              <span className={styles.menu}>
-                                <ContextMenu index={colIndex} />
-                              </span>{" "}
-                              {cell}
-                            </span>
-                          </th>
-                        );
-                      } else {
-                        return <td>{cell}</td>;
-                      }
-                    })}
-                  </tr>
-                );
-              })}
+            <tbody>
+              {tableData[0] &&
+                tableData[0].length > 0 &&
+                tableData.map((_, index) => {
+                  return (
+                    <tr key={`tr${index}`}>
+                      {tableData[index].map((cell, colIndex) => {
+                        if (index === 0) {
+                          return (
+                            <th
+                              key={`th${colIndex}`}
+                              draggable={true}
+                              onDragStart={(e) =>
+                                dragStart.bind(this, e, colIndex)()
+                              }
+                              onDragOver={(e) => {
+                                dragEndCol = colIndex;
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }}
+                              onDragEnd={(e) => {
+                                dragEnd.bind(this, e, colIndex)();
+                              }}
+                            >
+                              <span>
+                                <span className={styles.menu}>
+                                  <ContextMenu index={colIndex} />
+                                </span>{" "}
+                                {cell}
+                              </span>
+                            </th>
+                          );
+                        } else {
+                          return <td key={`td${colIndex}`}>{cell}</td>;
+                        }
+                      })}
+                    </tr>
+                  );
+                })}
+            </tbody>
           </table>
         ) : (
           !loading && <div className={styles.noData}>No data available</div>
