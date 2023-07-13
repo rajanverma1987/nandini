@@ -24,7 +24,7 @@ export default function Login() {
     try {
       let user = JSON.parse(localStorage.getItem("user"));
       console.log(user);
-      if (user[0].UserName) {
+      if (user[0]?.UserName) {
         history.push("/postlogin");
       }
     } catch (e) {
