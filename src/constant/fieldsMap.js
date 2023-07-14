@@ -178,9 +178,8 @@ export const fieldsMap = {
     RoleName: "Role Name",
   },
   User: {
-    EmployeeId: "Employee Id",
     UserName: "User Name",
-    UserType: "User Type",
+    UserTypeName: "User Type Name",
     Description: "Description",
     Mobile: "Mobile",
     Email: "Email",
