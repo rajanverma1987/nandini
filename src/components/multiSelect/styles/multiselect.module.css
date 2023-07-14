@@ -72,8 +72,9 @@
   padding-left: 0.5rem;
   padding-block: 0.2rem;
   margin: 0;
-  background-color: rgb(128, 128, 128);
-  color: white;
+  background-color: var(--forth-color);
+  color: var(--text-primary-color);
+  font-weight: bold;
   display: flex;
   align-items: center;
 }
