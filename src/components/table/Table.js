@@ -39,12 +39,8 @@ export default function Table({
   let dragEndCol;
 
   useEffect(() => {
-    if (!tbldata[name]) {
-      fetchTableData();
-    } else {
-      setTableData(tbldata[name]);
-    }
-  }, [name, tbldata]);
+    fetchTableData();
+  }, [name, fetch.data]);
 
   function filterTable(e) {
     try {

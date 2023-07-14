@@ -67,20 +67,17 @@ export default function Transaction() {
         );
       }
     }
-  }
-  function handleSubmit() {
-    const inputData = extractData(formData);
-
     setFormData((prev) => {
       let obj = { ...prev };
       obj.forms[1][0].rows[0].controls[0].fetch.data = {
         CompanyID,
-        FromDate: inputData.transactions.FromDate,
-        ToDate: inputData.transactions.ToDate,
+        FromDate: dateFormat(dropdown[0]?.selectedOptions[2]),
+        ToDate: dateFormat(dropdown[0]?.selectedOptions[3]),
       };
       return obj;
     });
   }
+  function handleSubmit() {}
 
   let functions = { handleOnChange, handleSubmit };
   return (

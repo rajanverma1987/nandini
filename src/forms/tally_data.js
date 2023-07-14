@@ -430,13 +430,6 @@ export const Transactions = {
                   required: true,
                 },
               },
-              {
-                type: "button",
-                title: "Refresh",
-                onClick: "handleSubmit",
-                visible: true,
-                isValid: true,
-              },
             ],
           },
         ],

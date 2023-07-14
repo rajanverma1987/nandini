@@ -226,6 +226,7 @@ export default function FormGenerator({ formData, functions, componentType }) {
                                                   name={control.name}
                                                   key={controlKey}
                                                   fetch={control.fetch}
+                                                  onClick={control.onClick}
                                                 />
                                               )}
                                             </React.Fragment>
