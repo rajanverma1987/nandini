@@ -24,7 +24,7 @@ export default function Login() {
     try {
       let user = JSON.parse(localStorage.getItem("user"));
       console.log(user);
-      if (user[0].UserName) {
+      if (user[0]?.UserName) {
         history.push("/postlogin");
       }
     } catch (e) {
@@ -73,7 +73,11 @@ export default function Login() {
         <div className="logo">
           <img src="/images/logo.png" />
         </div>
-        <FormGenerator formData={formData} functions={functions} />
+        <FormGenerator
+          formData={formData}
+          functions={functions}
+          componentType={"login"}
+        />
       </div>
       <div className="footer">
         <div className="contact">

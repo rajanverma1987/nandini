@@ -52,8 +52,8 @@
 }
 .companyLogo img {
   background-color: white;
-  /* margin-top: 0.5rem;
-  margin-left: 0.5rem; */
+    padding: 5px 10px;
+    height: 63px;
   width: 99%;
 }
 .active {

@@ -14,7 +14,7 @@ import CheckBox from "../checkbox/Checkbox";
 import Table from "../table/Table";
 import MultiSelect from "../multiSelect/MultiSelect";
 
-export default function FormGenerator({ formData, functions }) {
+export default function FormGenerator({ formData, functions, componentType }) {
   const [loading, setLoading] = useState(true);
 
   const uid = useId();
@@ -54,6 +54,8 @@ export default function FormGenerator({ formData, functions }) {
                                   key={rowKey}
                                   align={row.align}
                                   col={row.col}
+                                  width={row.width}
+                                  margin={row.margin}
                                 >
                                   {row.controls &&
                                     row.controls.map(
@@ -69,6 +71,11 @@ export default function FormGenerator({ formData, functions }) {
                                                 control.type ===
                                                   "password") && (
                                                 <Input
+                                                  styles={
+                                                    componentType === "login"
+                                                      ? { width: "60%" }
+                                                      : null
+                                                  }
                                                   isError={!control.isValid}
                                                   key={`input_${controlKey}`}
                                                   type={control.type}
