@@ -732,20 +732,6 @@ export const user = {
                   required: true,
                 },
               },
-
-              {
-                name: "active",
-                value: "",
-                type: "checkbox",
-                title: "Active",
-                onChange: "handleOnChange",
-                visible: true,
-                isValid: true,
-                validation: {
-                  required: false,
-                },
-              },
-
               {
                 name: "Role",
                 value: [],
@@ -768,6 +754,19 @@ export const user = {
                 },
               },
               {
+                name: "active",
+                value: "",
+                type: "checkbox",
+                title: "Active",
+                onChange: "handleOnChange",
+                visible: true,
+                isValid: true,
+                validation: {
+                  required: false,
+                },
+              },
+
+              {
                 type: "button",
                 title: "Save",
                 onClick: "handleSubmit",
@@ -777,6 +776,7 @@ export const user = {
                   required: true,
                 },
               },
+
               {
                 type: "button",
                 title: "Reset",

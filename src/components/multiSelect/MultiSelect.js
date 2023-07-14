@@ -17,7 +17,7 @@ const MultiSelect = ({
 }) => {
   const [options, setOptions] = useState(options_);
   const [selectedOptions, setSelectedOptions] = useState(value);
-
+  const [showList, setShowList] = useState(false);
   useEffect(() => {
     if (selectedOptions.length > 0 && value.length == 0) setSelectedOptions([]);
     axios_
@@ -55,7 +55,7 @@ const MultiSelect = ({
 
   return (
     <div className={styles.container} key={`select_block_${name}`}>
-      <span className={styles.label}>{title}</span>
+      {/* <span className={styles.label}>{title}</span>
       <select
         style={{ height: `${rows}rem` }}
         multiple
@@ -70,7 +70,38 @@ const MultiSelect = ({
               {option.RoleName}
             </option>
           ))}
-      </select>
+      </select> */}
+
+      <span
+        className={`${styles.select} ${isError ? styles.error : ""}`}
+        onClick={() => {
+          setShowList((prev) => !prev);
+        }}
+      >
+        <span className={styles.label}>{title}</span>
+        <span
+          className={styles.selector}
+          key={`option_-1`}
+        >{`--Select Role--`}</span>
+        <ul
+          className={`${styles.select} ${showList ? styles.list : styles.hide}`}
+        >
+          <span>
+            {options &&
+              options.length > 0 &&
+              options.map((option, index) => (
+                <li
+                  key={`option${index}`}
+                  value={option.RoleId}
+                  className={styles.option}
+                >
+                  <span></span>
+                  {option.RoleName}
+                </li>
+              ))}
+          </span>
+        </ul>
+      </span>
     </div>
   );
 };
