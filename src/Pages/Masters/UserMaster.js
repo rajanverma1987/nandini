@@ -26,6 +26,7 @@ export default function UserMaster() {
 
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
+
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE
 
     // Toggle Employee or Company

@@ -43,35 +43,18 @@ const MultiSelect = ({
     );
   }, [selectedOptions]);
 
-  const handleOptionChange = (e) => {
-    const { value } = e.target;
+  const handleOptionChange = (option) => {
+    const { RoleId } = option;
 
-    if (selectedOptions.includes(value)) {
-      setSelectedOptions(selectedOptions.filter((option) => option !== value));
+    if (selectedOptions.includes(RoleId)) {
+      setSelectedOptions(selectedOptions.filter((option) => option !== RoleId));
     } else {
-      setSelectedOptions([...selectedOptions, value]);
+      setSelectedOptions([...selectedOptions, RoleId]);
     }
   };
 
   return (
     <div className={styles.container} key={`select_block_${name}`}>
-      {/* <span className={styles.label}>{title}</span>
-      <select
-        style={{ height: `${rows}rem` }}
-        multiple
-        value={selectedOptions}
-        onChange={handleOptionChange}
-        className={`${styles.select} ${isError ? styles.error : ""}`}
-      >
-        {options &&
-          options.length > 0 &&
-          options.map((option, index) => (
-            <option key={`option${index}`} value={option.RoleId}>
-              {option.RoleName}
-            </option>
-          ))}
-      </select> */}
-
       <span
         className={`${styles.select} ${isError ? styles.error : ""}`}
         onClick={() => {
@@ -79,10 +62,39 @@ const MultiSelect = ({
         }}
       >
         <span className={styles.label}>{title}</span>
-        <span
-          className={styles.selector}
-          key={`option_-1`}
-        >{`--Select Role--`}</span>
+        <span className={styles.selectedItemsContaier}>
+          {selectedOptions.length > 0 ? (
+            <>
+              <span>
+                {selectedOptions.map((opt, index) => {
+                  if (index <= 1) {
+                    return (
+                      <span
+                        key={`selected_${index}`}
+                        className={styles.selected}
+                      >
+                        {options.filter((o) => o.RoleId === opt)[0].RoleName}
+                      </span>
+                    );
+                  }
+                })}
+                {selectedOptions.length > 2 ? (
+                  <span
+                    className={styles.selectedRest}
+                    key={`selectedRest`}
+                  >{`+${selectedOptions.length - 2}`}</span>
+                ) : (
+                  ""
+                )}
+              </span>
+            </>
+          ) : (
+            <span
+              className={styles.selector}
+              key={`option_-1`}
+            >{`--Select Role--`}</span>
+          )}
+        </span>
         <ul
           className={`${styles.select} ${showList ? styles.list : styles.hide}`}
         >
@@ -91,12 +103,22 @@ const MultiSelect = ({
               options.length > 0 &&
               options.map((option, index) => (
                 <li
+                  onClick={() => {
+                    handleOptionChange(option);
+                  }}
                   key={`option${index}`}
-                  value={option.RoleId}
                   className={styles.option}
                 >
-                  <span></span>
-                  {option.RoleName}
+                  <span>
+                    <input
+                      type="checkbox"
+                      onChange={() => {
+                        handleOptionChange(option);
+                      }}
+                      checked={selectedOptions.indexOf(option.RoleId) > -1}
+                    />
+                  </span>
+                  <span>{option.RoleName}</span>
                 </li>
               ))}
           </span>

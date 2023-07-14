@@ -11,6 +11,9 @@
   border-radius: 4px;
   cursor: pointer;
   z-index: 1000;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 .label {
   position: absolute;
@@ -55,18 +58,45 @@
 .list {
   top: 100%;
   display: flex;
+  padding: 0;
   flex-direction: column;
-  /* height: 6rem; */
   min-width: 15rem;
+  height: 6rem !important;
   border: 1px solid grey;
   overflow-y: auto;
-  padding-left: 1rem;
   font-size: 0.7rem !important;
 }
 .option {
   width: 100%;
   cursor: pointer;
-  height: 1rem !important;
+  padding-left: 0.5rem;
+  padding-block: 0.2rem;
+  margin: 0;
+  background-color: rgb(128, 128, 128);
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.selectedItemsContaier {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+.selected,
+.selectedRest {
+  margin: 1px;
+  background: var(--primary-color);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  color: var(--forth-color);
+}
+
+.selectedRest {
+  background-color: transparent;
+  color: var(--primary-color);
+  font-weight: bold;
 }
 .hide {
   display: none;
