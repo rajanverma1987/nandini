@@ -17,7 +17,7 @@ function Input(
       <div className={styles.container}>
         {label && <span className={styles.label}>{label}</span>}
         <input
-          type={type === "password" && !passwordVisible ? "text" : type}
+          type={type === "password" && !passwordVisible ? type : "text"}
           ref={ref}
           disabled={!enabled}
           value={value}
