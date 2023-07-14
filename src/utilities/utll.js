@@ -271,7 +271,7 @@ export const sortTable = (data, order, colIndex) => {
   return res;
 };
 
-export const convertToCSV = (array) => {
+export const convertToCSV = (array, name) => {
   let csvContent = "data:text/csv;charset=utf-8,";
   array.forEach(function (rowArray) {
     let row = rowArray.map((value) => String(value));
@@ -281,7 +281,7 @@ export const convertToCSV = (array) => {
   let encodedUri = encodeURI(csvContent);
   let link = document.createElement("a");
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "data.csv");
+  link.setAttribute("download", `${name}.csv`);
 
   document.body.appendChild(link);
   link.click();

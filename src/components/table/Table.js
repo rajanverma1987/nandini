@@ -197,7 +197,9 @@ export default function Table({
             }}
           />
           {showMainMenu && (
-            <span onClick={() => convertToCSV(tableData)}>Export Csv</span>
+            <span onClick={() => convertToCSV(tableData, name)}>
+              Export Csv
+            </span>
           )}
         </div>
       )}
@@ -237,7 +239,11 @@ export default function Table({
                             </th>
                           );
                         } else {
-                          return <td key={`td${colIndex}`}>{cell}</td>;
+                          return (
+                            <td className={styles.cell} key={`td${colIndex}`}>
+                              {cell}
+                            </td>
+                          );
                         }
                       })}
                     </tr>
