@@ -67,13 +67,14 @@ export default function Login() {
       {message && (
         <Toast unloader={setMessage} message={message} success={success} />
       )}
-      <div className="logoHeader">
-        <img src="/images/mayank.png" />
-      </div>
       <div className="loginform">
         <div className="logo">
+          <img src="/images/mayank.png" />
           <img src="/images/logo.png" />
         </div>
+          <h3>Welcome to<br/> Nandini Warehouse Tally System</h3>
+          <p>The company manufactures and sells pharmaceutical products. Nextgen Leboratories has most of its manufacturing facilities located in india.</p>
+          <p>Login in. To see it in action.</p>
         <FormGenerator
           formData={formData}
           functions={functions}

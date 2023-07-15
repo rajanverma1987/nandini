@@ -45,10 +45,21 @@ body {
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  padding: 2rem 0;
+  padding: 2rem 15px;
   flex-direction: column;
   border-radius: 5px;
   box-shadow: 3px 3px 32px -1px #bac7fd;
+}
+.loginform h3{
+  width: 100%;
+  display: block;
+  text-align: center;
+  color:#00325c
+}
+.loginform p{
+  width: 100%;
+  display: block;
+  text-align: center;
 }
 .logo {
   top: 2px;
@@ -60,7 +71,7 @@ body {
   left: 0;
 }
 .logo img {
-width: 45%;
+width: 120px;
 margin: 0 auto 20px;
 display: block;
 }
