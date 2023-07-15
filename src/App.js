@@ -1,10 +1,10 @@
 import React, { Suspense, useContext, useEffect } from "react";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import DefaultLayout from "./components/Layout/defaultLayout/DefaultLayout";
 import Login from "./Pages/Login/Login";
 import { Context } from "./store/store";
-import { axios_, getIPAddress } from "./utilities/utll";
+import { axios_ } from "./utilities/utll";
 import axios from "axios";
 
 export default function App() {
@@ -29,17 +29,11 @@ export default function App() {
   }, []);
   return (
     <BrowserRouter>
-      <Suspense>
-        <Route
-          exact
-          path="/"
-          render={() => {
-            return <Redirect to="/login" />;
-          }}
-        />
-        <Route path="/login" component={Login} />
-        <Route path="/postlogin" component={DefaultLayout} />
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/postlogin" element={<DefaultLayout />} />
+      </Routes>
     </BrowserRouter>
   );
 }

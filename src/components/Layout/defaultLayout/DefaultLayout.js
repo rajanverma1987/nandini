@@ -11,11 +11,11 @@ import SideMenu from "../sidemenu/Sidemenu";
 import Tabs from "../../tabs/tabs";
 import Tab from "../../tab/tab";
 import { AiFillDownCircle } from "react-icons/ai";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Modal from "../../modal/Modal";
 
 function MainLayout() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { setCompany, user, modal, showModal, CompanyID } = useContext(Context);
   const { tabs } = useContext(LayoutContext);
@@ -31,11 +31,11 @@ function MainLayout() {
         setUserName(user[0].UserName);
         setLoading(false);
       } else {
-        history.push("/login");
+        navigate("/login");
         setLoading(false);
       }
     } catch (e) {
-      history.push("/");
+      navigate("/");
     }
   }, []);
 
@@ -47,7 +47,7 @@ function MainLayout() {
 
   function logOut() {
     localStorage.removeItem("user");
-    history.push("/");
+    navigate("/");
   }
   return (
     <div className={styles.main}>

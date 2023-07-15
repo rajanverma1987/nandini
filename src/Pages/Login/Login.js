@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import FormGenerator from "../../components/form_generator/FormGenerator";
 import { loginForm } from "../../forms/login";
-import { useHistory } from "react-router-dom";
 
 import {
   axios_,
@@ -13,25 +12,27 @@ import { Context } from "../../store/store";
 import { IoIosCall, IoMdMail } from "react-icons/io";
 import { AiFillCopyrightCircle } from "react-icons/ai";
 import Toast from "../../components/toast/Toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const { ip, setUserName, setUser } = useContext(Context);
+  const { ip, setUser } = useContext(Context);
   const [formData, setFormData] = useState(loginForm);
   const [message, setMessage] = useState(null);
   const [success, setLogginSuccess] = useState(true);
-  const history = useHistory();
+  const navigate = useNavigate();
   useEffect(() => {
     try {
       let user = JSON.parse(localStorage.getItem("user"));
       console.log(user);
+      if (!user) return;
       if (user[0]?.UserName) {
-        history.push("/postlogin");
+        navigate("/postlogin");
       }
     } catch (e) {
       console.log(e);
     }
   }, []);
-  const router = useHistory();
+
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE
@@ -51,7 +52,7 @@ export default function Login() {
         setUser(res.data?.UserData);
         setMessage(res.data.Message);
         setTimeout(() => {
-          router.push("/postlogin");
+          navigate("/postlogin");
         }, 3000);
       } else {
         setLogginSuccess(false);
