@@ -14,37 +14,38 @@ export default function MenuList({ route, routeIndex }) {
   }
 
   return (
-    <ul key={`route_${routeIndex}`}>
+    <>
       <p
-        className={styles.ulHeader}
-        onClick={(e) => {
-          e.preventDefault();
-          setExpand((prev) => !prev);
-        }}
-      >
-        <span>
-          <route.icon /> {route.name}
-        </span>
-        <span>
-          {expand ? (
-            <BsFillCaretUpFill
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setExpand((prev) => !prev);
-              }}
-            />
-          ) : (
-            <BsFillCaretDownFill
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setExpand((prev) => !prev);
-              }}
-            />
-          )}
-        </span>
-      </p>
+      className={styles.ulHeader}
+      onClick={(e) => {
+        e.preventDefault();
+        setExpand((prev) => !prev);
+      }}
+    >
+      <span>
+        <route.icon /> {route.name}
+      </span>
+      <span>
+        {expand ? (
+          <BsFillCaretUpFill
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setExpand((prev) => !prev);
+            }}
+          />
+        ) : (
+          <BsFillCaretDownFill
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setExpand((prev) => !prev);
+            }}
+          />
+        )}
+      </span>
+    </p>
+    <ul key={`route_${routeIndex}`}>
       {expand &&
         route?.children.map((child, index) => {
           return (
@@ -58,5 +59,6 @@ export default function MenuList({ route, routeIndex }) {
           );
         })}
     </ul>
+    </>
   );
 }

@@ -9,6 +9,7 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background: var(--light-gray);
 }
 :root {
   --primary-color: #16619f;
@@ -20,6 +21,9 @@ body {
   --placeholder-color: #0f3757;
   --heading-color: #013b6a;
   --button-color: #16619f;
+  --dark-blue:#113c62;
+  --light-gray:#ebebeb;
+  --white:#fff;
 }
 
 * {
@@ -36,44 +40,81 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
+  background: center/cover no-repeat url(./assets/images/login-bg.jpg);
+  flex-direction: column;
 }
 .loginform {
-  max-height: 50rem;
+  max-height: 100vh;
+  height: 100vh;
   max-width: 25rem;
-  -webkit-box-shadow: 3px 3px 32px -1px #bac7fd;
-  -moz-box-shadow: 3px 3px 32px -1px #bac7fd;
-  box-shadow: 3px 3px 32px -1px #bac7fd;
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  padding: 2rem 0;
+  padding: 2rem 15px;
   flex-direction: column;
-    border-radius: 5px;
-    -webkit-box-shadow: 3px 3px 32px -1px #bac7fd;
-    -moz-box-shadow: 3px 3px 32px -1px #bac7fd;
-    box-shadow: 3px 3px 32px -1px #bac7fd;
+  border-radius: 5px;
+  background:#fff;
+  box-shadow: 0 0 15px -1px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+.loginform h3{
+  width: 100%;
+  display: block;
+  text-align: center;
+  color:#00325c;
+  margin-bottom:20px;
+}
+.loginform p{
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top:0;
+  font-size: 14px;
+}
+.loginform form span{
+  display:none;
+}
+.loginform form > div{
+  width:100% !important;
 }
 .logo {
-  top: 2px;
-  left: 2px;
-  right: 2px;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  right: 0;
   display: flex;
+  padding: 0 30px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   left: 0;
+  background: #f5f5f5;
+}
+.loginform form > div > div{
+  margin-left:0;
+  margin-right:0;
+  margin-top:0;
+  width: 100% !important;
+}
+.loginform input{
+  height:35px !important;
+  line-height:35px;
+}
+.loginform form > div > button{
+  height:35px;
+  min-width:initial;
+  margin-left:0;
+  margin-right:0;
 }
 .logo img {
-width: 45%;
-margin: 0 auto 20px;
-display: block;
+  width: 180px;
+  padding: 10px;
 }
 .footer {
   display: flex;
   left: 0;
   flex-wrap: wrap;
-  position: absolute;
+  position: relative;
   width: 100%;
   bottom: 0;
   background-color: var(--primary-color);
