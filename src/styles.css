@@ -38,22 +38,17 @@ body {
   position: relative;
 }
 .loginform {
-  max-height: 50rem;
+  max-height: 100vh;
+  height: 100vh;
   max-width: 25rem;
-  -webkit-box-shadow: 3px 3px 32px -1px #bac7fd;
-  -moz-box-shadow: 3px 3px 32px -1px #bac7fd;
-  box-shadow: 3px 3px 32px -1px #bac7fd;
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   position: relative;
   padding: 2rem 0;
   flex-direction: column;
-    border-radius: 5px;
-    -webkit-box-shadow: 3px 3px 32px -1px #bac7fd;
-    -moz-box-shadow: 3px 3px 32px -1px #bac7fd;
-    box-shadow: 3px 3px 32px -1px #bac7fd;
+  border-radius: 5px;
+  box-shadow: 3px 3px 32px -1px #bac7fd;
 }
 .logo {
   top: 2px;
