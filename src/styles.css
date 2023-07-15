@@ -50,10 +50,10 @@ body {
   position: relative;
   padding: 2rem 0;
   flex-direction: column;
-    border-radius: 5px;
-    -webkit-box-shadow: 3px 3px 32px -1px #bac7fd;
-    -moz-box-shadow: 3px 3px 32px -1px #bac7fd;
-    box-shadow: 3px 3px 32px -1px #bac7fd;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 32px -1px #bac7fd;
+  -moz-box-shadow: 3px 3px 32px -1px #bac7fd;
+  box-shadow: 3px 3px 32px -1px #bac7fd;
 }
 .logo {
   top: 2px;
@@ -63,11 +63,12 @@ body {
   align-items: center;
   justify-content: center;
   left: 0;
+  z-index: 11;
 }
 .logo img {
-width: 45%;
-margin: 0 auto 20px;
-display: block;
+  width: 45%;
+  margin: 0 auto 20px;
+  display: block;
 }
 .footer {
   display: flex;
