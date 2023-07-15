@@ -11,6 +11,7 @@
   border-radius: 5px;
   padding-top: 1px;
   height: 90%;
+  margin-top:15px;
 }
 
 .tabButtonRow {
@@ -35,7 +36,7 @@
   border-radius: 8px;
   overflow-y: auto;
   margin: 1rem;
-  border: 1px solid var(--primary-color);
+  border: 1px solid #dedede;
   overflow: auto;
   max-height: 100%;
 }
@@ -73,28 +74,41 @@
   font-size: 0.8rem;
   padding-inline: 1rem;
   padding-block: 0.5rem;
-  margin: 0;
   cursor: pointer;
   color: var(--primary-color);
-  text-align-last: center;
-  border: 1px solid rgba(21, 28, 154, 0.44);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 5px;
   position: relative;
   display: flex;
-  justify-self: center;
+  justify-content: space-between;
   align-items: center;
+  position: relative;
+  background:linear-gradient(0deg, #bfbfbf 36%, white 80%);
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: #616161;
+  z-index: 100;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.5);
+  margin: 0 2px;
+  padding: 7px 10px;
+  min-width:100px;
 }
 
 .closeButton {
   font-size: 1.2rem;
   margin-left: 8px;
-  width: 20px;
-  height: 100%;
+  width: 15px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  position: relative;
+  right: 0;
+  line-height: 0;
+  overflow: hidden;
+  border-radius:50%;
+}
+.closeButton svg{
+  fill:var(--primary-color);
 }
 .tabBox::-webkit-scrollbar {
   background-color: var(--secondary-color);
@@ -120,12 +134,11 @@
   display: none;
 }
 .active {
-  position: relative;
-  background-color: var(--primary-color);
-  border: 1px solid #38393a;
-  border-bottom: 1px solid transparent;
-  color: white;
-  z-index: 100;
+  background: linear-gradient(0deg, #144075 36%, #16619f 80%);
+  color: #fff;
+}
+.active svg{
+  fill: #c4f862;
 }
 .inactive {
   background-color: rgba(128, 128, 128, 0.118);

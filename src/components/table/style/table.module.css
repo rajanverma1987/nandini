@@ -13,7 +13,7 @@
   margin-bottom: 3rem;
 }
 .table tr:nth-child(2n + 1) {
-  background-color: rgba(211, 228, 255, 0.668);
+  background-color: var(--light-gray);
 }
 
 .table :is(th) {
@@ -127,13 +127,14 @@
   /* width: 100vw; */
   color: var(--primary-color);
   border-radius: 0px;
+  margin-bottom: 10px;
   /* border: 1px solid blue; */
 }
 .searchBox {
-  height: 1.3rem;
+  height: 32px;
   width: 10rem;
   margin-right: 0.5rem;
-  border: 1px solid var(--primary-color);
+  border: 1px solid #bfbfbf;
   border-radius: 5px;
   font-size: 0.7rem;
   padding-left: 0.5rem;

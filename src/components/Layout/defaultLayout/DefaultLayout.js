@@ -81,15 +81,15 @@ function MainLayout() {
               }}
               onChange={onCompanyChange}
             />
-            <span className={styles.useDetail}>
+            <span className={styles.useDetail} onClick={() => {
+                  setShowMuserenu((prev) => !prev);
+                }}>
               <span>
                 <img src="/images/user-img.png" />
               </span>
               <span>{userName}</span>
               <span
-                onClick={() => {
-                  setShowMuserenu((prev) => !prev);
-                }}
+                
               >
                 <AiFillDownCircle />
               </span>

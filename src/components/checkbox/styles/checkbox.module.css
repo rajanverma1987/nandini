@@ -1,11 +1,11 @@
 .container {
   position: relative;
-  margin-block: 1.1rem;
-  margin-inline: 0.5rem;
-  height: 2.5rem;
-  flex-shrink: 1;
+  display: flex;
+  margin: 0;
   /* background-color: var(--forth-color); */
   border-radius: 5px;
+  width: 100%;
+  margin-bottom: 1.1rem;
 }
 .checkBox {
   border: 1px solid var(--text-primary-color);
@@ -21,8 +21,8 @@
   visibility: hidden;
 }
 .checkBoxContainer {
-  position: absolute;
-  top: 10px;
+  position: relative;
+  top: 0;
   padding: 0;
   display: flex;
   align-items: center;
