@@ -17,9 +17,9 @@
   justify-content: center !important;
 }
 
-.InputRow > * {
+/* .InputRow > * {
   width: max(12rem, calc(((100 / var(--col)) * 0.9) * 1%)) !important;
-}
+} */
 
 .InputRow span {
   width: auto !important;
