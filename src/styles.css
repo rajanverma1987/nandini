@@ -89,6 +89,7 @@ body {
   justify-content: space-between;
   left: 0;
   background: #f5f5f5;
+  z-index: 11;
 }
 .loginform form > div > div {
   margin-left: 0;
