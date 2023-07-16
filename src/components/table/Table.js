@@ -9,13 +9,15 @@ import {
   sortTable,
 } from "../../utilities/utll";
 
-import { IoIosMenu, IoMdRefresh } from "react-icons/io";
+import { IoIosMenu, IoMdDownload, IoMdRefresh } from "react-icons/io";
 
 import { AiFillEdit, AiOutlineSortDescending } from "react-icons/ai";
 import { AiOutlineSortAscending } from "react-icons/ai";
 import { useContext } from "react";
 import { Context } from "../../store/store";
 import { fieldsMap } from "../../constant/fieldsMap";
+import { BsCloudDownloadFill } from "react-icons/bs";
+import Pagination from "../pagination/Pagination";
 
 export default function Table({
   name = "",
@@ -28,12 +30,11 @@ export default function Table({
   const { updateTableData, tbldata } = useContext(Context);
   const [tableData, setTableData] = useState([]);
   const [colOrder, setColOrder] = useState([]);
-  const [showMainMenu, setShowMainMenu] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Pagination
-  // const [toShow, setToShow] = useState(5);
-  // const [currengPage, setCurrentPage] = useState(1);
+  // Paginnation
+  const [toShow, setToShow] = useState(25);
+  const [currengPage, setCurrentPage] = useState(1);
 
   let dragStartCol;
   let dragEndCol;
@@ -74,9 +75,9 @@ export default function Table({
     );
   }
   function updateTableDataState(data) {
-    setTableData(data);
+    let pageRows = displayPageRow(data);
+    setTableData(pageRows);
     updateTableData(name, data);
-    // returnPageData();
   }
 
   async function fetchTableData() {
@@ -86,15 +87,6 @@ export default function Table({
         if (fetch.type === "post") {
           setLoading(true);
           res = await axios_.post(fetch.api, fetch.data);
-          // console.log(
-          //   "name",
-          //   name,
-          //   "fetch.api, fetch.data",
-          //   fetch.api,
-          //   fetch.data,
-          //   "res",
-          //   res.data
-          // );
         } else {
           res = await axios_.get(fetch.api);
         }
@@ -115,6 +107,25 @@ export default function Table({
     } catch (e) {
       setLoading(false);
     }
+  }
+
+  function onPageChange(numberOfRecords, currenPageNumber) {
+    let pageData =
+      tbldata[name] &&
+      tbldata[name].length > 0 &&
+      tbldata[name].filter((_, index) => {
+        return (
+          index == 0 ||
+          (index > (currenPageNumber - 1) * numberOfRecords &&
+            index <= currenPageNumber * numberOfRecords)
+        );
+      });
+
+    setTableData(pageData);
+  }
+
+  function displayPageRow(data) {
+    return data.filter((row, index) => index <= toShow);
   }
 
   function shuffleColumns(from, to) {
@@ -140,12 +151,7 @@ export default function Table({
   function ContextMenu({ index }) {
     const [showMenu, setShowMenu] = useState(false);
     return (
-      <div
-        className={styles.menu}
-        onClick={() => {
-          setShowMenu((prev) => !prev);
-        }}
-      >
+      <div className={styles.menu}>
         <IoIosMenu />
         {showMenu && (
           <ul className={styles.menuList}>
@@ -187,15 +193,18 @@ export default function Table({
             placeholder="Search"
             onChange={filterTable}
           />
-          <IoIosMenu
-            onClick={() => {
-              setShowMainMenu((prev) => !prev);
-            }}
-          />
-          {showMainMenu && (
-            <span onClick={() => convertToCSV(tableData, name)}>
-              Export Csv
-            </span>
+
+          <span
+            className={styles.downloadButton}
+            onClick={() => convertToCSV(tbldata[name], name)}
+          >
+            <BsCloudDownloadFill />
+          </span>
+          {tbldata[name] && tbldata[name].length > 0 && (
+            <Pagination
+              onChange={onPageChange}
+              totalRecord={tbldata[name].length}
+            />
           )}
         </div>
       )}

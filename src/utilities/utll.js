@@ -4,6 +4,7 @@ export const axios_ = axios.create({
 });
 
 export const dropDownData = (json, headers) => {
+  if (!json || !headers) return;
   let data = [];
   let row = [];
 
@@ -123,6 +124,7 @@ export const extractData = function (forms) {
 
 export const updateFormData = (e, stateUpdateFunction, formItemIndex) => {
   const { name, value } = e.target;
+
   stateUpdateFunction((prev) => {
     let obj = { ...prev };
     obj.forms.forEach((form) => {
@@ -180,11 +182,9 @@ export const updateFormOnSelection = (
       form.forEach((forItem, formIndex) => {
         forItem.rows?.forEach((row) => {
           row.controls.forEach((control) => {
-            if (control.type !== "table" && control.type !== "button") {
-              if (control.name === controlName && formIndex === formItemIndex) {
-                control.isValid = true;
-                control[propertyName] = propertyValue;
-              }
+            if (control.name === controlName && formIndex === formItemIndex) {
+              control.isValid = true;
+              control[propertyName] = propertyValue;
             }
           });
         });
@@ -272,19 +272,8 @@ export const sortTable = (data, order, colIndex) => {
 };
 
 export const convertToCSV = (array, name) => {
-  let csvContent = "data:text/csv;charset=utf-8,";
-  array.forEach(function (rowArray) {
-    let row = rowArray.map((value) => String(value));
-    csvContent += row.join(",") + "\r\n";
-  });
-
-  let encodedUri = encodeURI(csvContent);
-  let link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", `${name}.csv`);
-
-  document.body.appendChild(link);
-  link.click();
+  let csv = arrayToCSV(array);
+  downloadCSV(csv, name);
 };
 
 export const dateFormat = (dateVal) => {
@@ -296,4 +285,22 @@ export const dateFormat = (dateVal) => {
 
   const formattedDate = `${year}-${month}-${day}`;
   return formattedDate;
+};
+
+const arrayToCSV = (array) => {
+  const separator = ",";
+  const keys = Object.keys(array[0]);
+  const header = keys.join(separator);
+  const data = array.map((row) => keys.map((key) => row[key]).join(separator));
+  return [header, ...data].join("\n");
+};
+const downloadCSV = (csv, filename) => {
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 };

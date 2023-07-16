@@ -11,7 +11,7 @@
   border-radius: 5px;
   padding-top: 1px;
   height: 90%;
-  margin-top:15px;
+  margin-top: 15px;
 }
 
 .tabButtonRow {
@@ -22,7 +22,7 @@
   font-weight: 500;
 }
 .tabButtonRow::-webkit-scrollbar {
-  background-color: var(--primary-color);
+  background-color: rgb(214, 214, 214);
   height: 1rem;
 }
 .tabButtonRow::-webkit-scrollbar-button {
@@ -30,7 +30,7 @@
   width: 10px;
 }
 .tabButtonRow::-webkit-scrollbar-thumb {
-  background-color: rgba(117, 117, 117, 0);
+  background-color: var(--primary-color);
 }
 .tabBox {
   border-radius: 8px;
@@ -81,7 +81,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  background:linear-gradient(0deg, #bfbfbf 36%, white 80%);
+  background: linear-gradient(0deg, #bfbfbf 36%, white 80%);
   border: none;
   border-bottom: 1px solid transparent;
   color: #616161;
@@ -90,7 +90,7 @@
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.5);
   margin: 0 2px;
   padding: 7px 10px;
-  min-width:100px;
+  min-width: 100px;
 }
 
 .closeButton {
@@ -105,10 +105,10 @@
   right: 0;
   line-height: 0;
   overflow: hidden;
-  border-radius:50%;
+  border-radius: 50%;
 }
-.closeButton svg{
-  fill:var(--primary-color);
+.closeButton svg {
+  fill: var(--primary-color);
 }
 .tabBox::-webkit-scrollbar {
   background-color: var(--secondary-color);
@@ -137,7 +137,7 @@
   background: linear-gradient(0deg, #144075 36%, #16619f 80%);
   color: #fff;
 }
-.active svg{
+.active svg {
   fill: #c4f862;
 }
 .inactive {

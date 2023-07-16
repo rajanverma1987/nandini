@@ -18,6 +18,7 @@ const MultiSelect = ({
   const [options, setOptions] = useState(options_);
   const [selectedOptions, setSelectedOptions] = useState(value);
   const [showList, setShowList] = useState(false);
+
   useEffect(() => {
     if (selectedOptions.length > 0 && value.length == 0) setSelectedOptions([]);
     axios_
@@ -39,17 +40,28 @@ const MultiSelect = ({
         },
       },
       frmIndex,
-      { name, selectedOptions }
+      {
+        name,
+        selectedOptions: selectedOptions.map((option) => {
+          return { option };
+        }),
+      }
     );
   }, [selectedOptions]);
 
-  const handleOptionChange = (option) => {
-    const { RoleId } = option;
-
-    if (selectedOptions.includes(RoleId)) {
-      setSelectedOptions(selectedOptions.filter((option) => option !== RoleId));
+  const handleOptionChange = (opt) => {
+    if (
+      selectedOptions.some(
+        (option) => option[fetch.fields[0]] == opt[fetch.fields[0]]
+      )
+    ) {
+      setSelectedOptions(
+        selectedOptions.filter((option) => {
+          return option[fetch.fields[0]] !== opt[fetch.fields[0]];
+        })
+      );
     } else {
-      setSelectedOptions([...selectedOptions, RoleId]);
+      setSelectedOptions([...selectedOptions, opt]);
     }
   };
 
@@ -66,18 +78,24 @@ const MultiSelect = ({
           {selectedOptions.length > 0 ? (
             <>
               <span>
-                {selectedOptions.map((opt, index) => {
-                  if (index <= 1) {
-                    return (
-                      <span
-                        key={`selected_${index}`}
-                        className={styles.selected}
-                      >
-                        {options.filter((o) => o.RoleId === opt)[0].RoleName}
-                      </span>
-                    );
-                  }
-                })}
+                {selectedOptions &&
+                  selectedOptions.length > 0 &&
+                  selectedOptions.map((opt, index) => {
+                    if (index <= 1) {
+                      return (
+                        <span
+                          key={`selected_${index}`}
+                          className={styles.selected}
+                        >
+                          {
+                            options.filter(
+                              (o) => o[fetch.fields[0]] === opt[fetch.fields[0]]
+                            )[0][fetch.fields[1]]
+                          }
+                        </span>
+                      );
+                    }
+                  })}
                 {selectedOptions.length > 2 ? (
                   <span
                     className={styles.selectedRest}
@@ -115,10 +133,13 @@ const MultiSelect = ({
                       onChange={() => {
                         handleOptionChange(option);
                       }}
-                      checked={selectedOptions.indexOf(option.RoleId) > -1}
+                      checked={selectedOptions.some(
+                        (opt) =>
+                          opt[fetch.fields[0]] === option[fetch.fields[0]]
+                      )}
                     />
                   </span>
-                  <span>{option.RoleName}</span>
+                  <span>{option[fetch.fields[1]]}</span>
                 </li>
               ))}
           </span>

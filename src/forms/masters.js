@@ -733,7 +733,7 @@ export const user = {
                 },
               },
               {
-                name: "Role",
+                name: "Roles",
                 value: [],
                 type: "multiselect",
                 title: "Role",

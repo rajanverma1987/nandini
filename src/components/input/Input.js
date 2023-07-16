@@ -5,7 +5,7 @@ function Input(
   { isError, type, label, name, onChange, value = "", enabled = true },
   ref
 ) {
-  useEffect(() => {}, [value]);
+  useEffect(() => {}, [value, enabled]);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -17,7 +17,13 @@ function Input(
       <div className={styles.container}>
         {label && <span className={styles.label}>{label}</span>}
         <input
-          type={type === "password" && !passwordVisible ? type : "text"}
+          type={
+            type === "password" && !passwordVisible
+              ? type
+              : type === "date"
+              ? "date"
+              : "text"
+          }
           ref={ref}
           disabled={!enabled}
           value={value}

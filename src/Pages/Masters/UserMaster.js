@@ -27,6 +27,7 @@ export default function UserMaster() {
   function handleOnChange() {
     const [e, formItemIndex, ...dropdown] = arguments;
 
+    // console.log("dropdown", dropdown);
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE
 
     // Toggle Employee or Company
@@ -65,7 +66,7 @@ export default function UserMaster() {
   }
   async function handleSubmit() {
     const inputData = extractData(formData);
-    console.log(inputData);
+    console.log("inputData", inputData);
     if (await validateForm(setFormData)) {
       const inputData = extractData(formData);
       // CHeck if Password and COnfirm Pass match
@@ -92,10 +93,10 @@ export default function UserMaster() {
 
   function handleEdit(record) {
     if (!record) return;
-    let data = extractData(formData);
+    console.log("record", record);
 
     // Fill Form with selected record
-    Object.entries(data.User).forEach((entry) => {
+    Object.entries(record[1]).forEach((entry) => {
       updateFormOnSelection(
         setFormData,
         0,
@@ -104,6 +105,7 @@ export default function UserMaster() {
         record[1][entry[0]] ? record[1][entry[0]] : ""
       );
     });
+
     setEdit(true);
   }
 

@@ -15,7 +15,9 @@
   height: 100%;
   width: 230px;
   min-width: 11rem;
-  background: center/cover no-repeat url(../../../../assets/images/sidebar-menu-bg.png),linear-gradient(45deg,var(--dark-blue), var(--primary-color));
+  background: center/cover no-repeat
+      url(../../../../assets/images/sidebar-menu-bg.png),
+    linear-gradient(45deg, var(--dark-blue), var(--primary-color));
 }
 .container {
   display: flex;
@@ -69,9 +71,10 @@
   padding-inline: 1rem;
   border-radius: 5px;
   position: relative;
+  cursor: pointer;
 }
-.useDetail svg{
-  width:15px;
+.useDetail svg {
+  width: 15px;
 }
 .userMenu {
   position: absolute;

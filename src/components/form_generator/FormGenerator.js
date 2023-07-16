@@ -197,6 +197,8 @@ export default function FormGenerator({ formData, functions, componentType }) {
                                               )}
                                               {control.type === "button" && (
                                                 <Button
+                                                  visible={control?.visible}
+                                                  name={control?.name}
                                                   key={controlKey}
                                                   btnText={control.title}
                                                   btnType={control.btnType}

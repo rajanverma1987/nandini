@@ -9,7 +9,7 @@ import {
   extractData,
 } from "../../utilities/utll";
 export default function Transaction() {
-  const [formData, setFormData] = useState(Transactions);
+  const [formData, setFormData, tbldata] = useState(Transactions);
   const { CompanyID } = useContext(Context);
   useEffect(() => {}, [CompanyID]);
 
@@ -17,6 +17,7 @@ export default function Transaction() {
     const [e, formItemIndex, ...dropdown] = arguments;
 
     updateFormData(e, setFormData, formItemIndex); //MANAGE FORM STATE
+
     console.log("dropdown[0]?.selectedOptions", dropdown[0]?.selectedOptions);
     // Update Date control value on Period change
     if (dropdown[0]?.name === "Period" && dropdown[0]?.selectedOptions) {
@@ -39,6 +40,13 @@ export default function Transaction() {
         updateFormOnSelection(
           setFormData,
           formItemIndex,
+          "submit",
+          "visible",
+          true
+        );
+        updateFormOnSelection(
+          setFormData,
+          formItemIndex,
           "FromDate",
           "enabled",
           true
@@ -51,6 +59,13 @@ export default function Transaction() {
           true
         );
       } else {
+        updateFormOnSelection(
+          setFormData,
+          formItemIndex,
+          "submit",
+          "visible",
+          false
+        );
         updateFormOnSelection(
           setFormData,
           formItemIndex,
@@ -67,17 +82,35 @@ export default function Transaction() {
         );
       }
     }
+    tbldata &&
+      tbldata["transactionsTable"] &&
+      delete tbldata["transactionsTable"];
+
+    if (dropdown[0]?.selectedOptions[1] !== "Custom") {
+      setFormData((prev) => {
+        let obj = { ...prev };
+        obj.forms[1][0].rows[0].controls[0].fetch.data = {
+          CompanyID,
+          FromDate: dateFormat(dropdown[0]?.selectedOptions[2]),
+          ToDate: dateFormat(dropdown[0]?.selectedOptions[3]),
+        };
+        return obj;
+      });
+    }
+  }
+  function handleSubmit() {
+    let inputData = extractData(formData);
+    console.log("inputData", inputData);
     setFormData((prev) => {
       let obj = { ...prev };
       obj.forms[1][0].rows[0].controls[0].fetch.data = {
         CompanyID,
-        FromDate: dateFormat(dropdown[0]?.selectedOptions[2]),
-        ToDate: dateFormat(dropdown[0]?.selectedOptions[3]),
+        FromDate: dateFormat(inputData.transactions.FromDate),
+        ToDate: dateFormat(inputData.transactions.ToDate),
       };
       return obj;
     });
   }
-  function handleSubmit() {}
 
   let functions = { handleOnChange, handleSubmit };
   return (
