@@ -7,14 +7,14 @@ import { SummaryWareHouse } from "../../components/dashboard/SummaryWareHouse";
 
 const imageMapping = {
   Group: "/Images/totalGroup.svg",
-  "Cost Category": "/Images/dollarsign.svg",
-  "Cost Center": "/Images/cost-center.png",
-  "Stock Godown": "/Images/godown.svg",
-  "Stock Group": "/Images/stockgroup.svg",
-  "Stock Category": "/Images/stock-category.png",
-  "Stock Item": "/Images/stock.svg",
-  "Voucher Type": "/Images/voucher-type.png",
-  Transaction: "/Images/transaction.svg",
+  "Cost Category": "/Images/file-text.svg",
+  "Cost Center": "/Images/layers.svg",
+  "Stock Godown": "/Images/home.svg",
+  "Stock Group": "/Images/package.svg",
+  "Stock Category": "/Images/list.svg",
+  "Stock Item": "/Images/server.svg",
+  "Voucher Type": "/Images/tag.svg",
+  Transaction: "/Images/dollarsign.svg",
 };
 
 export default function Dashboard() {
