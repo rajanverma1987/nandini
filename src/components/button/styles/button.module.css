@@ -12,7 +12,9 @@
   min-width: 7rem;
   max-width: 12rem;
   /* min-width: 5rem !important; */
-  transition: all 0.2s;
+  transition: all 0.5s;
+  overflow:hidden;
+  position:relative;
 }
 .btnSmall {
   min-width: 4rem;
@@ -32,23 +34,31 @@
   color: white;
   cursor: pointer;
   flex-grow: 1;
-
   /* max-width: 20%; */
   transition: all 0.2s;
 }
 
-.btnPrimary:hover,
-.bigbtnPrimary:hover,
-.btnSmall:hover {
-  /* background-color: red; */
-  transform: translateY(-5px);
+.btnPrimary:before,
+.bigbtnPrimary:before,
+.btnSmall:before {
+  content:'';
+  position:absolute;
+  width:0px;
+  height:0px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  border-radius:50%;
+  background:rgba(0,0,0,0.5);
 }
 
-.btnPrimary:active,
-.bigbtnPrimary:active,
-.btnSmall:active {
-  /* background-color: red; */
-  transform: translateY(-3px);
+.btnPrimary:hover:before,.btnPrimary:active:before,
+.bigbtnPrimary:hover:before,.bigbtnPrimary:active:before,
+.btnSmall:hover:before,.btnSmall:active:before {
+  width:150px;
+  height:150px;
+  opacity: 0;
+  transition:1s;
 }
 
 .right {

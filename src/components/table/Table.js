@@ -70,6 +70,7 @@ export default function Table({
           onClick={() => {
             onEdit(record);
           }}
+          fill="#16619f"
         />
       </div>
     );

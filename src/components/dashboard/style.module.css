@@ -134,8 +134,8 @@
   flex-direction: column;
   position: relative;
   min-width: 0px;
-  max-width: 272px;
-  width: 100%;
+  min-width: 253px;
+  width: 24%;
   overflow-wrap: break-word;
   background-color: rgb(255, 255, 255);
   background-clip: border-box;
@@ -146,7 +146,7 @@
 }
 
 .cardDetails {
-  padding: 16px;
+  padding: 5px 10px;
   opacity: 1;
   background: transparent;
   color: rgb(52, 71, 103);
@@ -184,8 +184,8 @@
     Helvetica,
     Arial,
     sans-serif;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.02857em;
   opacity: 1;
@@ -197,19 +197,16 @@
 
 .CardSecondHeading {
   margin: 0px;
-  font-size: 15px;
+  font-size: 25px;
   line-height: 1.375;
-  font-family: Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: 0em;
   opacity: 1;
   text-transform: none;
   vertical-align: unset;
   text-decoration: none;
-  color: rgb(52, 71, 103);
-  font-weight: 400;
+  color: rgb(31 122 197);
+  font-weight: 600;
 }
 
 .testing6 {
@@ -249,21 +246,19 @@
   background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
   color: rgb(255, 255, 255);
   border-radius: 0.5rem;
-  box-shadow: rgba(20, 20, 20, 0.12) 0rem 0.25rem 0.375rem -0.0625rem,
-    rgba(20, 20, 20, 0.07) 0rem 0.125rem 0.25rem -0.0625rem;
+  /* box-shadow: rgba(20, 20, 20, 0.12) 0rem 0.25rem 0.375rem -0.0625rem,
+    rgba(20, 20, 20, 0.07) 0rem 0.125rem 0.25rem -0.0625rem; */
 }
 
 .iconBoxSpan {
   user-select: none;
   width: 1em;
   height: 1em;
-  overflow: hidden;
   display: inline-block;
   text-align: center;
   flex-shrink: 0;
   font-size: 1.25rem !important;
 }
-
 .graphContainer {
   width: 50%;
 }

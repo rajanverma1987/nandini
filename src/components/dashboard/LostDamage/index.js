@@ -5,7 +5,7 @@ export const LostandDamage = () => {
   return (
     <div className={styles.wareHouseTopSection} style={{ marginTop: "30px" }}>
       <div className={styles.colSection}>
-        <h3>Lost in transit items</h3>
+        {/* <h3>Lost in transit items</h3> */}
         <div className={styles.cardContainer}>
           <div className={styles.card}>
             <div className={styles.cardDetails}>
