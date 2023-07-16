@@ -2,25 +2,27 @@
   position: absolute;
   right: 0px;
   top: 0;
-    color: #721c24;
-    background-color: #f8d7da;
+  color: #721c24;
+  background-color: #f8d7da;
   /* border: 1px solid grey; */
   min-width: 15rem;
   padding: 15px;
   animation: animate 1s ease-in-out;
   border-radius: 5px;
+  z-index: 100;
 }
 .toastContainer {
   position: absolute;
   right: 0px;
   top: 0;
-      color: #155724;
-      background-color: #d4edda;
+  color: #155724;
+  background-color: #d4edda;
   /* border: 1px solid grey; */
   min-width: 15rem;
   padding: 15px;
   animation: animate 1s ease-in-out;
-    border-radius: 5px;
+  border-radius: 5px;
+  z-index: 100;
 }
 
 @keyframes animate {

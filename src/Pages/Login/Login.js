@@ -44,9 +44,9 @@ export default function Login() {
       const inputData = extractData(formData);
       let body = { ...inputData };
       setLogginSuccess(true);
-      body.USERMASTER.ip = ip.data.ip;
+      // body.USERMASTER.ip = ip.data.ip;
       const res = await axios_.post(formData.api, body);
-
+      console.log("res", res);
       if (res.data.EmployeeData) {
         localStorage.setItem("user", JSON.stringify(res.data?.UserData));
         setUser(res.data?.UserData);
@@ -72,9 +72,15 @@ export default function Login() {
         <img src="/images/logo.png" />
       </div>
       <div className="loginform">
-          <h3>Welcome to<br/> Nandini Warehouse Tally System</h3>
-          <p>The company handles all the warehouse operations with advanced tally system.</p>
-          <p>Login in. To see it in action.</p>
+        <h3>
+          Welcome to
+          <br /> Nandini Warehouse Tally System
+        </h3>
+        <p>
+          The company handles all the warehouse operations with advanced tally
+          system.
+        </p>
+        <p>Login in. To see it in action.</p>
         <FormGenerator
           formData={formData}
           functions={functions}
